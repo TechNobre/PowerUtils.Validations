@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Entities;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.Strings;
 using PowerUtils.Validations;
+using PowerUtils.Validations.Tests.Fakes.Entities;
+using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
 using System.Linq;
 using Xunit;
 
@@ -13,7 +13,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_NULL()
         {
             // Arrange
-            FakeEntity fake = new FakeEntity(null);
+            var fake = new FakeEntity(null);
             int minLength = 3;
             int maxLength = 10;
 
@@ -37,7 +37,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Empty()
         {
             // Arrange
-            FakeEntity fake = new FakeEntity(string.Empty);
+            var fake = new FakeEntity(string.Empty);
             int minLength = 3;
             int maxLength = 10;
 
@@ -61,7 +61,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Valid()
         {
             // Arrange
-            FakeEntity fake = new FakeEntity("value");
+            var fake = new FakeEntity("value");
             int minLength = 3;
             int maxLength = 10;
 
@@ -85,7 +85,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Invalid_Max()
         {
             // Arrange
-            FakeEntity fake = new FakeEntity("value 1234");
+            var fake = new FakeEntity("value 1234");
             int minLength = 3;
             int maxLength = 6;
 
@@ -120,7 +120,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Invalid_Min()
         {
             // Arrange
-            FakeEntity fake = new FakeEntity("val");
+            var fake = new FakeEntity("val");
             int minLength = 4;
             int maxLength = 10;
 

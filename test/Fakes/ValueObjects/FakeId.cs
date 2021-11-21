@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PowerUtils.RestAPI.Tests.Fakes.ValueObjects
+namespace PowerUtils.Validations.Tests.Fakes.ValueObjects
 {
     public record FakeId
     {
@@ -8,7 +8,7 @@ namespace PowerUtils.RestAPI.Tests.Fakes.ValueObjects
 
         public FakeId(Guid id)
         {
-            this.Id = id;
+            Id = id;
         }
     }
 }

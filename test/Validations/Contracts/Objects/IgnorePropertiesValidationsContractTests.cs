@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.Objects;
-using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
-using PowerUtils.Validations;
+using PowerUtils.Validations.Tests.Fakes.Validations.Objects;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Objects
+namespace PowerUtils.Validations.Tests.Validations.Contracts.Objects
 {
     public class IgnorePropertiesValidationsContractTests
     {
@@ -13,7 +12,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Objects
         public void IgnoreProperty_WithRules()
         {
             // Arrange
-            FakeCollection fake = new FakeCollection();
+            var fake = new FakeCollection();
             fake.ValueList = null;
 
 
@@ -33,7 +32,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Objects
         public void IgnoreProperty_NullRules()
         {
             // Arrange
-            FakeCollection fake = new FakeCollection();
+            var fake = new FakeCollection();
             fake.ValueList = null;
 
             string expectedProperty = nameof(fake.ValueList);

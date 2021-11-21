@@ -1,7 +1,7 @@
-﻿using PowerUtils.RestAPI.Tests.Fakes.Entities;
-using PowerUtils.Validations.Contracts;
+﻿using PowerUtils.Validations.Contracts;
+using PowerUtils.Validations.Tests.Fakes.Entities;
 
-namespace PowerUtils.RestAPI.Tests.Fakes.Validations.Strings
+namespace PowerUtils.Validations.Tests.Fakes.Validations.Strings
 {
     public class FakeLengthValidation : ValidationsContract<FakeEntity>
     {
@@ -14,11 +14,11 @@ namespace PowerUtils.RestAPI.Tests.Fakes.Validations.Strings
             int maxLength
         ) : base(source)
         {
-            this._minLength = minLength;
-            this._maxLength = maxLength;
+            _minLength = minLength;
+            _maxLength = maxLength;
 
-            this.RuleFor(r => r.FirstName)
-               .Length(this._minLength, this._maxLength);
+            RuleFor(r => r.FirstName)
+               .Length(_minLength, _maxLength);
         }
     }
 }

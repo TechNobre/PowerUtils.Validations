@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Entities;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.General;
 using PowerUtils.Validations;
 using PowerUtils.Validations.Contracts;
+using PowerUtils.Validations.Tests.Fakes.Entities;
+using PowerUtils.Validations.Tests.Fakes.Validations.General;
 using System.Linq;
 using Xunit;
 
@@ -14,7 +14,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.General
         public void Value_NULL()
         {
             // Arrange
-            FakeGender fake = new FakeGender(null);
+            var fake = new FakeGender(null);
 
 
             // Act
@@ -32,7 +32,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.General
         public void Value_Empty()
         {
             // Arrange
-            FakeGender fake = new FakeGender(string.Empty);
+            var fake = new FakeGender(string.Empty);
 
 
             // Act
@@ -50,7 +50,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.General
         public void Value_Valid_Male()
         {
             // Arrange
-            FakeGender fake = new FakeGender("male");
+            var fake = new FakeGender("male");
 
 
             // Act
@@ -68,7 +68,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.General
         public void Value_Valid_Female()
         {
             // Arrange
-            FakeGender fake = new FakeGender("FemalE");
+            var fake = new FakeGender("FemalE");
 
 
             // Act
@@ -86,7 +86,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.General
         public void Value_Invalid()
         {
             // Arrange
-            FakeGender fake = new FakeGender("op3");
+            var fake = new FakeGender("op3");
 
             string expectedProperty = nameof(fake.Gender);
             string expectedErrorCode = ErrorCodes.INVALID;

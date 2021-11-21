@@ -1,7 +1,7 @@
 ﻿using PowerUtils.Validations;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.ErrorCodesTests
+namespace PowerUtils.Validations.Tests.Validations.ErrorCodesTests
 {
     [Trait("Category", "Get validation code formatted")]
     public class GetErrorCodesFormattedTests

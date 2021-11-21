@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PowerUtils.RestAPI.Tests.Fakes.Entities
+namespace PowerUtils.Validations.Tests.Fakes.Entities
 {
     public class FakeNullDate
     {
@@ -8,7 +8,7 @@ namespace PowerUtils.RestAPI.Tests.Fakes.Entities
 
         public FakeNullDate(DateTime? date)
         {
-            this.Date = date;
+            Date = date;
         }
     }
 }

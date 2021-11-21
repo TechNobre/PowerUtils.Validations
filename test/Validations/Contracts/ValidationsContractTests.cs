@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Entities;
-using PowerUtils.RestAPI.Tests.Fakes.Validations;
 using PowerUtils.Validations;
+using PowerUtils.Validations.Tests.Fakes.Entities;
+using PowerUtils.Validations.Tests.Fakes.Validations;
 using System.Linq;
 using Xunit;
 
@@ -13,7 +13,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts
         public void MultiErrors_SameProperty()
         {
             // Arrange
-            FakeEntity fake = new FakeEntity(null, null);
+            var fake = new FakeEntity(null, null);
             string expectedProperty = nameof(fake.FirstName);
             string expectedErrorCode = ErrorCodes.REQUIRED;
 

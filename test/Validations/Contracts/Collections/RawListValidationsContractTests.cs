@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.Objects;
-using PowerUtils.Validations;
+using PowerUtils.Validations.Tests.Fakes.Validations.Objects;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Collections
+namespace PowerUtils.Validations.Tests.Validations.Contracts.Collections
 {
     public class RawListValidationsContractTests
     {
@@ -46,7 +45,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Collections
         public void Value_NotNull()
         {
             // Arrange
-            List<string> fake = new List<string> { "fake1", "fake2" };
+            var fake = new List<string> { "fake1", "fake2" };
 
 
             // Act

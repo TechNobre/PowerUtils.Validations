@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.Globalization;
-using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
-using PowerUtils.Validations;
+using PowerUtils.Validations.Tests.Fakes.Validations.Globalization;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Globalization
+namespace PowerUtils.Validations.Tests.Validations.Contracts.Globalization
 {
     public class FakeLocationValidationsContractTests
     {
@@ -13,7 +12,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Globalization
         public void Invalid_Latitude_Min()
         {
             // Arrange
-            FakeLocation fake = new FakeLocation();
+            var fake = new FakeLocation();
             fake.Latitude = -91.145;
             fake.Longitude = 14.145;
 
@@ -44,7 +43,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Globalization
         public void Invalid_Latitude_Max()
         {
             // Arrange
-            FakeLocation fake = new FakeLocation();
+            var fake = new FakeLocation();
             fake.Latitude = 91.145;
             fake.Longitude = 14.145;
 
@@ -75,7 +74,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Globalization
         public void Invalid_Longitude_Min()
         {
             // Arrange
-            FakeLocation fake = new FakeLocation();
+            var fake = new FakeLocation();
             fake.Latitude = -14.145;
             fake.Longitude = -184.145;
 
@@ -106,7 +105,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Globalization
         public void Invalid_Longitude_Max()
         {
             // Arrange
-            FakeLocation fake = new FakeLocation();
+            var fake = new FakeLocation();
             fake.Latitude = -14.145;
             fake.Longitude = 184.145;
 
@@ -137,7 +136,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Globalization
         public void Valid_Location()
         {
             // Arrange
-            FakeLocation fake = new FakeLocation();
+            var fake = new FakeLocation();
             fake.Latitude = -14.145;
             fake.Longitude = 14.145;
 

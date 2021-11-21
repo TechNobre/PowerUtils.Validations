@@ -1,13 +1,13 @@
-﻿using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
-using PowerUtils.Validations.Contracts;
+﻿using PowerUtils.Validations.Contracts;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.RestAPI.Tests.Fakes.Validations.Strings
+namespace PowerUtils.Validations.Tests.Fakes.Validations.Strings
 {
     public class FakeEmailAddressValidations : ValidationsContract<FakeEmailAddress>
     {
         public FakeEmailAddressValidations(FakeEmailAddress source) : base(source)
         {
-            this.RuleFor(r => r.EmailAddress)
+            RuleFor(r => r.EmailAddress)
                .EmailAddress();
         }
     }

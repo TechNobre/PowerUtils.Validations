@@ -1,13 +1,13 @@
-﻿using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
-using PowerUtils.Validations.Contracts;
+﻿using PowerUtils.Validations.Contracts;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.RestAPI.Tests.Fakes.Validations.Guids
+namespace PowerUtils.Validations.Tests.Fakes.Validations.Guids
 {
     public class FakeIdValidation : ValidationsContract<FakeId>
     {
         public FakeIdValidation(FakeId source) : base(source)
         {
-            this.RuleFor(r => r.Id)
+            RuleFor(r => r.Id)
                 .Required();
         }
     }

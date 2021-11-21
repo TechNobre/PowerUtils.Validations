@@ -1,10 +1,9 @@
 ﻿using FluentAssertions;
-using PowerUtils.Validations;
 using PowerUtils.Validations.Contracts;
 using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Numerics
+namespace PowerUtils.Validations.Tests.Validations.Contracts.Numerics
 {
     public class MaxValidationsContractTests
     {

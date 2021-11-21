@@ -1,16 +1,16 @@
-﻿using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
-using PowerUtils.Validations.Contracts;
+﻿using PowerUtils.Validations.Contracts;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.RestAPI.Tests.Fakes.Validations.Globalization
+namespace PowerUtils.Validations.Tests.Fakes.Validations.Globalization
 {
     public class FakeLocationValidation : ValidationsContract<FakeLocation>
     {
         public FakeLocationValidation(FakeLocation source) : base(source)
         {
-            this.RuleFor(r => r.Latitude)
+            RuleFor(r => r.Latitude)
                 .Latitude();
 
-            this.RuleFor(r => r.Longitude)
+            RuleFor(r => r.Longitude)
                 .Longitude();
         }
     }

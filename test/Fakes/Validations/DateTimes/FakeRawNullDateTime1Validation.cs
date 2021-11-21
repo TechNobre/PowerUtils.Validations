@@ -1,7 +1,7 @@
 ﻿using PowerUtils.Validations.Contracts;
 using System;
 
-namespace PowerUtils.RestAPI.Tests.Fakes.Validations.DateTimes
+namespace PowerUtils.Validations.Tests.Fakes.Validations.DateTimes
 {
     public class FakeRawNullDateTime1Validation : ValidationsContract<DateTime?>
     {
@@ -14,11 +14,11 @@ namespace PowerUtils.RestAPI.Tests.Fakes.Validations.DateTimes
             DateTime maxDate
         ) : base(source)
         {
-            this._minDate = minDate;
-            this._maxDate = maxDate;
+            _minDate = minDate;
+            _maxDate = maxDate;
 
-            this.RuleFor(r => r.Value, "FakeDateTime")
-                .Date(this._minDate, this._maxDate);
+            RuleFor(r => r.Value, "FakeDateTime")
+                .Date(_minDate, _maxDate);
         }
     }
 }

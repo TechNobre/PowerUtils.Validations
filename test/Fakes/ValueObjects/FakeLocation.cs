@@ -1,4 +1,4 @@
-﻿namespace PowerUtils.RestAPI.Tests.Fakes.ValueObjects
+﻿namespace PowerUtils.Validations.Tests.Fakes.ValueObjects
 {
     public class FakeLocation
     {

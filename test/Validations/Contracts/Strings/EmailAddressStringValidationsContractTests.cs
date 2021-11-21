@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.Strings;
-using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
-using PowerUtils.Validations;
+using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
+namespace PowerUtils.Validations.Tests.Validations.Contracts.Strings
 {
     public class EmailAddressStringValidationsContractTests
     {
@@ -13,7 +12,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_NULL()
         {
             // Arrange
-            FakeEmailAddress fake = new FakeEmailAddress(null);
+            var fake = new FakeEmailAddress(null);
 
 
             // Act
@@ -49,7 +48,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Valid()
         {
             // Arrange
-            FakeEmailAddress fake = new FakeEmailAddress("value@value.pt");
+            var fake = new FakeEmailAddress("value@value.pt");
 
 
             // Act
@@ -67,7 +66,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Invalid()
         {
             // Arrange
-            FakeEmailAddress fake = new FakeEmailAddress("value@value.");
+            var fake = new FakeEmailAddress("value@value.");
 
             string expectedProperty = nameof(fake.EmailAddress);
             string expectedErrorCode = ErrorCodes.INVALID;

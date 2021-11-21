@@ -1,10 +1,9 @@
 ﻿using FluentAssertions;
-using PowerUtils.Validations;
 using PowerUtils.Validations.Contracts;
 using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.General
+namespace PowerUtils.Validations.Tests.Validations.Contracts.General
 {
     public class ForbiddenValueValidationsContractTests
     {
@@ -77,7 +76,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.General
             // Arrange
             string value = "VALUE3";
 
-            string[] forbiddenValues = new string[0];
+            var forbiddenValues = new string[0];
 
             // Act
             var act = new ValidationsContract<string>(value)
@@ -167,7 +166,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.General
             // Arrange
             int value = 5;
 
-            int[] forbiddenValues = new int[0];
+            var forbiddenValues = new int[0];
 
             // Act
             var act = new ValidationsContract<int>(value)

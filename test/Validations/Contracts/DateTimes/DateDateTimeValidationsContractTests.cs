@@ -1,13 +1,13 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Entities;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.DateTimes;
 using PowerUtils.Validations;
 using PowerUtils.Validations.Contracts;
+using PowerUtils.Validations.Tests.Fakes.Entities;
+using PowerUtils.Validations.Tests.Fakes.Validations.DateTimes;
 using System;
 using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.DateTimes
+namespace PowerUtils.Validations.Tests.Validations.Contracts.DateTimes
 {
     public class DateDateTimeValidationsContractTests
     {
@@ -297,7 +297,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.DateTimes
         public void DateTimeRaw_Nullable_NotNull()
         {
             // Arrange
-            DateTime? fake = new DateTime(2300, 5,9);
+            DateTime? fake = new DateTime(2300, 5, 9);
 
             var maxDate = new DateTime(2020, 6, 1);
 
