@@ -7,7 +7,7 @@ using Xunit;
 
 namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
 {
-    public class OptionsStringValidationsContractTests
+    public class OptionsIgnoreCaseStringValidationsContractTests
     {
         [Fact]
         public void Value_NULL()
@@ -18,7 +18,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
 
 
             // Act
-            var act = new FakeOptionsValidation(
+            var act = new FakeOptionsIgnoreCaseValidation(
                 fake,
                 options
             );
@@ -40,7 +40,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
 
 
             // Act
-            var act = new FakeOptionsValidation(
+            var act = new FakeOptionsIgnoreCaseValidation(
                 fake,
                 options
             );
@@ -58,11 +58,11 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         {
             // Arrange
             var fake = new FakeOptions("OP2");
-            var options = new string[] { "OP2", "Op2" };
+            var options = new string[] { "op1", "Op2" };
 
 
             // Act
-            var act = new FakeOptionsValidation(
+            var act = new FakeOptionsIgnoreCaseValidation(
                 fake,
                 options
             );
@@ -87,7 +87,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
 
 
             // Act
-            var act = new FakeOptionsValidation(
+            var act = new FakeOptionsIgnoreCaseValidation(
                 fake,
                 options
             );

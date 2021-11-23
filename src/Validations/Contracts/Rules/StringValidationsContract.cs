@@ -34,7 +34,33 @@ namespace PowerUtils.Validations.Contracts
                 return propertyRule;
             }
 
-            if(!options.Any(a => a.Equals(propertyRule.PropertyValue, StringComparison.InvariantCultureIgnoreCase)))
+            if(!options.Any(a => a == propertyRule.PropertyValue))
+            {
+                propertyRule.AddNotification(ErrorCodes.INVALID);
+            }
+
+            return propertyRule;
+        }
+
+        public static IPropertyRule<TSource, string> OptionsIgnoreCase<TSource>(this IPropertyRule<TSource, string> propertyRule, params string[] options)
+        { // DONE
+            if (propertyRule.PropertyNull)
+            {
+                return propertyRule;
+            }
+
+            if (string.IsNullOrEmpty(propertyRule.PropertyValue))
+            {
+                return propertyRule;
+            }
+
+            if (options == null)
+            {
+                propertyRule.AddNotification(ErrorCodes.INVALID);
+                return propertyRule;
+            }
+
+            if (!options.Any(a => a.Equals(propertyRule.PropertyValue, StringComparison.InvariantCultureIgnoreCase)))
             {
                 propertyRule.AddNotification(ErrorCodes.INVALID);
             }
