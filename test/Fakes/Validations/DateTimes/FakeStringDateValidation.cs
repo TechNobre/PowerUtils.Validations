@@ -1,8 +1,8 @@
-﻿using PowerUtils.RestAPI.Tests.Fakes.Entities;
-using PowerUtils.Validations.Contracts;
+﻿using PowerUtils.Validations.Contracts;
+using PowerUtils.Validations.Tests.Fakes.Entities;
 using System;
 
-namespace PowerUtils.RestAPI.Tests.Fakes.Validations.DateTimes
+namespace PowerUtils.Validations.Tests.Fakes.Validations.DateTimes
 {
     public class FakeStringDateValidation : ValidationsContract<FakeStringDate>
     {
@@ -15,11 +15,11 @@ namespace PowerUtils.RestAPI.Tests.Fakes.Validations.DateTimes
             DateTime maxDate
         ) : base(source)
         {
-            this._minDate = minDate;
-            this._maxDate = maxDate;
+            _minDate = minDate;
+            _maxDate = maxDate;
 
-            this.RuleFor(r => r.Date)
-                .Date(this._minDate, this._maxDate);
+            RuleFor(r => r.Date)
+                .Date(_minDate, _maxDate);
         }
     }
 }

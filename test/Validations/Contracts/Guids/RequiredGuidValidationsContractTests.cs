@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.Guids;
-using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
 using PowerUtils.Validations;
+using PowerUtils.Validations.Tests.Fakes.Validations.Guids;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 using System;
 using System.Linq;
 using Xunit;
@@ -32,9 +32,9 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Guids
         public void Value_Empty()
         {
             // Arrange
-            FakeId fake = new FakeId(Guid.Empty);
-            string expectedProperty = nameof(fake.Id);
-            string expectedErrorCode = ErrorCodes.REQUIRED;
+            var fake = new FakeId(Guid.Empty);
+            var expectedProperty = nameof(fake.Id);
+            var expectedErrorCode = ErrorCodes.REQUIRED;
 
 
             // Act

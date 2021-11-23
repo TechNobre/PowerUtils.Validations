@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.Objects;
-using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
 using PowerUtils.Validations;
+using PowerUtils.Validations.Tests.Fakes.Validations.Objects;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 using System.Linq;
 using Xunit;
 
@@ -13,7 +13,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Objects
         public void Value_NULL()
         {
             // Arrange
-            FakeCollection fake = new FakeCollection();
+            var fake = new FakeCollection();
             fake.ValueList = null;
 
             string expectedProperty = nameof(fake.ValueList);
@@ -41,7 +41,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Objects
         public void Value_NotNull()
         {
             // Arrange
-            FakeCollection fake = new FakeCollection();
+            var fake = new FakeCollection();
             fake.ValueList = new System.Collections.Generic.List<string>();
 
 

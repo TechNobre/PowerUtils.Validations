@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.Globalization;
-using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
-using PowerUtils.Validations;
+using PowerUtils.Validations.Tests.Fakes.Validations.Globalization;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Globalization
+namespace PowerUtils.Validations.Tests.Validations.Contracts.Globalization
 {
     public class CountryCodeISO2DateTimeValidationsContractTests
     {
@@ -13,7 +12,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Globalization
         public void Value_NULL()
         {
             // Arrange
-            FakeCountry fake = new FakeCountry(null);
+            var fake = new FakeCountry(null);
 
 
             // Act
@@ -67,7 +66,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Globalization
         public void Value_Invalid_ISO3()
         {
             // Arrange
-            FakeCountry fake = new FakeCountry("PTR");
+            var fake = new FakeCountry("PTR");
 
             string expectedProperty = nameof(fake.CountryCode);
             string expectedErrorCode = ErrorCodes.INVALID;
@@ -96,7 +95,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Globalization
         public void Value_Invalid_ISO2()
         {
             // Arrange
-            FakeCountry fake = new FakeCountry("RR");
+            var fake = new FakeCountry("RR");
 
             string expectedProperty = nameof(fake.CountryCode);
             string expectedErrorCode = ErrorCodes.INVALID;

@@ -75,5 +75,15 @@ dotnet add package PowerUtils.Validations
 ## Release Notes
 
 
+### v2.0.0 - 2021/11/23
+
+#### Breaking Changes
+- Now validation rule "Options" is case sensitive;
+ 
+#### New Features
+- Added new validation rule "OptionsIgnoreCase";
+- Added new validation rule "OrderingDirectionIgnoreCase";
+
+
 ### v1.0.0 - 2021/11/21
 - Kick start project

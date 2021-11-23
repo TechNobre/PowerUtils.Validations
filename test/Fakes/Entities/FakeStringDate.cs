@@ -1,4 +1,4 @@
-﻿namespace PowerUtils.RestAPI.Tests.Fakes.Entities
+﻿namespace PowerUtils.Validations.Tests.Fakes.Entities
 {
     public class FakeStringDate
     {
@@ -6,7 +6,7 @@
 
         public FakeStringDate(string date)
         {
-            this.Date = date;
+            Date = date;
         }
     }
 }

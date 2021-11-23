@@ -1,4 +1,4 @@
-﻿namespace PowerUtils.RestAPI.Tests.Fakes.ValueObjects
+﻿namespace PowerUtils.Validations.Tests.Fakes.ValueObjects
 {
     public record FakeEmailAddress
     {
@@ -6,7 +6,7 @@
 
         public FakeEmailAddress(string emailAddress)
         {
-            this.EmailAddress = emailAddress;
+            EmailAddress = emailAddress;
         }
     }
 }

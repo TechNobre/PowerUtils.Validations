@@ -1,4 +1,4 @@
-﻿namespace PowerUtils.RestAPI.Tests.Fakes.Entities
+﻿namespace PowerUtils.Validations.Tests.Fakes.Entities
 {
     public class FakeGender
     {
@@ -6,7 +6,7 @@
 
         public FakeGender(string gender)
         {
-            this.Gender = gender;
+            Gender = gender;
         }
     }
 }

@@ -1,13 +1,13 @@
-﻿using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
-using PowerUtils.Validations.Contracts;
+﻿using PowerUtils.Validations.Contracts;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.RestAPI.Tests.Fakes.Validations.Globalization
+namespace PowerUtils.Validations.Tests.Fakes.Validations.Globalization
 {
     public class FakeCountryValidation : ValidationsContract<FakeCountry>
     {
         public FakeCountryValidation(FakeCountry source) : base(source)
         {
-            this.RuleFor(r => r.CountryCode)
+            RuleFor(r => r.CountryCode)
                .CountryCodeISO2();
         }
     }

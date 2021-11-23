@@ -1,16 +1,16 @@
-﻿using PowerUtils.RestAPI.Tests.Fakes.Entities;
-using PowerUtils.Validations.Contracts;
+﻿using PowerUtils.Validations.Contracts;
+using PowerUtils.Validations.Tests.Fakes.Entities;
 
-namespace PowerUtils.RestAPI.Tests.Fakes.Validations
+namespace PowerUtils.Validations.Tests.Fakes.Validations
 {
     public class FakeMultiValidations : ValidationsContract<FakeEntity>
     {
         public FakeMultiValidations(FakeEntity source) : base(source)
         {
-            this.RuleFor(r => r.FirstName)
+            RuleFor(r => r.FirstName)
                 .Required();
 
-            this.RuleFor(r => r.FirstName)
+            RuleFor(r => r.FirstName)
                 .Required();
         }
     }

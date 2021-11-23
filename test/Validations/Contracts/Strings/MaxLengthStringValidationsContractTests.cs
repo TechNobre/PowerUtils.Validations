@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Entities;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.Strings;
 using PowerUtils.Validations;
+using PowerUtils.Validations.Tests.Fakes.Entities;
+using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
 using System.Linq;
 using Xunit;
 
@@ -35,7 +35,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Empty()
         {
             // Arrange
-            FakeEntity fake = new FakeEntity(string.Empty);
+            var fake = new FakeEntity(string.Empty);
             int maxLength = 10;
 
 
@@ -80,7 +80,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Invalid()
         {
             // Arrange
-            FakeEntity fake = new FakeEntity("value");
+            var fake = new FakeEntity("value");
             int maxLength = 4;
 
             string expectedProperty = nameof(fake.FirstName);

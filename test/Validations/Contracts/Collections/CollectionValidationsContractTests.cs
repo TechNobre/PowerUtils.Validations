@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
-using PowerUtils.Validations;
 using PowerUtils.Validations.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Collections
+namespace PowerUtils.Validations.Tests.Validations.Contracts.Collections
 {
     public class CollectionValidationsContractTests
     {

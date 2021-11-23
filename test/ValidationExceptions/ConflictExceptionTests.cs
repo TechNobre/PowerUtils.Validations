@@ -1,10 +1,9 @@
 ﻿using FluentAssertions;
-using PowerUtils.Validations;
 using PowerUtils.Validations.Exceptions;
 using System.Net;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.ValidationExceptions;
+namespace PowerUtils.Validations.Tests.ValidationExceptions;
 
 [Trait("Category", "ValidationExceptions")]
 public class ConflictExceptionTests

@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using PowerUtils.RestAPI.Tests.Fakes.Validations.Strings;
-using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
 using PowerUtils.Validations;
+using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 using System.Linq;
 using Xunit;
 
@@ -13,7 +13,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_NULL()
         {
             // Arrange
-            FakeOptions fake = new FakeOptions(null);
+            var fake = new FakeOptions(null);
             string[] options = new string[] { "op1", "Op2" };
 
 
@@ -35,8 +35,8 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Empty()
         {
             // Arrange
-            FakeOptions fake = new FakeOptions(string.Empty);
-            string[] options = new string[] { "op1", "Op2" };
+            var fake = new FakeOptions(string.Empty);
+            var options = new string[] { "op1", "Op2" };
 
 
             // Act
@@ -57,8 +57,8 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Valid()
         {
             // Arrange
-            FakeOptions fake = new FakeOptions("OP2");
-            string[] options = new string[] { "op1", "Op2" };
+            var fake = new FakeOptions("OP2");
+            var options = new string[] { "OP2", "Op2" };
 
 
             // Act
@@ -79,8 +79,8 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Invalid()
         {
             // Arrange
-            FakeOptions fake = new FakeOptions("op3");
-            string[] options = new string[] { "op1", "Op2" };
+            var fake = new FakeOptions("op3");
+            var options = new string[] { "op1", "Op2" };
 
             string expectedProperty = nameof(fake.Value);
             string expectedErrorCode = ErrorCodes.INVALID;
@@ -112,7 +112,7 @@ namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
         public void Value_Invalid_CustomPropertyName()
         {
             // Arrange
-            FakeOptions fake = new FakeOptions("op3");
+            var fake = new FakeOptions("op3");
             string[] options = new string[] { "op1", "Op2" };
 
             string expectedProperty = nameof(FakeOptionsPropertyNameValidation);

@@ -1,7 +1,7 @@
-﻿using PowerUtils.RestAPI.Tests.Fakes.ValueObjects;
-using PowerUtils.Validations.Contracts;
+﻿using PowerUtils.Validations.Contracts;
+using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.RestAPI.Tests.Fakes.Validations.Strings
+namespace PowerUtils.Validations.Tests.Fakes.Validations.Strings
 {
     public class FakeOptionsValidation : ValidationsContract<FakeOptions>
     {
@@ -12,10 +12,10 @@ namespace PowerUtils.RestAPI.Tests.Fakes.Validations.Strings
             string[] options
         ) : base(source)
         {
-            this._options = options;
+            _options = options;
 
-            this.RuleFor(r => r.Value)
-               .Options(this._options);
+            RuleFor(r => r.Value)
+               .Options(_options);
         }
     }
 }
