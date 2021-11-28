@@ -16,6 +16,7 @@ Utils to help validation of the objects
 ## Features
 - [Installation](#Installation)
 - [Validation exceptions](#validation-exceptions)
+- [Error Codes](#Error-Codes)
 - [Validations](#Validations)
 
 
@@ -51,6 +52,19 @@ dotnet add package PowerUtils.Validations
 - `ForbiddenException`;
 - `InvalidPropertyException`;
 - `NotFoundException`;
+- `UnauthorizedException`;
+
+### ErrorCodes <a name="Error-Codes"></a>
+- `ErrorCodes.REQUIRED`;
+- `ErrorCodes.INVALID`;
+- `ErrorCodes.UNAUTHORIZED`;
+- `ErrorCodes.FORBIDDEN`;
+- `ErrorCodes.MIN`;
+- `ErrorCodes.MAX`;
+- `ErrorCodes.MIN_DATETIME_UTCNOW`;
+- `ErrorCodes.MAX_DATETIME_UTCNOW`;
+- `ErrorCodes.ALREADY_EXISTS`;
+- `ErrorCodes.NOT_FOUND`;
 
 ### Validations <a name="Validations"></a>
 
@@ -75,6 +89,20 @@ dotnet add package PowerUtils.Validations
 ## Release Notes
 
 
+### v2.1.0 - 2021/11/29
+ 
+#### New Features
+- Added new exception `UnauthorizedException`;
+- Added new error code `UNAUTHORIZED`;
+
+#### Bug fixed
+- Bug fixed the StatusCode of the `ForbiddenException`;
+
+#### Enhancements
+- Improved the level of protection of static properties for ValidationExceptions;
+- Updated documentation;
+
+
 ### v2.0.0 - 2021/11/23
 
 #### Breaking Changes
@@ -86,4 +114,4 @@ dotnet add package PowerUtils.Validations
 
 
 ### v1.0.0 - 2021/11/21
-- Kick start project
+- Kick start project;

@@ -11,8 +11,8 @@ namespace PowerUtils.Validations.Exceptions
     [Serializable]
     public class BadRequestException : BaseValidationException
     {
-        public static HttpStatusCode STATUS_CODE = HttpStatusCode.BadRequest;
-        public static string HELP_LINK = StatusCodeLink.BAD_REQUEST;
+        public readonly static HttpStatusCode STATUS_CODE = HttpStatusCode.BadRequest;
+        public const string HELP_LINK = StatusCodeLink.BAD_REQUEST;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BadRequestException"></see> class with status code BadRequest.

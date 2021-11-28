@@ -11,8 +11,8 @@ namespace PowerUtils.Validations.Exceptions
     [Serializable]
     public class ForbiddenException : BaseValidationException
     {
-        public static HttpStatusCode STATUS_CODE = HttpStatusCode.BadRequest;
-        public static string HELP_LINK = StatusCodeLink.FORBIDDEN;
+        public readonly static HttpStatusCode STATUS_CODE = HttpStatusCode.Forbidden;
+        public const string HELP_LINK = StatusCodeLink.FORBIDDEN;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ForbiddenException"></see> class with status code Forbidden.

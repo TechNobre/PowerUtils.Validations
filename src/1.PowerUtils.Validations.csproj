@@ -13,7 +13,7 @@
     <PackageId>PowerUtils.Validations</PackageId>
     <title>PowerUtils.Validations</title>
     <Product>PowerUtils.Validations</Product>
-    <Version>2.0.0</Version>
+    <Version>2.1.0</Version>
 
     <Authors>Nelson Nobre</Authors>
     <Company>TechNobre</Company>
@@ -24,9 +24,11 @@
 
     <Description>Utils to help validation of the objects</Description>
     <PackageReleaseNotes>
-      - Now validation rule "Options" is case sensitive;
-      - Added new validation rule "OptionsIgnoreCase";
-      - Added new validation rule "OrderingDirectionIgnoreCase";
+      - Added new exception `UnauthorizedException`;
+      - Added new error code `UNAUTHORIZED`;
+      - Bug fixed the StatusCode of the `ForbiddenException`;
+      - Improved the level of protection of static properties for ValidationExceptions;
+      - Updated documentation;
     </PackageReleaseNotes>
     <Description>Utils to help validation of the objects</Description>
     <PackageTags>PowerUtils;Utils;Validation;Rules;Exception</PackageTags>

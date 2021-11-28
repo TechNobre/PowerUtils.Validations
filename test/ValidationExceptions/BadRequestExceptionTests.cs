@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using PowerUtils.Net.Constants;
 using PowerUtils.Validations.Exceptions;
 using System.Net;
 using Xunit;
@@ -18,6 +19,9 @@ public class BadRequestExceptionTests
         // Assert
         act.StatusCode.Should()
             .Be(HttpStatusCode.BadRequest);
+
+        act.HelpLink.Should()
+            .Be(StatusCodeLink.GetStatusCodeLink((int)HttpStatusCode.BadRequest));
 
         act.Notifications.Should()
             .HaveCount(1);
@@ -48,6 +52,9 @@ public class BadRequestExceptionTests
         act.StatusCode.Should()
             .Be(HttpStatusCode.BadRequest);
 
+        act.HelpLink.Should()
+            .Be(StatusCodeLink.GetStatusCodeLink((int)HttpStatusCode.BadRequest));
+
         act.Notifications.Should()
             .BeEmpty();
     }
@@ -62,6 +69,9 @@ public class BadRequestExceptionTests
         // Assert
         act.StatusCode.Should()
             .Be(HttpStatusCode.BadRequest);
+
+        act.HelpLink.Should()
+            .Be(StatusCodeLink.GetStatusCodeLink((int)HttpStatusCode.BadRequest));
 
         act.Message.Should()
             .Be("Fake message");
