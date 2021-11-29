@@ -11,8 +11,8 @@ namespace PowerUtils.Validations.Exceptions
     [Serializable]
     public class NotFoundException : BaseValidationException
     {
-        public static HttpStatusCode STATUS_CODE = HttpStatusCode.NotFound;
-        public static string HELP_LINK = StatusCodeLink.NOT_FOUND;
+        public readonly static HttpStatusCode STATUS_CODE = HttpStatusCode.NotFound;
+        public const string HELP_LINK = StatusCodeLink.NOT_FOUND;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NotFoundException"></see> class with status code NotFound.

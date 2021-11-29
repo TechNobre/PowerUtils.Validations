@@ -7,6 +7,8 @@
         public const string REQUIRED = "REQUIRED";
 
         public const string INVALID = "INVALID";
+
+        public const string UNAUTHORIZED = "UNAUTHORIZED";
         public const string FORBIDDEN = "FORBIDDEN";
 
         public const string MIN = "MIN";
