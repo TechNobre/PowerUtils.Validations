@@ -1,59 +1,58 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations.Tests.Fakes.Validations.Objects;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
-using System.Linq;
 using Xunit;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.Objects
+namespace PowerUtils.Validations.Tests.Validations.Contracts.Objects;
+
+public class IgnorePropertiesValidationsContractTests
 {
-    public class IgnorePropertiesValidationsContractTests
+    [Fact]
+    public void IgnoreProperty_WithRules()
     {
-        [Fact]
-        public void IgnoreProperty_WithRules()
-        {
-            // Arrange
-            var fake = new FakeCollection();
-            fake.ValueList = null;
+        // Arrange
+        var fake = new FakeCollection();
+        fake.ValueList = null;
 
 
-            // Act
-            var act = new FakeRequiredObjectValidation(fake, "ValueList");
+        // Act
+        var act = new FakeRequiredObjectValidation(fake, "ValueList");
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().BeEmpty();
-        }
-
-
-        [Fact]
-        public void IgnoreProperty_NullRules()
-        {
-            // Arrange
-            var fake = new FakeCollection();
-            fake.ValueList = null;
-
-            string expectedProperty = nameof(fake.ValueList);
-            string expectedErrorCode = ErrorCodes.REQUIRED;
+        act.Notifications.Should().BeEmpty();
+    }
 
 
-            // Act
-            var act = new FakeRequiredObjectValidation(fake);
+    [Fact]
+    public void IgnoreProperty_NullRules()
+    {
+        // Arrange
+        var fake = new FakeCollection();
+        fake.ValueList = null;
+
+        var expectedProperty = nameof(fake.ValueList);
+        var expectedErrorCode = ErrorCodes.REQUIRED;
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
+        // Act
+        var act = new FakeRequiredObjectValidation(fake);
 
-            act.Notifications.First().Property
-                .Should()
-                    .Be(expectedProperty);
 
-            act.Notifications.First().ErrorCode
-                .Should()
-                    .Be(expectedErrorCode);
-        }
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
+
+        act.Notifications.First().Property
+            .Should()
+                .Be(expectedProperty);
+
+        act.Notifications.First().ErrorCode
+            .Should()
+                .Be(expectedErrorCode);
     }
 }

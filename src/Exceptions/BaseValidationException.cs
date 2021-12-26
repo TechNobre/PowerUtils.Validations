@@ -1,8 +1,8 @@
-using PowerUtils.Net.Constants;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.Serialization;
+using PowerUtils.Net.Constants;
 
 namespace PowerUtils.Validations.Exceptions
 {
@@ -27,7 +27,7 @@ namespace PowerUtils.Validations.Exceptions
         /// <summary>
         /// Gets the list of validations in exception
         /// </summary>
-        public IReadOnlyCollection<ValidationNotification> Notifications => this.ValidationNotificationsPipeline.Notifications;
+        public IReadOnlyCollection<ValidationNotification> Notifications => ValidationNotificationsPipeline.Notifications;
         protected IValidationNotificationsPipeline ValidationNotificationsPipeline { get; set; }
 
         /// <summary>
@@ -36,9 +36,9 @@ namespace PowerUtils.Validations.Exceptions
         protected BaseValidationException(HttpStatusCode statusCode, string helpLink)
             : base()
         {
-            this.StatusCode = statusCode;
-            this.HelpLink = helpLink;
-            this.ValidationNotificationsPipeline = new ValidationNotificationsPipeline(this.StatusCode);
+            StatusCode = statusCode;
+            HelpLink = helpLink;
+            ValidationNotificationsPipeline = new ValidationNotificationsPipeline(StatusCode);
         }
 
         /// <summary>
@@ -50,9 +50,9 @@ namespace PowerUtils.Validations.Exceptions
         protected BaseValidationException(HttpStatusCode statusCode, string helpLink, string message)
             : base(message)
         {
-            this.StatusCode = statusCode;
-            this.HelpLink = helpLink;
-            this.ValidationNotificationsPipeline = new ValidationNotificationsPipeline(this.StatusCode);
+            StatusCode = statusCode;
+            HelpLink = helpLink;
+            ValidationNotificationsPipeline = new ValidationNotificationsPipeline(StatusCode);
         }
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace PowerUtils.Validations.Exceptions
         protected BaseValidationException(HttpStatusCode statusCode, string helpLink, string message, Exception innerException)
             : base(message, innerException)
         {
-            this.StatusCode = statusCode;
-            this.HelpLink = helpLink;
-            this.ValidationNotificationsPipeline = new ValidationNotificationsPipeline(this.StatusCode);
+            StatusCode = statusCode;
+            HelpLink = helpLink;
+            ValidationNotificationsPipeline = new ValidationNotificationsPipeline(StatusCode);
         }
 
         /// <summary>
@@ -83,10 +83,10 @@ namespace PowerUtils.Validations.Exceptions
             : base(info, context)
         {
             var statusCode = info.GetValue(nameof(StatusCode), typeof(HttpStatusCode));
-            this.StatusCode = statusCode == null ? HttpStatusCode.BadRequest : (HttpStatusCode)statusCode;
+            StatusCode = statusCode == null ? HttpStatusCode.BadRequest : (HttpStatusCode)statusCode;
 
-            this.HelpLink = StatusCodeLink.GetStatusCodeLink((int)this.StatusCode);
-            this.ValidationNotificationsPipeline = new ValidationNotificationsPipeline(this.StatusCode);
+            HelpLink = StatusCodeLink.GetStatusCodeLink((int)StatusCode);
+            ValidationNotificationsPipeline = new ValidationNotificationsPipeline(StatusCode);
         }
 
         /// <summary>
@@ -101,9 +101,9 @@ namespace PowerUtils.Validations.Exceptions
         protected BaseValidationException(HttpStatusCode statusCode, string helpLink, SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            this.StatusCode = statusCode;
-            this.HelpLink = helpLink;
-            this.ValidationNotificationsPipeline = new ValidationNotificationsPipeline(this.StatusCode);
+            StatusCode = statusCode;
+            HelpLink = helpLink;
+            ValidationNotificationsPipeline = new ValidationNotificationsPipeline(StatusCode);
         }
 
         /// <summary>

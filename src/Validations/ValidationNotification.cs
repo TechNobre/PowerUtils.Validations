@@ -13,9 +13,9 @@
 
         public ValidationNotification(string property, string errorCode, string message)
         {
-            this.Property = property;
-            this.ErrorCode = errorCode;
-            this.Message = message;
+            Property = property;
+            ErrorCode = errorCode;
+            Message = message;
         }
     }
 }

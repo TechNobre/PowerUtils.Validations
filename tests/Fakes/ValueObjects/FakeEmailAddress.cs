@@ -1,12 +1,9 @@
-﻿namespace PowerUtils.Validations.Tests.Fakes.ValueObjects
-{
-    public record FakeEmailAddress
-    {
-        public string EmailAddress { get; init; }
+﻿namespace PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-        public FakeEmailAddress(string emailAddress)
-        {
-            EmailAddress = emailAddress;
-        }
-    }
+public record FakeEmailAddress
+{
+    public string EmailAddress { get; init; }
+
+    public FakeEmailAddress(string emailAddress)
+        => EmailAddress = emailAddress;
 }

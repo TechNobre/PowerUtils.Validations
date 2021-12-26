@@ -1,7 +1,7 @@
-﻿using PowerUtils.Net.Constants;
-using System;
+﻿using System;
 using System.Net;
 using System.Runtime.Serialization;
+using PowerUtils.Net.Constants;
 
 namespace PowerUtils.Validations.Exceptions
 {
@@ -11,7 +11,7 @@ namespace PowerUtils.Validations.Exceptions
     [Serializable]
     public class UnauthorizedException : BaseValidationException
     {
-        public readonly static HttpStatusCode STATUS_CODE = HttpStatusCode.Unauthorized;
+        public static readonly HttpStatusCode STATUS_CODE = HttpStatusCode.Unauthorized;
         public const string HELP_LINK = StatusCodeLink.UNAUTHORIZED;
 
         /// <summary>
@@ -58,9 +58,7 @@ namespace PowerUtils.Validations.Exceptions
         /// <param name="errorCode">Error code for property</param>
         public UnauthorizedException(string property, string errorCode)
             : base(STATUS_CODE, HELP_LINK)
-        {
-            this.ValidationNotificationsPipeline.SetNotificationStatus(STATUS_CODE, property, errorCode);
-        }
+            => ValidationNotificationsPipeline.SetNotificationStatus(STATUS_CODE, property, errorCode);
 
         /// <summary>
         /// Initializes a new instance of the exception class with invalid property, error code and a error message.
@@ -70,8 +68,6 @@ namespace PowerUtils.Validations.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         public UnauthorizedException(string property, string errorCode, string message)
             : base(STATUS_CODE, HELP_LINK, message)
-        {
-            this.ValidationNotificationsPipeline.SetNotificationStatus(STATUS_CODE, property, errorCode);
-        }
+            => ValidationNotificationsPipeline.SetNotificationStatus(STATUS_CODE, property, errorCode);
     }
 }

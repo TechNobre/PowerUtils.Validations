@@ -1,7 +1,7 @@
-using PowerUtils.Net.Constants;
-using System;
+﻿using System;
 using System.Net;
 using System.Runtime.Serialization;
+using PowerUtils.Net.Constants;
 
 namespace PowerUtils.Validations.Exceptions
 {
@@ -11,7 +11,7 @@ namespace PowerUtils.Validations.Exceptions
     [Serializable]
     public class NotFoundException : BaseValidationException
     {
-        public readonly static HttpStatusCode STATUS_CODE = HttpStatusCode.NotFound;
+        public static readonly HttpStatusCode STATUS_CODE = HttpStatusCode.NotFound;
         public const string HELP_LINK = StatusCodeLink.NOT_FOUND;
 
         /// <summary>
@@ -59,8 +59,6 @@ namespace PowerUtils.Validations.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         public NotFoundException(string property, string message)
             : base(STATUS_CODE, HELP_LINK, message)
-        {
-            this.ValidationNotificationsPipeline.SetNotFoundStatus(property);
-        }
+            => ValidationNotificationsPipeline.SetNotFoundStatus(property);
     }
 }

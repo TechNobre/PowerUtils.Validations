@@ -1,181 +1,180 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations;
 using PowerUtils.Validations.Contracts;
 using PowerUtils.Validations.Tests.Fakes.Entities;
 using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
-using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
+namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings;
+
+public class RequiredStringValidationsContractTests
 {
-    public class RequiredStringValidationsContractTests
+    [Fact]
+    public void Value_NULL()
     {
-        [Fact]
-        public void Value_NULL()
-        {
-            // Arrange
-            var fake = new FakeEntity(null);
-            string expectedProperty = nameof(fake.FirstName);
-            string expectedErrorCode = ErrorCodes.REQUIRED;
+        // Arrange
+        var fake = new FakeEntity(null);
+        var expectedProperty = nameof(fake.FirstName);
+        var expectedErrorCode = ErrorCodes.REQUIRED;
 
 
-            // Act
-            var act = new FakeRequiredValidation(fake);
+        // Act
+        var act = new FakeRequiredValidation(fake);
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
 
-            act.Notifications.First().Property
-                .Should()
-                    .Be(expectedProperty);
+        act.Notifications.First().Property
+            .Should()
+                .Be(expectedProperty);
 
-            act.Notifications.First().ErrorCode
-                .Should()
-                    .Be(expectedErrorCode);
-        }
+        act.Notifications.First().ErrorCode
+            .Should()
+                .Be(expectedErrorCode);
+    }
 
-        [Fact]
-        public void Value_Empty()
-        {
-            // Arrange
-            var fake = new FakeEntity(string.Empty);
-            string expectedProperty = nameof(fake.FirstName);
-            string expectedErrorCode = ErrorCodes.REQUIRED;
-
-
-            // Act
-            var act = new FakeRequiredValidation(fake);
+    [Fact]
+    public void Value_Empty()
+    {
+        // Arrange
+        var fake = new FakeEntity(string.Empty);
+        var expectedProperty = nameof(fake.FirstName);
+        var expectedErrorCode = ErrorCodes.REQUIRED;
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().NotBeEmpty();
-
-            act.Notifications.First().Property
-                .Should()
-                    .Be(expectedProperty);
-
-            act.Notifications.First().ErrorCode
-                .Should()
-                    .Be(expectedErrorCode);
-        }
-
-        [Fact]
-        public void Value_WhiteSpace()
-        {
-            // Arrange
-            var fake = new FakeEntity(" ");
+        // Act
+        var act = new FakeRequiredValidation(fake);
 
 
-            // Act
-            var act = new FakeRequiredValidation(fake);
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().NotBeEmpty();
+
+        act.Notifications.First().Property
+            .Should()
+                .Be(expectedProperty);
+
+        act.Notifications.First().ErrorCode
+            .Should()
+                .Be(expectedErrorCode);
+    }
+
+    [Fact]
+    public void Value_WhiteSpace()
+    {
+        // Arrange
+        var fake = new FakeEntity(" ");
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void DirectValidation_Null()
-        {
-            // Arrange
-            string value = null;
-
-            string expectedProperty = "FirstName";
-            string expectedErrorCode = ErrorCodes.REQUIRED;
+        // Act
+        var act = new FakeRequiredValidation(fake);
 
 
-            // Act
-            var act = new ValidationsContract<string>(value)
-                .RuleFor("FirstName")
-                .Required()
-                .Length(4, 5);
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void DirectValidation_Null()
+    {
+        // Arrange
+        string value = null;
+
+        var expectedProperty = "FirstName";
+        var expectedErrorCode = ErrorCodes.REQUIRED;
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().NotBeEmpty();
-
-            act.Notifications.First().Property
-                .Should()
-                    .Be(expectedProperty);
-
-            act.Notifications.First().ErrorCode
-                .Should()
-                    .Be(expectedErrorCode);
-        }
-
-        [Fact]
-        public void DirectValidation_Empty()
-        {
-            // Arrange
-            string value = string.Empty;
-
-            string expectedProperty = "FirstName";
-            string expectedErrorCode = ErrorCodes.REQUIRED;
+        // Act
+        var act = new ValidationsContract<string>(value)
+            .RuleFor("FirstName")
+            .Required()
+            .Length(4, 5);
 
 
-            // Act
-            var act = new ValidationsContract<string>(value)
-                .RuleFor("FirstName")
-                .Required()
-                .Length(4, 5);
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().NotBeEmpty();
+
+        act.Notifications.First().Property
+            .Should()
+                .Be(expectedProperty);
+
+        act.Notifications.First().ErrorCode
+            .Should()
+                .Be(expectedErrorCode);
+    }
+
+    [Fact]
+    public void DirectValidation_Empty()
+    {
+        // Arrange
+        var value = string.Empty;
+
+        var expectedProperty = "FirstName";
+        var expectedErrorCode = ErrorCodes.REQUIRED;
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().NotBeEmpty();
-
-            act.Notifications.First().Property
-                .Should()
-                    .Be(expectedProperty);
-
-            act.Notifications.First().ErrorCode
-               .Should()
-                   .Be(expectedErrorCode);
-        }
-
-        [Fact]
-        public void DirectValidation_WithValue()
-        {
-            // Arrange
-            string value = "Test";
-
-            string expectedProperty = "FirstName";
-            string expectedErrorCode = ErrorCodes.MIN + ":" + 8;
+        // Act
+        var act = new ValidationsContract<string>(value)
+            .RuleFor("FirstName")
+            .Required()
+            .Length(4, 5);
 
 
-            // Act
-            var act = new ValidationsContract<string>(value)
-                .RuleFor("FirstName")
-                .Required()
-                .Length(8, 15);
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().NotBeEmpty();
+
+        act.Notifications.First().Property
+            .Should()
+                .Be(expectedProperty);
+
+        act.Notifications.First().ErrorCode
+           .Should()
+               .Be(expectedErrorCode);
+    }
+
+    [Fact]
+    public void DirectValidation_WithValue()
+    {
+        // Arrange
+        var value = "Test";
+
+        var expectedProperty = "FirstName";
+        var expectedErrorCode = ErrorCodes.MIN + ":" + 8;
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
+        // Act
+        var act = new ValidationsContract<string>(value)
+            .RuleFor("FirstName")
+            .Required()
+            .Length(8, 15);
 
-            act.Notifications.Should().NotBeEmpty();
 
-            act.Notifications.First().Property
-                .Should()
-                    .Be(expectedProperty);
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
 
-            act.Notifications.First().ErrorCode
-               .Should()
-                   .Be(expectedErrorCode);
-        }
+        act.Notifications.Should().NotBeEmpty();
+
+        act.Notifications.First().Property
+            .Should()
+                .Be(expectedProperty);
+
+        act.Notifications.First().ErrorCode
+           .Should()
+               .Be(expectedErrorCode);
     }
 }

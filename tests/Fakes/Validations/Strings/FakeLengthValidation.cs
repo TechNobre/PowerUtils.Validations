@@ -1,24 +1,23 @@
 ﻿using PowerUtils.Validations.Contracts;
 using PowerUtils.Validations.Tests.Fakes.Entities;
 
-namespace PowerUtils.Validations.Tests.Fakes.Validations.Strings
+namespace PowerUtils.Validations.Tests.Fakes.Validations.Strings;
+
+public class FakeLengthValidation : ValidationsContract<FakeEntity>
 {
-    public class FakeLengthValidation : ValidationsContract<FakeEntity>
+    private readonly int _minLength;
+    private readonly int _maxLength;
+
+    public FakeLengthValidation(
+        FakeEntity source,
+        int minLength,
+        int maxLength
+    ) : base(source)
     {
-        private readonly int _minLength;
-        private readonly int _maxLength;
+        _minLength = minLength;
+        _maxLength = maxLength;
 
-        public FakeLengthValidation(
-            FakeEntity source,
-            int minLength,
-            int maxLength
-        ) : base(source)
-        {
-            _minLength = minLength;
-            _maxLength = maxLength;
-
-            RuleFor(r => r.FirstName)
-               .Length(_minLength, _maxLength);
-        }
+        RuleFor(r => r.FirstName)
+           .Length(_minLength, _maxLength);
     }
 }

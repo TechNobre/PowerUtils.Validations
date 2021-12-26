@@ -1,15 +1,12 @@
-﻿namespace PowerUtils.Validations.Tests.Fakes.ValueObjects
+﻿namespace PowerUtils.Validations.Tests.Fakes.ValueObjects;
+
+public record FakeCountry
 {
-    public record FakeCountry
-    {
-        public string CountryCode { get; init; }
+    public string CountryCode { get; init; }
 
-        public FakeCountry()
-        { }
+    public FakeCountry()
+    { }
 
-        public FakeCountry(string countryCode)
-        {
-            CountryCode = countryCode;
-        }
-    }
+    public FakeCountry(string countryCode)
+        => CountryCode = countryCode;
 }

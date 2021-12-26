@@ -1,166 +1,166 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations.Contracts;
-using System.Linq;
 using Xunit;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.Numerics
+namespace PowerUtils.Validations.Tests.Validations.Contracts.Numerics;
+
+public class MinValidationsContractTests
 {
-    public class MinValidationsContractTests
+    [Fact]
+    public void Int_Greater()
     {
-        [Fact]
-        public void Int_Greater()
-        {
-            // Arrange
-            int value = 4;
-            int min = 5;
+        // Arrange
+        var value = 4;
+        var min = 5;
 
-            string expectedErrorCode = ErrorCodes.MIN + ":" + min;
-
-            // Act
-            var act = new ValidationsContract<int>(value)
-                .RuleFor("Fake")
-                .Min(min);
+        var expectedErrorCode = ErrorCodes.MIN + ":" + min;
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().NotBeEmpty();
-
-            act.Notifications.First().ErrorCode
-               .Should()
-                   .Be(expectedErrorCode);
-        }
-
-        [Fact]
-        public void Int_Equals()
-        {
-            // Arrange
-            int value = 6;
-            int min = 6;
-
-            // Act
-            var act = new ValidationsContract<int>(value)
-                .RuleFor("Fake")
-                .Min(min);
+        // Act
+        var act = new ValidationsContract<int>(value)
+            .RuleFor("Fake")
+            .Min(min);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().BeEmpty();
-        }
+        act.Notifications.Should().NotBeEmpty();
 
-        [Fact]
-        public void Int_Less()
-        {
-            // Arrange
-            int value = 8;
-            int min = 7;
+        act.Notifications.First().ErrorCode
+           .Should()
+               .Be(expectedErrorCode);
+    }
 
-            // Act
-            var act = new ValidationsContract<int>(value)
-                .RuleFor("Fake")
-                .Min(min);
+    [Fact]
+    public void Int_Equals()
+    {
+        // Arrange
+        var value = 6;
+        var min = 6;
 
-
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void IntNull_Greater_Invalid()
-        {
-            // Arrange
-            int? value = 4;
-            int min = 5;
-
-            string expectedErrorCode = ErrorCodes.MIN + ":" + min;
-
-            // Act
-            var act = new ValidationsContract<int?>(value)
-                .RuleFor("Fake")
-                .Min(min);
+        // Act
+        var act = new ValidationsContract<int>(value)
+            .RuleFor("Fake")
+            .Min(min);
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should()
-                .NotBeEmpty();
+        act.Notifications.Should().BeEmpty();
+    }
 
-            act.Notifications.First().ErrorCode
-               .Should()
-                   .Be(expectedErrorCode);
-        }
+    [Fact]
+    public void Int_Less()
+    {
+        // Arrange
+        var value = 8;
+        var min = 7;
 
-        [Fact]
-        public void IntNull_Null_Valid()
-        {
-            // Arrange
-            int? value = null;
-            int min = 6;
-
-            // Act
-            var act = new ValidationsContract<int?>(value)
-                .RuleFor("Fake")
-                .Min(min);
+        // Act
+        var act = new ValidationsContract<int>(value)
+            .RuleFor("Fake")
+            .Min(min);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should()
-                .BeEmpty();
-        }
+        act.Notifications.Should().BeEmpty();
+    }
 
-        [Fact]
-        public void IntNull_Equals_Valid()
-        {
-            // Arrange
-            int? value = 6;
-            int min = 6;
+    [Fact]
+    public void IntNull_Greater_Invalid()
+    {
+        // Arrange
+        int? value = 4;
+        var min = 5;
 
-            // Act
-            var act = new ValidationsContract<int?>(value)
-                .RuleFor("Fake")
-                .Min(min);
+        var expectedErrorCode = ErrorCodes.MIN + ":" + min;
 
-
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should()
-                .BeEmpty();
-        }
-
-        [Fact]
-        public void IntNull_Less_Valid()
-        {
-            // Arrange
-            int? value = 8;
-            int min = 7;
-
-            // Act
-            var act = new ValidationsContract<int?>(value)
-                .RuleFor("Fake")
-                .Min(min);
+        // Act
+        var act = new ValidationsContract<int?>(value)
+            .RuleFor("Fake")
+            .Min(min);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
 
-            act.Notifications.Should()
-                .BeEmpty();
-        }
+        act.Notifications.Should()
+            .NotBeEmpty();
+
+        act.Notifications.First().ErrorCode
+           .Should()
+               .Be(expectedErrorCode);
+    }
+
+    [Fact]
+    public void IntNull_Null_Valid()
+    {
+        // Arrange
+        int? value = null;
+        var min = 6;
+
+        // Act
+        var act = new ValidationsContract<int?>(value)
+            .RuleFor("Fake")
+            .Min(min);
+
+
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should()
+            .BeEmpty();
+    }
+
+    [Fact]
+    public void IntNull_Equals_Valid()
+    {
+        // Arrange
+        int? value = 6;
+        var min = 6;
+
+        // Act
+        var act = new ValidationsContract<int?>(value)
+            .RuleFor("Fake")
+            .Min(min);
+
+
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should()
+            .BeEmpty();
+    }
+
+    [Fact]
+    public void IntNull_Less_Valid()
+    {
+        // Arrange
+        int? value = 8;
+        var min = 7;
+
+        // Act
+        var act = new ValidationsContract<int?>(value)
+            .RuleFor("Fake")
+            .Min(min);
+
+
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should()
+            .BeEmpty();
     }
 }

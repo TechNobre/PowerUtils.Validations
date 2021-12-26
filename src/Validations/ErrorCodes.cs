@@ -22,33 +22,21 @@
         public const string NOT_FOUND = "NOT_FOUND";
 
         public static string GetMinFormatted(string min)
-        { // DONE
-            return string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min);
-        }
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min);
 
         public static string GetMaxFormatted(string max)
-        { // DONE
-            return string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max);
-        }
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max);
 
         public static string GetMinFormatted(double min)
-        { // DONE
-            return string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min.ToString().Replace(",", "."));
-        }
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min.ToString().Replace(",", "."));
 
         public static string GetMaxFormatted(double max)
-        { // DONE
-            return string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString().Replace(",", "."));
-        }
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString().Replace(",", "."));
 
         public static string GetMinFormatted(long min)
-        { // DONE
-            return string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min);
-        }
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min);
 
         public static string GetMaxFormatted(long max)
-        { // DONE
-            return string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max);
-        }
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max);
     }
 }

@@ -1,14 +1,11 @@
 ﻿using System;
 
-namespace PowerUtils.Validations.Tests.Fakes.Entities
-{
-    public class FakeDate
-    {
-        public DateTime Date { get; init; }
+namespace PowerUtils.Validations.Tests.Fakes.Entities;
 
-        public FakeDate(DateTime date)
-        {
-            Date = date;
-        }
-    }
+public class FakeDate
+{
+    public DateTime Date { get; init; }
+
+    public FakeDate(DateTime date)
+        => Date = date;
 }

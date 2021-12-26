@@ -1,21 +1,20 @@
 ﻿using PowerUtils.Validations.Contracts;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.Validations.Tests.Fakes.Validations.Strings
+namespace PowerUtils.Validations.Tests.Fakes.Validations.Strings;
+
+public class FakeOptionsPropertyNameValidation : ValidationsContract<FakeOptions>
 {
-    public class FakeOptionsPropertyNameValidation : ValidationsContract<FakeOptions>
+    private readonly string[] _options;
+
+    public FakeOptionsPropertyNameValidation(
+        FakeOptions source,
+        string[] options
+    ) : base(source)
     {
-        private readonly string[] _options;
+        _options = options;
 
-        public FakeOptionsPropertyNameValidation(
-            FakeOptions source,
-            string[] options
-        ) : base(source)
-        {
-            _options = options;
-
-            RuleFor(r => r.Value, nameof(FakeOptionsPropertyNameValidation))
-               .Options(_options);
-        }
+        RuleFor(r => r.Value, nameof(FakeOptionsPropertyNameValidation))
+           .Options(_options);
     }
 }

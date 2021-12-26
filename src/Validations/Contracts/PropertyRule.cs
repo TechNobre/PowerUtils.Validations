@@ -10,15 +10,13 @@ namespace PowerUtils.Validations.Contracts
         public TProperty PropertyValue { get; init; }
 
 
-        public bool Valid => this.Notifications.Count == 0;
-        public bool Invalid => !this.Valid;
+        public bool Valid => Notifications.Count == 0;
+        public bool Invalid => !Valid;
 
-        public IReadOnlyCollection<ValidationNotification> Notifications => this._context.Notifications;
+        public IReadOnlyCollection<ValidationNotification> Notifications => _context.Notifications;
 
 
-#pragma warning disable IDE1006 // Naming Styles
         private IValidationsContract<TSource> _context { get; }
-#pragma warning restore IDE1006 // Naming Styles
         #endregion
 
 
@@ -28,9 +26,9 @@ namespace PowerUtils.Validations.Contracts
             string propertyName
         )
         {
-            this.PropertyNull = true;
-            this._context = context;
-            this.PropertyName = propertyName;
+            PropertyNull = true;
+            _context = context;
+            PropertyName = propertyName;
         }
 
         public PropertyRule(
@@ -40,13 +38,13 @@ namespace PowerUtils.Validations.Contracts
         )
             : this(context, propertyName)
         {
-            this._context = context;
-            this.PropertyValue = propertyValue;
-            this.PropertyName = propertyName;
+            _context = context;
+            PropertyValue = propertyValue;
+            PropertyName = propertyName;
 
-            if(this.PropertyValue != null)
+            if(PropertyValue != null)
             {
-                this.PropertyNull = false;
+                PropertyNull = false;
             }
         }
         #endregion
@@ -54,15 +52,13 @@ namespace PowerUtils.Validations.Contracts
 
         #region METHODS - NOTIFICATIONS
         public void AddNotification(string errorCode) =>
-            this._context.AddNotification(this.PropertyName, errorCode);
+            _context.AddNotification(PropertyName, errorCode);
         #endregion
 
 
         #region GENERIC METHODS
         public override string ToString()
-        {
-            return $"{this.PropertyName} = '{this.PropertyValue}'";
-        }
+            => $"{PropertyName} = '{PropertyValue}'";
         #endregion
     }
 }

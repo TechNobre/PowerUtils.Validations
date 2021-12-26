@@ -1,7 +1,7 @@
-﻿using PowerUtils.Validations.Contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using PowerUtils.Validations.Contracts;
 
 namespace PowerUtils.Validations
 {
@@ -10,10 +10,10 @@ namespace PowerUtils.Validations
         #region PUBLIC PROPERTIES
         public HttpStatusCode StatusCode { get; private set; }
 
-        public bool Valid => this._isValid();
-        public bool Invalid => !this._isValid();
+        public bool Valid => _isValid();
+        public bool Invalid => !_isValid();
 
-        public IReadOnlyCollection<ValidationNotification> Notifications => this._notifications.Values;
+        public IReadOnlyCollection<ValidationNotification> Notifications => _notifications.Values;
         #endregion
 
 
@@ -25,13 +25,13 @@ namespace PowerUtils.Validations
         #region CONSTRUCTOR
         public ValidationNotificationsPipeline()
         {
-            this._notifications = new Dictionary<string, ValidationNotification>();
-            this.StatusCode = HttpStatusCode.OK;
+            _notifications = new Dictionary<string, ValidationNotification>();
+            StatusCode = HttpStatusCode.OK;
         }
         public ValidationNotificationsPipeline(HttpStatusCode defaultStatusCode)
         {
-            this._notifications = new Dictionary<string, ValidationNotification>();
-            this.StatusCode = defaultStatusCode;
+            _notifications = new Dictionary<string, ValidationNotification>();
+            StatusCode = defaultStatusCode;
         }
         #endregion
 
@@ -39,12 +39,12 @@ namespace PowerUtils.Validations
         #region GENERAL
         public IValidationNotificationsPipeline AddNotification(string property, string errorCode)
         {
-            if(this._notifications.ContainsKey(property))
+            if(_notifications.ContainsKey(property))
             {
                 return this;
             }
 
-            this._notifications.Add(
+            _notifications.Add(
                 property,
                 new ValidationNotification(property, errorCode)
             );
@@ -57,29 +57,29 @@ namespace PowerUtils.Validations
         #region PUBLIC METHODS - BAD NOTIFICATIONS
         public IValidationNotificationsPipeline AddBadNotification(string property, string errorCode)
         {
-            if(this._isSuccess())
+            if(_isSuccess())
             {
-                this.StatusCode = HttpStatusCode.BadRequest;
+                StatusCode = HttpStatusCode.BadRequest;
             }
 
-            this.AddNotification(property, errorCode);
+            AddNotification(property, errorCode);
 
             return this;
         }
 
         public IValidationNotificationsPipeline AddBadNotification(ValidationNotification notification)
         {
-            if(this._notifications.ContainsKey(notification.Property))
+            if(_notifications.ContainsKey(notification.Property))
             {
                 return this;
             }
 
-            if(this._isSuccess())
+            if(_isSuccess())
             {
-                this.StatusCode = HttpStatusCode.BadRequest;
+                StatusCode = HttpStatusCode.BadRequest;
             }
 
-            this._notifications.Add(
+            _notifications.Add(
                 notification.Property,
                 notification
             );
@@ -94,19 +94,19 @@ namespace PowerUtils.Validations
                 return this;
             }
 
-            if(this._isSuccess())
+            if(_isSuccess())
             {
-                this.StatusCode = HttpStatusCode.BadRequest;
+                StatusCode = HttpStatusCode.BadRequest;
             }
 
             foreach(var notification in notifications)
             {
-                if(this._notifications.ContainsKey(notification.Property))
+                if(_notifications.ContainsKey(notification.Property))
                 {
                     continue;
                 }
 
-                this._notifications.Add(
+                _notifications.Add(
                     notification.Property,
                     notification
                 );
@@ -122,19 +122,19 @@ namespace PowerUtils.Validations
                 return this;
             }
 
-            if(this._isSuccess())
+            if(_isSuccess())
             {
-                this.StatusCode = HttpStatusCode.BadRequest;
+                StatusCode = HttpStatusCode.BadRequest;
             }
 
             foreach(var notification in notifications)
             {
-                if(this._notifications.ContainsKey(notification.Property))
+                if(_notifications.ContainsKey(notification.Property))
                 {
                     continue;
                 }
 
-                this._notifications.Add(
+                _notifications.Add(
                     notification.Property,
                     notification
                 );
@@ -150,19 +150,19 @@ namespace PowerUtils.Validations
                 return this;
             }
 
-            if(this._isSuccess())
+            if(_isSuccess())
             {
-                this.StatusCode = HttpStatusCode.BadRequest;
+                StatusCode = HttpStatusCode.BadRequest;
             }
 
             foreach(var notification in notifications)
             {
-                if(this._notifications.ContainsKey(notification.Property))
+                if(_notifications.ContainsKey(notification.Property))
                 {
                     continue;
                 }
 
-                this._notifications.Add(
+                _notifications.Add(
                     notification.Property,
                     notification
                 );
@@ -173,24 +173,24 @@ namespace PowerUtils.Validations
 
         public IValidationNotificationsPipeline AddBadNotifications(IEnumerable<ValidationNotification> notifications)
         {
-            if(notifications.Count() == 0)
+            if(!notifications.Any())
             {
                 return this;
             }
 
-            if(this._isSuccess())
+            if(_isSuccess())
             {
-                this.StatusCode = HttpStatusCode.BadRequest;
+                StatusCode = HttpStatusCode.BadRequest;
             }
 
             foreach(var notification in notifications)
             {
-                if(this._notifications.ContainsKey(notification.Property))
+                if(_notifications.ContainsKey(notification.Property))
                 {
                     continue;
                 }
 
-                this._notifications.Add(
+                _notifications.Add(
                     notification.Property,
                     notification
                 );
@@ -211,19 +211,19 @@ namespace PowerUtils.Validations
                 return this;
             }
 
-            if(this._isSuccess())
+            if(_isSuccess())
             {
-                this.StatusCode = HttpStatusCode.BadRequest;
+                StatusCode = HttpStatusCode.BadRequest;
             }
 
             foreach(var notification in validations.Notifications)
             {
-                if(this._notifications.ContainsKey(notification.Property))
+                if(_notifications.ContainsKey(notification.Property))
                 {
                     continue;
                 }
 
-                this._notifications.Add(
+                _notifications.Add(
                     notification.Property,
                     notification
                 );
@@ -237,8 +237,8 @@ namespace PowerUtils.Validations
         #region PUBLIC METHODS - STATUS 403 FORBIDDEN
         public void SetForbiddenStatus(string property)
         {
-            this.StatusCode = HttpStatusCode.Forbidden;
-            this.AddNotification(property, ErrorCodes.FORBIDDEN);
+            StatusCode = HttpStatusCode.Forbidden;
+            AddNotification(property, ErrorCodes.FORBIDDEN);
         }
         #endregion
 
@@ -246,8 +246,8 @@ namespace PowerUtils.Validations
         #region PUBLIC METHODS - STATUS 404 NOT FOUND
         public void SetNotFoundStatus(string property)
         {
-            this.StatusCode = HttpStatusCode.NotFound;
-            this.AddNotification(property, ErrorCodes.NOT_FOUND);
+            StatusCode = HttpStatusCode.NotFound;
+            AddNotification(property, ErrorCodes.NOT_FOUND);
         }
         #endregion
 
@@ -255,8 +255,8 @@ namespace PowerUtils.Validations
         #region PUBLIC METHODS - STATUS 409 CONFLICT
         public void SetConflictStatus(string property)
         {
-            this.StatusCode = HttpStatusCode.Conflict;
-            this.AddNotification(property, ErrorCodes.ALREADY_EXISTS);
+            StatusCode = HttpStatusCode.Conflict;
+            AddNotification(property, ErrorCodes.ALREADY_EXISTS);
         }
         #endregion
 
@@ -264,8 +264,8 @@ namespace PowerUtils.Validations
         #region PUBLIC METHODS - GENERAL STATUS
         public void SetNotificationStatus(HttpStatusCode statusCode, string property, string errorCode)
         {
-            this.StatusCode = statusCode;
-            this.AddNotification(property, errorCode);
+            StatusCode = statusCode;
+            AddNotification(property, errorCode);
         }
         #endregion
 
@@ -273,11 +273,11 @@ namespace PowerUtils.Validations
         #region PUBLIC METHODS - OTHERS
         public void Clear()
         {
-            if(this._isBadRequest())
+            if(_isBadRequest())
             {
-                this.StatusCode = HttpStatusCode.OK;
+                StatusCode = HttpStatusCode.OK;
             }
-            this._notifications.Clear();
+            _notifications.Clear();
         }
         #endregion
 
@@ -285,23 +285,23 @@ namespace PowerUtils.Validations
         #region PRIVATE METHODS
         private bool _isValid()
         {
-            if((int)this.StatusCode >= 400 && (int)this.StatusCode <= 599)
+            if((int)StatusCode >= 400 && (int)StatusCode <= 599)
             {
                 return false;
             }
 
-            if(this._notifications.Any())
+            if(_notifications.Any())
             {
-                this.StatusCode = HttpStatusCode.BadRequest;
+                StatusCode = HttpStatusCode.BadRequest;
                 return false;
             }
 
-            return this._isSuccess();
+            return _isSuccess();
         }
 
         private bool _isSuccess()
         {
-            if((int)this.StatusCode >= 200 && (int)this.StatusCode <= 299)
+            if((int)StatusCode >= 200 && (int)StatusCode <= 299)
             {
                 return true;
             }
@@ -313,7 +313,7 @@ namespace PowerUtils.Validations
 
         private bool _isBadRequest()
         {
-            if(this.StatusCode == HttpStatusCode.BadRequest)
+            if(StatusCode == HttpStatusCode.BadRequest)
             {
                 return true;
             }

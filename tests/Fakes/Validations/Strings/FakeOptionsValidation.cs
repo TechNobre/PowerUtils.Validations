@@ -1,21 +1,20 @@
 ﻿using PowerUtils.Validations.Contracts;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.Validations.Tests.Fakes.Validations.Strings
+namespace PowerUtils.Validations.Tests.Fakes.Validations.Strings;
+
+public class FakeOptionsValidation : ValidationsContract<FakeOptions>
 {
-    public class FakeOptionsValidation : ValidationsContract<FakeOptions>
+    private readonly string[] _options;
+
+    public FakeOptionsValidation(
+        FakeOptions source,
+        string[] options
+    ) : base(source)
     {
-        private readonly string[] _options;
+        _options = options;
 
-        public FakeOptionsValidation(
-            FakeOptions source,
-            string[] options
-        ) : base(source)
-        {
-            _options = options;
-
-            RuleFor(r => r.Value)
-               .Options(_options);
-        }
+        RuleFor(r => r.Value)
+           .Options(_options);
     }
 }

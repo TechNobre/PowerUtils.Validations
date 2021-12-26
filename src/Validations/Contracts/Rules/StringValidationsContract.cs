@@ -148,7 +148,7 @@ namespace PowerUtils.Validations.Contracts
 
             // https://jqueryvalidation.org/email-method/
             // the same validation as jquery validation
-            Match matchRegex = Regex.Match(propertyRule.PropertyValue, @"^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
+            var matchRegex = Regex.Match(propertyRule.PropertyValue, @"^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
             if(!matchRegex.Success)
             {
                 propertyRule.AddNotification(ErrorCodes.INVALID);
@@ -156,8 +156,8 @@ namespace PowerUtils.Validations.Contracts
             }
 
             // Secund validation
-            System.ComponentModel.DataAnnotations.EmailAddressAttribute validator = new System.ComponentModel.DataAnnotations.EmailAddressAttribute();
-            bool isValid = validator.IsValid(propertyRule.PropertyValue);
+            var validator = new System.ComponentModel.DataAnnotations.EmailAddressAttribute();
+            var isValid = validator.IsValid(propertyRule.PropertyValue);
             if(!isValid)
             {
                 propertyRule.AddNotification(ErrorCodes.INVALID);

@@ -11,38 +11,36 @@ namespace PowerUtils.Validations.Contracts
         #region PROPERTIES
         public TSource Source { get; init; }
 
-        public bool Valid => this.Notifications.Count == 0;
-        public bool Invalid => !this.Valid;
+        public bool Valid => Notifications.Count == 0;
+        public bool Invalid => !Valid;
 
         private readonly Dictionary<string, ValidationNotification> _notifications;
-        public IReadOnlyCollection<ValidationNotification> Notifications => this._notifications.Values;
+        public IReadOnlyCollection<ValidationNotification> Notifications => _notifications.Values;
 
         private readonly HashSet<string> _ignoreProperties;
-        public IReadOnlyCollection<string> IgnoreProperties => this._ignoreProperties;
+        public IReadOnlyCollection<string> IgnoreProperties => _ignoreProperties;
         #endregion
 
 
         #region CONSTRUCTORS
         public ValidationsContract(TSource source)
         {
-            this._ignoreProperties = new HashSet<string>();
-            this._notifications = new Dictionary<string, ValidationNotification>();
+            _ignoreProperties = new HashSet<string>();
+            _notifications = new Dictionary<string, ValidationNotification>();
 
-            this.Source = source;
+            Source = source;
         }
 
         public ValidationsContract(TSource source, params string[] ignoreProperties)
             : this(source)
-        {
-            this.AddPropertyToIgnore(ignoreProperties);
-        }
+            => AddPropertyToIgnore(ignoreProperties);
         #endregion
 
 
         #region METHODS - RULES
         public IPropertyRule<TSource, TSource> RuleFor(string propertyName)
         {
-            if(this.Source == null)
+            if(Source == null)
             {
                 return new PropertyRule<TSource, TSource>(
                     this,
@@ -51,8 +49,8 @@ namespace PowerUtils.Validations.Contracts
             }
             else
             {
-                var type = this.Source.GetType();
-                var sourceValue = (TSource)Convert.ChangeType(this.Source, type);
+                var type = Source.GetType();
+                var sourceValue = (TSource)Convert.ChangeType(Source, type);
 
                 return new PropertyRule<TSource, TSource>(
                     this,
@@ -64,12 +62,11 @@ namespace PowerUtils.Validations.Contracts
 
         public IPropertyRule<TSource, TProperty> RuleFor<TProperty>(Expression<Func<TSource, TProperty>> property, string propertyName = null)
         {
-            MemberExpression body = property.Body as MemberExpression;
-            if(body == null)
+            if(property.Body is not MemberExpression body)
             { // TODO: to improvement
                 if(property.Body.NodeType == ExpressionType.Parameter)
                 {
-                    if(this.Source == null)
+                    if(Source == null)
                     {
                         return new PropertyRule<TSource, TProperty>(
                             this,
@@ -78,8 +75,8 @@ namespace PowerUtils.Validations.Contracts
                     }
                     else
                     {
-                        var type = this.Source.GetType();
-                        var sourceValue = (TProperty)Convert.ChangeType(this.Source, type);
+                        var type = Source.GetType();
+                        var sourceValue = (TProperty)Convert.ChangeType(Source, type);
 
                         return new PropertyRule<TSource, TProperty>(
                             this,
@@ -94,7 +91,7 @@ namespace PowerUtils.Validations.Contracts
                 }
             }
 
-            PropertyInfo propertyInfo = (PropertyInfo)body.Member;
+            var propertyInfo = (PropertyInfo)body.Member;
 
             // https://stackoverflow.com/questions/10224119/get-property-type-by-memberexpression/10224197
             if(string.IsNullOrWhiteSpace(propertyName))
@@ -102,15 +99,15 @@ namespace PowerUtils.Validations.Contracts
                 propertyName = propertyInfo.Name;
             }
 
-            Type propertyType = propertyInfo.ReflectedType;
+            var propertyType = propertyInfo.ReflectedType;
             object propertyValue;
-            if(this.Source == null)
+            if(Source == null)
             {
                 propertyValue = null;
             }
             else
             {
-                propertyValue = propertyType?.GetProperty(propertyInfo.Name)?.GetValue(this.Source, null);
+                propertyValue = propertyType?.GetProperty(propertyInfo.Name)?.GetValue(Source, null);
             }
 
             if(propertyValue == null)
@@ -135,17 +132,17 @@ namespace PowerUtils.Validations.Contracts
         #region NOTIFICATIONS METHODS
         public void AddNotification(string property, string errorCode)
         {
-            if(this._ignoreProperties.Contains(property))
+            if(_ignoreProperties.Contains(property))
             {
                 return;
             }
 
-            if(this._notifications.ContainsKey(property))
+            if(_notifications.ContainsKey(property))
             {
                 return;
             }
 
-            this._notifications.Add(
+            _notifications.Add(
                 property,
                 new ValidationNotification(property, errorCode)
             );
@@ -165,17 +162,17 @@ namespace PowerUtils.Validations.Contracts
 
             foreach(var notification in validations.Notifications)
             {
-                if(this._ignoreProperties.Contains(notification.Property))
+                if(_ignoreProperties.Contains(notification.Property))
                 {
                     continue;
                 }
 
-                if(this._notifications.ContainsKey(notification.Property))
+                if(_notifications.ContainsKey(notification.Property))
                 {
                     continue;
                 }
 
-                this._notifications.Add(
+                _notifications.Add(
                     notification.Property,
                     notification
                 );
@@ -189,24 +186,24 @@ namespace PowerUtils.Validations.Contracts
                 return;
             }
 
-            if(validations.Count() == 0)
+            if(!validations.Any())
             {
                 return;
             }
 
             foreach(var notification in validations)
             {
-                if(this._ignoreProperties.Contains(notification.Property))
+                if(_ignoreProperties.Contains(notification.Property))
                 {
                     continue;
                 }
 
-                if(this._notifications.ContainsKey(notification.Property))
+                if(_notifications.ContainsKey(notification.Property))
                 {
                     continue;
                 }
 
-                this._notifications.Add(
+                _notifications.Add(
                     notification.Property,
                     notification
                 );
@@ -225,7 +222,7 @@ namespace PowerUtils.Validations.Contracts
 
             foreach(var property in ignoreProperties)
             {
-                this._ignoreProperties.Add(property);
+                _ignoreProperties.Add(property);
             }
         }
         #endregion

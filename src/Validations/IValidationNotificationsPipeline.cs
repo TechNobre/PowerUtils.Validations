@@ -1,6 +1,6 @@
-﻿using PowerUtils.Validations.Contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
+using PowerUtils.Validations.Contracts;
 
 namespace PowerUtils.Validations
 {

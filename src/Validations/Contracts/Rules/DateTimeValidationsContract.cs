@@ -19,7 +19,7 @@ namespace PowerUtils.Validations.Contracts
 
             try
             {
-                DateTime value = DateTime.ParseExact(propertyRule.PropertyValue, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                var value = DateTime.ParseExact(propertyRule.PropertyValue, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
                 if(value.Date < minDate.Date)
                 {

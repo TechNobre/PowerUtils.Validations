@@ -1,7 +1,7 @@
-﻿using FluentAssertions;
+﻿using System.Net;
+using FluentAssertions;
 using PowerUtils.Net.Constants;
 using PowerUtils.Validations.Exceptions;
-using System.Net;
 using Xunit;
 
 namespace PowerUtils.Validations.Tests.ValidationExceptions;

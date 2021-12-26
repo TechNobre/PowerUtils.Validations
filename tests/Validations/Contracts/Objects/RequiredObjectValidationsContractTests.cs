@@ -1,59 +1,58 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations;
 using PowerUtils.Validations.Tests.Fakes.Validations.Objects;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
-using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Objects
+namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Objects;
+
+public class RequiredObjectValidationsContractTests
 {
-    public class RequiredObjectValidationsContractTests
+    [Fact]
+    public void Value_NULL()
     {
-        [Fact]
-        public void Value_NULL()
-        {
-            // Arrange
-            var fake = new FakeCollection();
-            fake.ValueList = null;
+        // Arrange
+        var fake = new FakeCollection();
+        fake.ValueList = null;
 
-            string expectedProperty = nameof(fake.ValueList);
-            string expectedErrorCode = ErrorCodes.REQUIRED;
+        var expectedProperty = nameof(fake.ValueList);
+        var expectedErrorCode = ErrorCodes.REQUIRED;
 
 
-            // Act
-            var act = new FakeRequiredObjectValidation(fake);
+        // Act
+        var act = new FakeRequiredObjectValidation(fake);
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
 
-            act.Notifications.First().Property
-                .Should()
-                    .Be(expectedProperty);
+        act.Notifications.First().Property
+            .Should()
+                .Be(expectedProperty);
 
-            act.Notifications.First().ErrorCode
-                .Should()
-                    .Be(expectedErrorCode);
-        }
+        act.Notifications.First().ErrorCode
+            .Should()
+                .Be(expectedErrorCode);
+    }
 
-        [Fact]
-        public void Value_NotNull()
-        {
-            // Arrange
-            var fake = new FakeCollection();
-            fake.ValueList = new System.Collections.Generic.List<string>();
-
-
-            // Act
-            var act = new FakeRequiredObjectValidation(fake);
+    [Fact]
+    public void Value_NotNull()
+    {
+        // Arrange
+        var fake = new FakeCollection();
+        fake.ValueList = new System.Collections.Generic.List<string>();
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Act
+        var act = new FakeRequiredObjectValidation(fake);
 
-            act.Notifications.Should().BeEmpty();
-        }
+
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().BeEmpty();
     }
 }

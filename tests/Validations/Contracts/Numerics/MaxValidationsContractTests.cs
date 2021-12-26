@@ -1,167 +1,166 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations.Contracts;
-using System.Linq;
 using Xunit;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.Numerics
+namespace PowerUtils.Validations.Tests.Validations.Contracts.Numerics;
+
+public class MaxValidationsContractTests
 {
-    public class MaxValidationsContractTests
+    [Fact]
+    public void Int_Less()
     {
-        [Fact]
-        public void Int_Less()
-        {
-            // Arrange
-            int value = 4;
-            int max = 5;
+        // Arrange
+        var value = 4;
+        var max = 5;
 
 
-            // Act
-            var act = new ValidationsContract<int>(value)
-                .RuleFor("Fake")
-                .Max(max);
+        // Act
+        var act = new ValidationsContract<int>(value)
+            .RuleFor("Fake")
+            .Max(max);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().BeEmpty();
-        }
+        act.Notifications.Should().BeEmpty();
+    }
 
-        [Fact]
-        public void Int_Equals()
-        {
-            // Arrange
-            int value = 6;
-            int max = 6;
-
-
-            // Act
-            var act = new ValidationsContract<int>(value)
-                .RuleFor("Fake")
-                .Max(max);
+    [Fact]
+    public void Int_Equals()
+    {
+        // Arrange
+        var value = 6;
+        var max = 6;
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void Int_Greater()
-        {
-            // Arrange
-            int value = 8;
-            int max = 7;
-
-            string expectedErrorCode = ErrorCodes.MAX + ":" + max;
-
-            // Act
-            var act = new ValidationsContract<int>(value)
-                .RuleFor("Fake")
-                .Max(max);
+        // Act
+        var act = new ValidationsContract<int>(value)
+            .RuleFor("Fake")
+            .Max(max);
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().NotBeEmpty();
+        act.Notifications.Should().BeEmpty();
+    }
 
-            act.Notifications.First().ErrorCode
-               .Should()
-                   .Be(expectedErrorCode);
-        }
+    [Fact]
+    public void Int_Greater()
+    {
+        // Arrange
+        var value = 8;
+        var max = 7;
 
-        [Fact]
-        public void IntNull_Null_Valid()
-        {
-            // Arrange
-            int? value = null;
+        var expectedErrorCode = ErrorCodes.MAX + ":" + max;
 
-
-            // Act
-            var act = new ValidationsContract<int?>(value)
-                .RuleFor("Fake")
-                .Max(5);
+        // Act
+        var act = new ValidationsContract<int>(value)
+            .RuleFor("Fake")
+            .Max(max);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().
-                BeEmpty();
-        }
+        act.Notifications.Should().NotBeEmpty();
 
-        [Fact]
-        public void IntNull_Less_Valid()
-        {
-            // Arrange
-            int? value = 4;
+        act.Notifications.First().ErrorCode
+           .Should()
+               .Be(expectedErrorCode);
+    }
 
-
-            // Act
-            var act = new ValidationsContract<int?>(value)
-                .RuleFor("Fake")
-                .Max(5);
+    [Fact]
+    public void IntNull_Null_Valid()
+    {
+        // Arrange
+        int? value = null;
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().
-                BeEmpty();
-        }
-
-        [Fact]
-        public void IntNull_Equals_Valid()
-        {
-            // Arrange
-            int? value = 6;
+        // Act
+        var act = new ValidationsContract<int?>(value)
+            .RuleFor("Fake")
+            .Max(5);
 
 
-            // Act
-            var act = new ValidationsContract<int?>(value)
-                .RuleFor("Fake")
-                .Max(6);
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().
+            BeEmpty();
+    }
+
+    [Fact]
+    public void IntNull_Less_Valid()
+    {
+        // Arrange
+        int? value = 4;
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should()
-                .BeEmpty();
-        }
-
-        [Fact]
-        public void IntNull_Greater_Invalid()
-        {
-            // Arrange
-            int? value = 8;
-            int max = 7;
+        // Act
+        var act = new ValidationsContract<int?>(value)
+            .RuleFor("Fake")
+            .Max(5);
 
 
-            // Act
-            var act = new ValidationsContract<int?>(value)
-                .RuleFor("Fake")
-                .Max(max);
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().
+            BeEmpty();
+    }
+
+    [Fact]
+    public void IntNull_Equals_Valid()
+    {
+        // Arrange
+        int? value = 6;
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
+        // Act
+        var act = new ValidationsContract<int?>(value)
+            .RuleFor("Fake")
+            .Max(6);
 
-            act.Notifications.Should()
-                .NotBeEmpty();
 
-            act.Notifications.First().ErrorCode
-               .Should()
-                   .Be(ErrorCodes.MAX + ":" + max);
-        }
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should()
+            .BeEmpty();
+    }
+
+    [Fact]
+    public void IntNull_Greater_Invalid()
+    {
+        // Arrange
+        int? value = 8;
+        var max = 7;
+
+
+        // Act
+        var act = new ValidationsContract<int?>(value)
+            .RuleFor("Fake")
+            .Max(max);
+
+
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
+
+        act.Notifications.Should()
+            .NotBeEmpty();
+
+        act.Notifications.First().ErrorCode
+           .Should()
+               .Be(ErrorCodes.MAX + ":" + max);
     }
 }

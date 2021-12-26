@@ -1,25 +1,24 @@
-﻿using PowerUtils.Validations.Contracts;
+﻿using System;
+using PowerUtils.Validations.Contracts;
 using PowerUtils.Validations.Tests.Fakes.Entities;
-using System;
 
-namespace PowerUtils.Validations.Tests.Fakes.Validations.DateTimes
+namespace PowerUtils.Validations.Tests.Fakes.Validations.DateTimes;
+
+public class FakeNullDateValidation : ValidationsContract<FakeNullDate>
 {
-    public class FakeNullDateValidation : ValidationsContract<FakeNullDate>
+    private readonly DateTime _minDate;
+    private readonly DateTime _maxDate;
+
+    public FakeNullDateValidation(
+        FakeNullDate source,
+        DateTime minDate,
+        DateTime maxDate
+    ) : base(source)
     {
-        private readonly DateTime _minDate;
-        private readonly DateTime _maxDate;
+        _minDate = minDate;
+        _maxDate = maxDate;
 
-        public FakeNullDateValidation(
-            FakeNullDate source,
-            DateTime minDate,
-            DateTime maxDate
-        ) : base(source)
-        {
-            _minDate = minDate;
-            _maxDate = maxDate;
-
-            RuleFor(r => r.Date)
-                .Date(_minDate, _maxDate);
-        }
+        RuleFor(r => r.Date)
+            .Date(_minDate, _maxDate);
     }
 }

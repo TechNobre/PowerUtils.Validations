@@ -1,12 +1,9 @@
-﻿namespace PowerUtils.Validations.Tests.Fakes.Entities
-{
-    public class FakeGender
-    {
-        public string Gender { get; init; }
+﻿namespace PowerUtils.Validations.Tests.Fakes.Entities;
 
-        public FakeGender(string gender)
-        {
-            Gender = gender;
-        }
-    }
+public class FakeGender
+{
+    public string Gender { get; init; }
+
+    public FakeGender(string gender)
+        => Gender = gender;
 }

@@ -1,94 +1,93 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
-using System.Linq;
 using Xunit;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.Strings
+namespace PowerUtils.Validations.Tests.Validations.Contracts.Strings;
+
+public class EmailAddressStringValidationsContractTests
 {
-    public class EmailAddressStringValidationsContractTests
+    [Fact]
+    public void Value_NULL()
     {
-        [Fact]
-        public void Value_NULL()
-        {
-            // Arrange
-            var fake = new FakeEmailAddress(null);
+        // Arrange
+        var fake = new FakeEmailAddress(null);
 
 
-            // Act
-            var act = new FakeEmailAddressValidations(fake);
+        // Act
+        var act = new FakeEmailAddressValidations(fake);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().BeEmpty();
-        }
+        act.Notifications.Should().BeEmpty();
+    }
 
-        [Fact]
-        public void Value_Empty()
-        {
-            // Arrange
-            FakeEmailAddress fake = new FakeEmailAddress(string.Empty);
-
-
-            // Act
-            var act = new FakeEmailAddressValidations(fake);
+    [Fact]
+    public void Value_Empty()
+    {
+        // Arrange
+        var fake = new FakeEmailAddress(string.Empty);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void Value_Valid()
-        {
-            // Arrange
-            var fake = new FakeEmailAddress("value@value.pt");
+        // Act
+        var act = new FakeEmailAddressValidations(fake);
 
 
-            // Act
-            var act = new FakeEmailAddressValidations(fake);
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void Value_Valid()
+    {
+        // Arrange
+        var fake = new FakeEmailAddress("value@value.pt");
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void Value_Invalid()
-        {
-            // Arrange
-            var fake = new FakeEmailAddress("value@value.");
-
-            string expectedProperty = nameof(fake.EmailAddress);
-            string expectedErrorCode = ErrorCodes.INVALID;
+        // Act
+        var act = new FakeEmailAddressValidations(fake);
 
 
-            // Act
-            var act = new FakeEmailAddressValidations(fake);
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void Value_Invalid()
+    {
+        // Arrange
+        var fake = new FakeEmailAddress("value@value.");
+
+        var expectedProperty = nameof(fake.EmailAddress);
+        var expectedErrorCode = ErrorCodes.INVALID;
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
+        // Act
+        var act = new FakeEmailAddressValidations(fake);
 
-            act.Notifications.Should().NotBeEmpty();
 
-            act.Notifications.First().Property
-                .Should()
-                    .Be(expectedProperty);
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
 
-            act.Notifications.First().ErrorCode
-                .Should()
-                    .Be(expectedErrorCode);
-        }
+        act.Notifications.Should().NotBeEmpty();
+
+        act.Notifications.First().Property
+            .Should()
+                .Be(expectedProperty);
+
+        act.Notifications.First().ErrorCode
+            .Should()
+                .Be(expectedErrorCode);
     }
 }

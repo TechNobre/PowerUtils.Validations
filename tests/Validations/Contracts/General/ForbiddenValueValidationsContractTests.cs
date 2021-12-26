@@ -1,232 +1,232 @@
-﻿using FluentAssertions;
-using PowerUtils.Validations.Contracts;
+﻿using System;
 using System.Linq;
+using FluentAssertions;
+using PowerUtils.Validations.Contracts;
 using Xunit;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.General
+namespace PowerUtils.Validations.Tests.Validations.Contracts.General;
+
+public class ForbiddenValueValidationsContractTests
 {
-    public class ForbiddenValueValidationsContractTests
+    [Fact]
+    public void String_Value_Null()
     {
-        [Fact]
-        public void String_Value_Null()
-        {
-            // Arrange
-            string value = null;
+        // Arrange
+        string value = null;
 
-            var forbiddenValues = new string[] { "Value1", "VALUE2", "VaLUe3" };
+        var forbiddenValues = new string[] { "Value1", "VALUE2", "VaLUe3" };
 
-            // Act
-            var act = new ValidationsContract<string>(value)
-                .RuleFor("Fake")
-                .ForbiddenValue(forbiddenValues);
+        // Act
+        var act = new ValidationsContract<string>(value)
+            .RuleFor("Fake")
+            .ForbiddenValue(forbiddenValues);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().BeEmpty();
-        }
+        act.Notifications.Should().BeEmpty();
+    }
 
-        [Fact]
-        public void String_Value_Empty()
-        {
-            // Arrange
-            string value = string.Empty;
+    [Fact]
+    public void String_Value_Empty()
+    {
+        // Arrange
+        var value = string.Empty;
 
-            var forbiddenValues = new string[] { "Value1", "VALUE2", "VaLUe3" };
+        var forbiddenValues = new string[] { "Value1", "VALUE2", "VaLUe3" };
 
-            // Act
-            var act = new ValidationsContract<string>(value)
-                .RuleFor("Fake")
-                .ForbiddenValue(forbiddenValues);
-
-
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void String_ForbiddenValues_Null()
-        {
-            // Arrange
-            string value = "VALUE3";
-
-            string[] forbiddenValues = null;
-
-            // Act
-            var act = new ValidationsContract<string>(value)
-                .RuleFor("Fake")
-                .ForbiddenValue(forbiddenValues);
+        // Act
+        var act = new ValidationsContract<string>(value)
+            .RuleFor("Fake")
+            .ForbiddenValue(forbiddenValues);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().BeEmpty();
-        }
+        act.Notifications.Should().BeEmpty();
+    }
 
-        [Fact]
-        public void String_ForbiddenValues_Empty()
-        {
-            // Arrange
-            string value = "VALUE3";
+    [Fact]
+    public void String_ForbiddenValues_Null()
+    {
+        // Arrange
+        var value = "VALUE3";
 
-            var forbiddenValues = new string[0];
+        string[] forbiddenValues = null;
 
-            // Act
-            var act = new ValidationsContract<string>(value)
-                .RuleFor("Fake")
-                .ForbiddenValue(forbiddenValues);
-
-
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void String_Value_Valid()
-        {
-            // Arrange
-            string value = "VALUE4";
-
-            var forbiddenValues = new string[] { "Value1", "VALUE2", "VaLUe3" };
-
-            // Act
-            var act = new ValidationsContract<string>(value)
-                .RuleFor("Fake")
-                .ForbiddenValue(forbiddenValues);
+        // Act
+        var act = new ValidationsContract<string>(value)
+            .RuleFor("Fake")
+            .ForbiddenValue(forbiddenValues);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().BeEmpty();
-        }
+        act.Notifications.Should().BeEmpty();
+    }
 
-        [Fact]
-        public void String_Value_Forbidden()
-        {
-            // Arrange
-            string value = "VALUE3";
+    [Fact]
+    public void String_ForbiddenValues_Empty()
+    {
+        // Arrange
+        var value = "VALUE3";
 
-            var forbiddenValues = new string[] { "Value1", "VALUE2", "VaLUe3" };
+        var forbiddenValues = Array.Empty<string>();
 
-            string expectedErrorCode = ErrorCodes.FORBIDDEN;
-
-            // Act
-            var act = new ValidationsContract<string>(value)
-                .RuleFor("Fake")
-                .ForbiddenValue(forbiddenValues);
+        // Act
+        var act = new ValidationsContract<string>(value)
+            .RuleFor("Fake")
+            .ForbiddenValue(forbiddenValues);
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().NotBeEmpty();
+        act.Notifications.Should().BeEmpty();
+    }
 
-            act.Notifications.First().ErrorCode
-               .Should()
-                   .Be(expectedErrorCode);
-        }
+    [Fact]
+    public void String_Value_Valid()
+    {
+        // Arrange
+        var value = "VALUE4";
 
-        [Fact]
-        public void Int_ForbiddenValues_Null()
-        {
-            // Arrange
-            int value = 5;
+        var forbiddenValues = new string[] { "Value1", "VALUE2", "VaLUe3" };
 
-            int[] forbiddenValues = null;
-
-            // Act
-            var act = new ValidationsContract<int>(value)
-                .RuleFor("Fake")
-                .ForbiddenValue(forbiddenValues);
+        // Act
+        var act = new ValidationsContract<string>(value)
+            .RuleFor("Fake")
+            .ForbiddenValue(forbiddenValues);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().BeEmpty();
-        }
+        act.Notifications.Should().BeEmpty();
+    }
 
-        [Fact]
-        public void Int_ForbiddenValues_Empty()
-        {
-            // Arrange
-            int value = 5;
+    [Fact]
+    public void String_Value_Forbidden()
+    {
+        // Arrange
+        var value = "VALUE3";
 
-            var forbiddenValues = new int[0];
+        var forbiddenValues = new string[] { "Value1", "VALUE2", "VaLUe3" };
 
-            // Act
-            var act = new ValidationsContract<int>(value)
-                .RuleFor("Fake")
-                .ForbiddenValue(forbiddenValues);
+        var expectedErrorCode = ErrorCodes.FORBIDDEN;
 
-
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void Int_Value_Valid()
-        {
-            // Arrange
-            int value = 5;
-
-            var forbiddenValues = new int[] { 568, 112, 9 };
-
-            // Act
-            var act = new ValidationsContract<int>(value)
-                .RuleFor("Fake")
-                .ForbiddenValue(forbiddenValues);
+        // Act
+        var act = new ValidationsContract<string>(value)
+            .RuleFor("Fake")
+            .ForbiddenValue(forbiddenValues);
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().BeEmpty();
-        }
+        act.Notifications.Should().NotBeEmpty();
 
-        [Fact]
-        public void Int_Value_Forbidden()
-        {
-            // Arrange
-            int value = 9;
+        act.Notifications.First().ErrorCode
+           .Should()
+               .Be(expectedErrorCode);
+    }
 
-            var forbiddenValues = new int[] { 568, 112, 9 };
+    [Fact]
+    public void Int_ForbiddenValues_Null()
+    {
+        // Arrange
+        var value = 5;
 
-            string expectedErrorCode = ErrorCodes.FORBIDDEN;
+        int[] forbiddenValues = null;
 
-            // Act
-            var act = new ValidationsContract<int>(value)
-                .RuleFor("Fake")
-                .ForbiddenValue(forbiddenValues);
+        // Act
+        var act = new ValidationsContract<int>(value)
+            .RuleFor("Fake")
+            .ForbiddenValue(forbiddenValues);
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().NotBeEmpty();
+        act.Notifications.Should().BeEmpty();
+    }
 
-            act.Notifications.First().ErrorCode
-               .Should()
-                   .Be(expectedErrorCode);
-        }
+    [Fact]
+    public void Int_ForbiddenValues_Empty()
+    {
+        // Arrange
+        var value = 5;
+
+        var forbiddenValues = Array.Empty<int>();
+
+        // Act
+        var act = new ValidationsContract<int>(value)
+            .RuleFor("Fake")
+            .ForbiddenValue(forbiddenValues);
+
+
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void Int_Value_Valid()
+    {
+        // Arrange
+        var value = 5;
+
+        var forbiddenValues = new int[] { 568, 112, 9 };
+
+        // Act
+        var act = new ValidationsContract<int>(value)
+            .RuleFor("Fake")
+            .ForbiddenValue(forbiddenValues);
+
+
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void Int_Value_Forbidden()
+    {
+        // Arrange
+        var value = 9;
+
+        var forbiddenValues = new int[] { 568, 112, 9 };
+
+        var expectedErrorCode = ErrorCodes.FORBIDDEN;
+
+        // Act
+        var act = new ValidationsContract<int>(value)
+            .RuleFor("Fake")
+            .ForbiddenValue(forbiddenValues);
+
+
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().NotBeEmpty();
+
+        act.Notifications.First().ErrorCode
+           .Should()
+               .Be(expectedErrorCode);
     }
 }

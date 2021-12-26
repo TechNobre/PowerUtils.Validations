@@ -1,144 +1,143 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations;
 using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
-using System.Linq;
 using Xunit;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings
+namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings;
+
+public class OptionsIgnoreCaseStringValidationsContractTests
 {
-    public class OptionsIgnoreCaseStringValidationsContractTests
+    [Fact]
+    public void Value_NULL()
     {
-        [Fact]
-        public void Value_NULL()
-        {
-            // Arrange
-            var fake = new FakeOptions(null);
-            string[] options = new string[] { "op1", "Op2" };
+        // Arrange
+        var fake = new FakeOptions(null);
+        var options = new string[] { "op1", "Op2" };
 
 
-            // Act
-            var act = new FakeOptionsIgnoreCaseValidation(
-                fake,
-                options
-            );
+        // Act
+        var act = new FakeOptionsIgnoreCaseValidation(
+            fake,
+            options
+        );
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
 
-            act.Notifications.Should().BeEmpty();
-        }
+        act.Notifications.Should().BeEmpty();
+    }
 
-        [Fact]
-        public void Value_Empty()
-        {
-            // Arrange
-            var fake = new FakeOptions(string.Empty);
-            var options = new string[] { "op1", "Op2" };
-
-
-            // Act
-            var act = new FakeOptionsIgnoreCaseValidation(
-                fake,
-                options
-            );
+    [Fact]
+    public void Value_Empty()
+    {
+        // Arrange
+        var fake = new FakeOptions(string.Empty);
+        var options = new string[] { "op1", "Op2" };
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void Value_Valid()
-        {
-            // Arrange
-            var fake = new FakeOptions("OP2");
-            var options = new string[] { "op1", "Op2" };
+        // Act
+        var act = new FakeOptionsIgnoreCaseValidation(
+            fake,
+            options
+        );
 
 
-            // Act
-            var act = new FakeOptionsIgnoreCaseValidation(
-                fake,
-                options
-            );
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void Value_Valid()
+    {
+        // Arrange
+        var fake = new FakeOptions("OP2");
+        var options = new string[] { "op1", "Op2" };
 
 
-            // Assert
-            act.Valid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void Value_Invalid()
-        {
-            // Arrange
-            var fake = new FakeOptions("op3");
-            var options = new string[] { "op1", "Op2" };
-
-            string expectedProperty = nameof(fake.Value);
-            string expectedErrorCode = ErrorCodes.INVALID;
+        // Act
+        var act = new FakeOptionsIgnoreCaseValidation(
+            fake,
+            options
+        );
 
 
-            // Act
-            var act = new FakeOptionsIgnoreCaseValidation(
-                fake,
-                options
-            );
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void Value_Invalid()
+    {
+        // Arrange
+        var fake = new FakeOptions("op3");
+        var options = new string[] { "op1", "Op2" };
+
+        var expectedProperty = nameof(fake.Value);
+        var expectedErrorCode = ErrorCodes.INVALID;
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
-
-            act.Notifications.Should().NotBeEmpty();
-
-            act.Notifications.First().Property
-                .Should()
-                    .Be(expectedProperty);
-
-            act.Notifications.First().ErrorCode
-                .Should()
-                    .Be(expectedErrorCode);
-        }
-
-        [Fact]
-        public void Value_Invalid_CustomPropertyName()
-        {
-            // Arrange
-            var fake = new FakeOptions("op3");
-            string[] options = new string[] { "op1", "Op2" };
-
-            string expectedProperty = nameof(FakeOptionsPropertyNameValidation);
-            string expectedErrorCode = ErrorCodes.INVALID;
+        // Act
+        var act = new FakeOptionsIgnoreCaseValidation(
+            fake,
+            options
+        );
 
 
-            // Act
-            var act = new FakeOptionsPropertyNameValidation(
-                fake,
-                options
-            );
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
+
+        act.Notifications.Should().NotBeEmpty();
+
+        act.Notifications.First().Property
+            .Should()
+                .Be(expectedProperty);
+
+        act.Notifications.First().ErrorCode
+            .Should()
+                .Be(expectedErrorCode);
+    }
+
+    [Fact]
+    public void Value_Invalid_CustomPropertyName()
+    {
+        // Arrange
+        var fake = new FakeOptions("op3");
+        var options = new string[] { "op1", "Op2" };
+
+        var expectedProperty = nameof(FakeOptionsPropertyNameValidation);
+        var expectedErrorCode = ErrorCodes.INVALID;
 
 
-            // Assert
-            act.Invalid.Should()
-                .BeTrue();
+        // Act
+        var act = new FakeOptionsPropertyNameValidation(
+            fake,
+            options
+        );
 
-            act.Notifications.Should().NotBeEmpty();
 
-            act.Notifications.First().Property
-                .Should()
-                    .Be(expectedProperty);
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
 
-            act.Notifications.First().ErrorCode
-                .Should()
-                    .Be(expectedErrorCode);
-        }
+        act.Notifications.Should().NotBeEmpty();
+
+        act.Notifications.First().Property
+            .Should()
+                .Be(expectedProperty);
+
+        act.Notifications.First().ErrorCode
+            .Should()
+                .Be(expectedErrorCode);
     }
 }

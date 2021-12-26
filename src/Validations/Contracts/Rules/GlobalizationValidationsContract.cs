@@ -1,5 +1,5 @@
-﻿using PowerUtils.Globalization;
-using System;
+﻿using System;
+using PowerUtils.Globalization;
 
 namespace PowerUtils.Validations.Contracts
 {
