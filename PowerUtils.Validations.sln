@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1.PowerUtils.Validations", "src\1.PowerUtils.Validations.csproj", "{93B5E53F-ECBF-4B8F-9D19-04FC6EAABAA1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.PowerUtils.Validations.Tests", "test\2.PowerUtils.Validations.Tests.csproj", "{94BAE43D-6BAB-43C4-9FC8-53BAFF4296E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.PowerUtils.Validations.Tests", "tests\2.PowerUtils.Validations.Tests.csproj", "{94BAE43D-6BAB-43C4-9FC8-53BAFF4296E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{3F454821-BC7D-4A17-9381-9CEED1186A0C}"
 	ProjectSection(SolutionItems) = preProject
