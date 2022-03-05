@@ -4,7 +4,7 @@ Utils to help validation of the objects
 ![CI](https://github.com/TechNobre/PowerUtils.Validations/actions/workflows/main.yml/badge.svg)
 [![NuGet](https://img.shields.io/nuget/v/PowerUtils.Validations.svg)](https://www.nuget.org/packages/PowerUtils.Validations)
 [![Nuget](https://img.shields.io/nuget/dt/PowerUtils.Validations.svg)](https://www.nuget.org/packages/PowerUtils.Validations)
-[![License: MIT](https://img.shields.io/github/license/ofpinewood/http-exceptions.svg)](https://github.com/TechNobre/PowerUtils.Validations/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/github/license/TechNobre/PowerUtils.Validations.svg)](https://github.com/TechNobre/PowerUtils.Validations/blob/main/LICENSE)
 
 
 
