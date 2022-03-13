@@ -3,7 +3,7 @@ using PowerUtils.Validations;
 using PowerUtils.Validations.Tests.Fakes.Entities;
 using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Strings;
+namespace PowerUtils.Validations.Tests.Contracts.Strings;
 
 public class MaxLengthStringValidationsContractTests
 {

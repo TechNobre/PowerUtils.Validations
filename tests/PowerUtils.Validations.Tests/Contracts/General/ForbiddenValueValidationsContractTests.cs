@@ -2,7 +2,7 @@
 using System.Linq;
 using PowerUtils.Validations.Contracts;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.General;
+namespace PowerUtils.Validations.Tests.Contracts.General;
 
 public class ForbiddenValueValidationsContractTests
 {

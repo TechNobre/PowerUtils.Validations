@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using PowerUtils.Validations.Contracts;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.Numerics;
+namespace PowerUtils.Validations.Tests.Contracts.PaginationValidations;
 
 public class OrderingDirectionIgnoreCaseValidationsContractTests
 {

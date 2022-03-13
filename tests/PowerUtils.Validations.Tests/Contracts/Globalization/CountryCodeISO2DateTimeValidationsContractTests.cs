@@ -2,7 +2,7 @@
 using PowerUtils.Validations.Tests.Fakes.Validations.Globalization;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.Globalization;
+namespace PowerUtils.Validations.Tests.Contracts.Globalization;
 
 public class CountryCodeISO2DateTimeValidationsContractTests
 {

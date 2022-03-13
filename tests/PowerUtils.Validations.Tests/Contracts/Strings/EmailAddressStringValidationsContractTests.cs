@@ -2,7 +2,7 @@
 using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.Strings;
+namespace PowerUtils.Validations.Tests.Contracts.Strings;
 
 public class EmailAddressStringValidationsContractTests
 {

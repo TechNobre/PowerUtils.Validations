@@ -2,7 +2,7 @@
 using System.Linq;
 using PowerUtils.Validations.Tests.Fakes.Validations.Objects;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.Collections;
+namespace PowerUtils.Validations.Tests.Contracts.Collections;
 
 public class RawListValidationsContractTests
 {

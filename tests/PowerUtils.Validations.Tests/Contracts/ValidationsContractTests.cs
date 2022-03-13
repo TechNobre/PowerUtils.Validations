@@ -3,7 +3,7 @@ using PowerUtils.Validations;
 using PowerUtils.Validations.Tests.Fakes.Entities;
 using PowerUtils.Validations.Tests.Fakes.Validations;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts;
+namespace PowerUtils.Validations.Tests.Contracts;
 
 public class ValidationsContractTests
 {

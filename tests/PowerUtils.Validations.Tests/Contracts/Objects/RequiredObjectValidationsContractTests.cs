@@ -3,7 +3,7 @@ using PowerUtils.Validations;
 using PowerUtils.Validations.Tests.Fakes.Validations.Objects;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Objects;
+namespace PowerUtils.Validations.Tests.Contracts.Objects;
 
 public class RequiredObjectValidationsContractTests
 {

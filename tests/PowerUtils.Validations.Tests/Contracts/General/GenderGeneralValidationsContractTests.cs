@@ -4,7 +4,7 @@ using PowerUtils.Validations.Contracts;
 using PowerUtils.Validations.Tests.Fakes.Entities;
 using PowerUtils.Validations.Tests.Fakes.Validations.General;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.General;
+namespace PowerUtils.Validations.Tests.Contracts.General;
 
 public class GenderGeneralValidationsContractTests
 {

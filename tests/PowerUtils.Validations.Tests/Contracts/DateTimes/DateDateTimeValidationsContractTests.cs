@@ -4,7 +4,7 @@ using PowerUtils.Validations.Contracts;
 using PowerUtils.Validations.Tests.Fakes.Entities;
 using PowerUtils.Validations.Tests.Fakes.Validations.DateTimes;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.DateTimes;
+namespace PowerUtils.Validations.Tests.Contracts.DateTimes;
 
 public class DateDateTimeValidationsContractTests
 {

@@ -4,7 +4,7 @@ using PowerUtils.Validations;
 using PowerUtils.Validations.Tests.Fakes.Validations.Guids;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.RestAPI.Tests.Validations.Contracts.Guids;
+namespace PowerUtils.Validations.Tests.Contracts.Guids;
 
 public class RequiredGuidValidationsContractTests
 {

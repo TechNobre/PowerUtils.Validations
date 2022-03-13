@@ -2,7 +2,7 @@
 using PowerUtils.Validations.Tests.Fakes.Validations.Objects;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.Validations.Tests.Validations.Contracts.Objects;
+namespace PowerUtils.Validations.Tests.Contracts.Objects;
 
 public class IgnorePropertiesValidationsContractTests
 {
