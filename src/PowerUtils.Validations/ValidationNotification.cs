@@ -1,7 +1,7 @@
 ﻿namespace PowerUtils.Validations
 {
     public record ValidationNotification
-    { // DONE
+    {
         public string Property { get; init; }
         public string ErrorCode { get; init; }
         public string Message { get; init; }

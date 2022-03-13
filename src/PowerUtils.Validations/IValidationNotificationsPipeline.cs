@@ -5,7 +5,7 @@ using PowerUtils.Validations.Contracts;
 namespace PowerUtils.Validations
 {
     public interface IValidationNotificationsPipeline
-    { // DONE
+    {
         bool Valid { get; }
         bool Invalid { get; }
 

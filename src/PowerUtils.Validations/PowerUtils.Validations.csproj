@@ -85,4 +85,9 @@
   </ItemGroup>
 
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PowerUtils.Validations.Primitives\src\PowerUtils.Validations.Primitives\PowerUtils.Validations.Primitives.csproj" />
+  </ItemGroup>
+
+
 </Project>

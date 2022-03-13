@@ -7,8 +7,9 @@
 [Full Changelog](https://github.com/TechNobre/PowerUtils.Validations/compare/v2.1.0...v3.0.0)
 
 
-### New Features
+### Breaking Changes
 - Exceptions module has been moved to [PowerUtils.GuardClauses.Validations](https://github.com/TechNobre/PowerUtils.GuardClauses.Validations) project so it can be used individually;
+- ErrorCodes module has been moved to [PowerUtils.Validations.Primitives](https://github.com/TechNobre/PowerUtils.Validations.Primitives) project so it can be used individually;
 
 
 

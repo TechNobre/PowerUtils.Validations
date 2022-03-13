@@ -18,7 +18,6 @@ Utils to help validation of the objects
 
 
 ## Features
-- [Error Codes](#Error-Codes)
 - [Validations](#Validations)
 
 
@@ -27,6 +26,7 @@ Utils to help validation of the objects
 
 ### Dependencies
 
+- PowerUtils.Validations.Primitives [NuGet](https://www.nuget.org/packages/PowerUtils.Validations.Primitives/)
 - PowerUtils.Globalization [NuGet](https://www.nuget.org/packages/PowerUtils.Globalization/)
 - PowerUtils.Net.Primitives [NuGet](https://www.nuget.org/packages/PowerUtils.Net.Primitives/)
 
@@ -47,18 +47,6 @@ dotnet add package PowerUtils.Validations
 ```
 
 
-
-### ErrorCodes <a name="Error-Codes"></a>
-- `ErrorCodes.REQUIRED`;
-- `ErrorCodes.INVALID`;
-- `ErrorCodes.UNAUTHORIZED`;
-- `ErrorCodes.FORBIDDEN`;
-- `ErrorCodes.MIN`;
-- `ErrorCodes.MAX`;
-- `ErrorCodes.MIN_DATETIME_UTCNOW`;
-- `ErrorCodes.MAX_DATETIME_UTCNOW`;
-- `ErrorCodes.ALREADY_EXISTS`;
-- `ErrorCodes.NOT_FOUND`;
 
 ### Validations <a name="Validations"></a>
 
