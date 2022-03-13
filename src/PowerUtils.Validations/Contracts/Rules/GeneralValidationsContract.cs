@@ -19,16 +19,16 @@ namespace PowerUtils.Validations.Contracts
             switch(propertyRule.PropertyValue.ToUpper())
             {
                 case "MALE":
-                // It is valid
-                break;
+                    // It is valid
+                    break;
 
                 case "FEMALE":
-                // It is valid
-                break;
+                    // It is valid
+                    break;
 
                 default:
                     propertyRule.AddNotification(ErrorCodes.INVALID);
-                break;
+                    break;
             }
 
             return propertyRule;
@@ -49,12 +49,12 @@ namespace PowerUtils.Validations.Contracts
             switch(propertyRule.PropertyValue.ToUpper())
             {
                 case "OTHER":
-                // It is valid
-                break;
+                    // It is valid
+                    break;
 
                 default:
                     propertyRule.Gender();
-                break;
+                    break;
             }
 
             return propertyRule;

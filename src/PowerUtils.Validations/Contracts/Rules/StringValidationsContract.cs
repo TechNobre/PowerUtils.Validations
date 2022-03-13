@@ -44,23 +44,23 @@ namespace PowerUtils.Validations.Contracts
 
         public static IPropertyRule<TSource, string> OptionsIgnoreCase<TSource>(this IPropertyRule<TSource, string> propertyRule, params string[] options)
         {
-            if (propertyRule.PropertyNull)
+            if(propertyRule.PropertyNull)
             {
                 return propertyRule;
             }
 
-            if (string.IsNullOrEmpty(propertyRule.PropertyValue))
+            if(string.IsNullOrEmpty(propertyRule.PropertyValue))
             {
                 return propertyRule;
             }
 
-            if (options == null)
+            if(options == null)
             {
                 propertyRule.AddNotification(ErrorCodes.INVALID);
                 return propertyRule;
             }
 
-            if (!options.Any(a => a.Equals(propertyRule.PropertyValue, StringComparison.InvariantCultureIgnoreCase)))
+            if(!options.Any(a => a.Equals(propertyRule.PropertyValue, StringComparison.InvariantCultureIgnoreCase)))
             {
                 propertyRule.AddNotification(ErrorCodes.INVALID);
             }

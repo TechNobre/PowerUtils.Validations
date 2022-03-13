@@ -24,7 +24,7 @@ namespace PowerUtils.Validations
         public string Property { get; init; }
         public string ErrorCode { get; init; }
 
-        public ValidationFailure() {}
+        public ValidationFailure() { }
 
         public ValidationFailure(string property, string errorCode)
         {

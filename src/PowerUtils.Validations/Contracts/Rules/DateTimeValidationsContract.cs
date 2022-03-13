@@ -31,7 +31,7 @@ namespace PowerUtils.Validations.Contracts
                 {
                     propertyRule.AddNotification(ErrorCodes.GetMaxFormatted(maxDate.ToString("yyyy-MM-dd")));
                 }
-                
+
             }
             catch
             {

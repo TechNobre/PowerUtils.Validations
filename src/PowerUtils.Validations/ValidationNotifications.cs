@@ -305,10 +305,8 @@ namespace PowerUtils.Validations
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         private bool _isBadRequest()
@@ -317,10 +315,8 @@ namespace PowerUtils.Validations
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
         #endregion
     }
