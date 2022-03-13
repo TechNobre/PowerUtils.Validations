@@ -12,7 +12,7 @@ namespace PowerUtils.Validations.Contracts
         private const double MIN_LONGITUDE = MAX_LONGITUDE * -1;
 
         public static IPropertyRule<TSource, string> CountryCodeISO2<TSource>(this IPropertyRule<TSource, string> propertyRule)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -39,7 +39,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, double> Latitude<TSource>(this IPropertyRule<TSource, double> propertyRule)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -59,7 +59,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, double> Longitude<TSource>(this IPropertyRule<TSource, double> propertyRule)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;

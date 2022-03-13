@@ -5,9 +5,9 @@ using System.Text.RegularExpressions;
 namespace PowerUtils.Validations.Contracts
 {
     public static class StringValidationsContract
-    { // DONE
+    {
         public static IPropertyRule<TSource, string> Required<TSource>(this IPropertyRule<TSource, string> propertyRule)
-        { // DONE
+        {
             if(string.IsNullOrEmpty(propertyRule.PropertyValue) || propertyRule.PropertyNull)
             {
                 propertyRule.AddNotification(ErrorCodes.REQUIRED);
@@ -17,7 +17,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, string> Options<TSource>(this IPropertyRule<TSource, string> propertyRule, params string[] options)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -43,7 +43,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, string> OptionsIgnoreCase<TSource>(this IPropertyRule<TSource, string> propertyRule, params string[] options)
-        { // DONE
+        {
             if (propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -69,7 +69,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, string> MaxLength<TSource>(this IPropertyRule<TSource, string> propertyRule, int maxLength)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -89,7 +89,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, string> MinLength<TSource>(this IPropertyRule<TSource, string> propertyRule, int minLength)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -109,7 +109,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, string> Length<TSource>(this IPropertyRule<TSource, string> propertyRule, int minLength, int maxLength)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -135,7 +135,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, string> EmailAddress<TSource>(this IPropertyRule<TSource, string> propertyRule)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -167,7 +167,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, string> ForbiddenValue<TSource>(this IPropertyRule<TSource, string> propertyRule, params string[] forbiddenValues)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule; // Prevent next comparation

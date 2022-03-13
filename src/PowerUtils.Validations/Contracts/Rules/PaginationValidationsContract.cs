@@ -3,7 +3,7 @@
     public static class PaginationValidationsContract
     {
         public static IPropertyRule<TSource, string> OrderingDirectionIgnoreCase<TSource>(this IPropertyRule<TSource, string> propertyRule)
-        { // DONE
+        {
             if (propertyRule.PropertyNull)
             {
                 return propertyRule;

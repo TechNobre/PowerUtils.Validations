@@ -63,7 +63,7 @@ namespace PowerUtils.Validations.Contracts
         public IPropertyRule<TSource, TProperty> RuleFor<TProperty>(Expression<Func<TSource, TProperty>> property, string propertyName = null)
         {
             if(property.Body is not MemberExpression body)
-            { // TODO: to improvement
+            {
                 if(property.Body.NodeType == ExpressionType.Parameter)
                 {
                     if(Source == null)

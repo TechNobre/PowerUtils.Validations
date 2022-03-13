@@ -7,7 +7,7 @@ namespace PowerUtils.Validations.Contracts
     {
         public static IPropertyRule<TSource, TValue> Min<TSource, TValue, TProperty>(this IPropertyRule<TSource, TValue> propertyRule, int min)
             where TValue : IEnumerable<TProperty>
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -23,7 +23,7 @@ namespace PowerUtils.Validations.Contracts
 
         public static IPropertyRule<TSource, TValue> Max<TSource, TValue, TProperty>(this IPropertyRule<TSource, TValue> propertyRule, int max)
             where TValue : IEnumerable<TProperty>
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -39,7 +39,7 @@ namespace PowerUtils.Validations.Contracts
 
         public static IPropertyRule<TSource, TValue> Range<TSource, TValue, TProperty>(this IPropertyRule<TSource, TValue> propertyRule, int min, int max)
             where TValue : IEnumerable<TProperty>
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;

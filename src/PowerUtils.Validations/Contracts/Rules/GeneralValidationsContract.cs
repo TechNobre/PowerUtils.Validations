@@ -5,7 +5,7 @@ namespace PowerUtils.Validations.Contracts
     public static class GeneralValidationsContract
     {
         public static IPropertyRule<TSource, string> Gender<TSource>(this IPropertyRule<TSource, string> propertyRule)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -35,7 +35,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, string> GenderWithOther<TSource>(this IPropertyRule<TSource, string> propertyRule)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -62,7 +62,7 @@ namespace PowerUtils.Validations.Contracts
 
 
         public static IPropertyRule<TSource, TValue> ForbiddenValue<TSource, TValue>(this IPropertyRule<TSource, TValue> propertyRule, params TValue[] forbiddenValues)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule; // Prevent next comparation

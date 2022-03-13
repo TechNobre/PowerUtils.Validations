@@ -6,7 +6,7 @@ namespace PowerUtils.Validations.Contracts
     public static class DateTimeValidationsContract
     {
         public static IPropertyRule<TSource, string> Date<TSource>(this IPropertyRule<TSource, string> propertyRule, DateTime minDate, DateTime maxDate)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -42,7 +42,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, DateTime> Date<TSource>(this IPropertyRule<TSource, DateTime> propertyRule, DateTime minDate, DateTime maxDate)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -64,7 +64,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, DateTime?> Date<TSource>(this IPropertyRule<TSource, DateTime?> propertyRule, DateTime minDate, DateTime maxDate)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -89,7 +89,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
         public static IPropertyRule<TSource, string> MinDateTimeUtcNow<TSource>(this IPropertyRule<TSource, string> propertyRule)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
@@ -117,7 +117,7 @@ namespace PowerUtils.Validations.Contracts
 
 
         public static IPropertyRule<TSource, string> MaxDateTimeUtcNow<TSource>(this IPropertyRule<TSource, string> propertyRule)
-        { // DONE
+        {
             if(propertyRule.PropertyNull)
             {
                 return propertyRule;
