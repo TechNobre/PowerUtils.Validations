@@ -13,6 +13,9 @@
 - Error codes for status code 409-Conflict changed from `ALREADY_EXISTS` to `DUPLICATED`;
 - Removed unused property `Message` from object `ValidationNotification`;
 - Removed the constructor `ValidationNotification(string property, string errorCode, string message)`;
+- Object `ValidationNotification` named to `ValidationFailure`;
+- Interface `IValidationNotificationsPipeline` named to `IValidationNotifications`;
+- Object `ValidationNotificationsPipeline` named to `ValidationNotifications`;
 
 
 

@@ -8,7 +8,7 @@ namespace PowerUtils.Validations.Contracts
         bool Valid { get; }
         bool Invalid { get; }
 
-        IReadOnlyCollection<ValidationNotification> Notifications { get; }
+        IReadOnlyCollection<ValidationFailure> Notifications { get; }
         #endregion
     }
 }

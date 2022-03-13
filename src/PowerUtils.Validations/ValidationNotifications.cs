@@ -5,7 +5,7 @@ using PowerUtils.Validations.Contracts;
 
 namespace PowerUtils.Validations
 {
-    public class ValidationNotificationsPipeline : IValidationNotificationsPipeline
+    public class ValidationNotifications : IValidationNotifications
     {
         #region PUBLIC PROPERTIES
         public HttpStatusCode StatusCode { get; private set; }
@@ -13,31 +13,31 @@ namespace PowerUtils.Validations
         public bool Valid => _isValid();
         public bool Invalid => !_isValid();
 
-        public IReadOnlyCollection<ValidationNotification> Notifications => _notifications.Values;
+        public IReadOnlyCollection<ValidationFailure> Notifications => _notifications.Values;
         #endregion
 
 
         #region PRIVATE PROPERTIES
-        private readonly Dictionary<string, ValidationNotification> _notifications;
+        private readonly Dictionary<string, ValidationFailure> _notifications;
         #endregion
 
 
         #region CONSTRUCTOR
-        public ValidationNotificationsPipeline()
+        public ValidationNotifications()
         {
-            _notifications = new Dictionary<string, ValidationNotification>();
+            _notifications = new Dictionary<string, ValidationFailure>();
             StatusCode = HttpStatusCode.OK;
         }
-        public ValidationNotificationsPipeline(HttpStatusCode defaultStatusCode)
+        public ValidationNotifications(HttpStatusCode defaultStatusCode)
         {
-            _notifications = new Dictionary<string, ValidationNotification>();
+            _notifications = new Dictionary<string, ValidationFailure>();
             StatusCode = defaultStatusCode;
         }
         #endregion
 
 
         #region GENERAL
-        public IValidationNotificationsPipeline AddNotification(string property, string errorCode)
+        public IValidationNotifications AddNotification(string property, string errorCode)
         {
             if(_notifications.ContainsKey(property))
             {
@@ -46,7 +46,7 @@ namespace PowerUtils.Validations
 
             _notifications.Add(
                 property,
-                new ValidationNotification(property, errorCode)
+                new ValidationFailure(property, errorCode)
             );
 
             return this;
@@ -55,7 +55,7 @@ namespace PowerUtils.Validations
 
 
         #region PUBLIC METHODS - BAD NOTIFICATIONS
-        public IValidationNotificationsPipeline AddBadNotification(string property, string errorCode)
+        public IValidationNotifications AddBadNotification(string property, string errorCode)
         {
             if(_isSuccess())
             {
@@ -67,7 +67,7 @@ namespace PowerUtils.Validations
             return this;
         }
 
-        public IValidationNotificationsPipeline AddBadNotification(ValidationNotification notification)
+        public IValidationNotifications AddBadNotification(ValidationFailure notification)
         {
             if(_notifications.ContainsKey(notification.Property))
             {
@@ -87,7 +87,7 @@ namespace PowerUtils.Validations
             return this;
         }
 
-        public IValidationNotificationsPipeline AddBadNotifications(IReadOnlyCollection<ValidationNotification> notifications)
+        public IValidationNotifications AddBadNotifications(IReadOnlyCollection<ValidationFailure> notifications)
         {
             if(notifications.Count == 0)
             {
@@ -115,7 +115,7 @@ namespace PowerUtils.Validations
             return this;
         }
 
-        public IValidationNotificationsPipeline AddBadNotifications(IList<ValidationNotification> notifications)
+        public IValidationNotifications AddBadNotifications(IList<ValidationFailure> notifications)
         {
             if(notifications.Count == 0)
             {
@@ -143,7 +143,7 @@ namespace PowerUtils.Validations
             return this;
         }
 
-        public IValidationNotificationsPipeline AddBadNotifications(ICollection<ValidationNotification> notifications)
+        public IValidationNotifications AddBadNotifications(ICollection<ValidationFailure> notifications)
         {
             if(notifications.Count == 0)
             {
@@ -171,7 +171,7 @@ namespace PowerUtils.Validations
             return this;
         }
 
-        public IValidationNotificationsPipeline AddBadNotifications(IEnumerable<ValidationNotification> notifications)
+        public IValidationNotifications AddBadNotifications(IEnumerable<ValidationFailure> notifications)
         {
             if(!notifications.Any())
             {
@@ -199,7 +199,7 @@ namespace PowerUtils.Validations
             return this;
         }
 
-        public IValidationNotificationsPipeline AddBadNotifications(IValidationsContract validations)
+        public IValidationNotifications AddBadNotifications(IValidationsContract validations)
         {
             if(validations == null)
             {

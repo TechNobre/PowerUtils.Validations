@@ -13,7 +13,7 @@ namespace PowerUtils.Validations.Contracts
         public bool Valid => Notifications.Count == 0;
         public bool Invalid => !Valid;
 
-        public IReadOnlyCollection<ValidationNotification> Notifications => _context.Notifications;
+        public IReadOnlyCollection<ValidationFailure> Notifications => _context.Notifications;
 
 
         private IValidationsContract<TSource> _context { get; }

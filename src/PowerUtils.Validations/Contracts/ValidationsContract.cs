@@ -14,8 +14,8 @@ namespace PowerUtils.Validations.Contracts
         public bool Valid => Notifications.Count == 0;
         public bool Invalid => !Valid;
 
-        private readonly Dictionary<string, ValidationNotification> _notifications;
-        public IReadOnlyCollection<ValidationNotification> Notifications => _notifications.Values;
+        private readonly Dictionary<string, ValidationFailure> _notifications;
+        public IReadOnlyCollection<ValidationFailure> Notifications => _notifications.Values;
 
         private readonly HashSet<string> _ignoreProperties;
         public IReadOnlyCollection<string> IgnoreProperties => _ignoreProperties;
@@ -26,7 +26,7 @@ namespace PowerUtils.Validations.Contracts
         public ValidationsContract(TSource source)
         {
             _ignoreProperties = new HashSet<string>();
-            _notifications = new Dictionary<string, ValidationNotification>();
+            _notifications = new Dictionary<string, ValidationFailure>();
 
             Source = source;
         }
@@ -144,7 +144,7 @@ namespace PowerUtils.Validations.Contracts
 
             _notifications.Add(
                 property,
-                new ValidationNotification(property, errorCode)
+                new ValidationFailure(property, errorCode)
             );
         }
 
@@ -179,7 +179,7 @@ namespace PowerUtils.Validations.Contracts
             }
         }
 
-        public void AddNotifications(IEnumerable<ValidationNotification> validations)
+        public void AddNotifications(IEnumerable<ValidationFailure> validations)
         {
             if(validations == null)
             {

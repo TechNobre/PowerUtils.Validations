@@ -20,7 +20,7 @@ namespace PowerUtils.Validations.Contracts
 
         #region METHODS - NOTIFICATIONS
         void AddNotification(string property, string errorCode);
-        void AddNotifications(IEnumerable<ValidationNotification> validations);
+        void AddNotifications(IEnumerable<ValidationFailure> validations);
         void AddNotifications(IValidationsContract validations);
         #endregion
     }
