@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using PowerUtils.Validations;
 using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
