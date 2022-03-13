@@ -2,7 +2,7 @@
 
 namespace PowerUtils.Validations.Contracts
 {
-    public static class NumericValidationsContract
+    public static class NumericValidationRules
     {
         public static IPropertyRule<TSource, TValue> MinZero<TSource, TValue>(this IPropertyRule<TSource, TValue> propertyRule)
            where TValue : IComparable<TValue>, IComparable

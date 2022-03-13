@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace PowerUtils.Validations.Contracts
 {
-    public static class DateTimeValidationsContract
+    public static class DateTimeValidationRules
     {
         public static IPropertyRule<TSource, string> Date<TSource>(this IPropertyRule<TSource, string> propertyRule, DateTime minDate, DateTime maxDate)
         {

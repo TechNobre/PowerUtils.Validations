@@ -3,7 +3,7 @@ using PowerUtils.Globalization;
 
 namespace PowerUtils.Validations.Contracts
 {
-    public static class GlobalizationValidationsContract
+    public static class GlobalizationValidationRules
     {
         private const double MAX_LATITUDE = 90;
         private const double MIN_LATITUDE = MAX_LATITUDE * -1;

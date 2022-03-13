@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace PowerUtils.Validations.Contracts
 {
-    public static class CollectionValidationsContract
+    public static class CollectionValidationRules
     {
         public static IPropertyRule<TSource, TValue> Min<TSource, TValue, TProperty>(this IPropertyRule<TSource, TValue> propertyRule, int min)
             where TValue : IEnumerable<TProperty>

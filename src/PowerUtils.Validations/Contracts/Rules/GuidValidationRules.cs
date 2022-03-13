@@ -2,7 +2,7 @@
 
 namespace PowerUtils.Validations.Contracts
 {
-    public static class GuidValidationsContract
+    public static class GuidValidationRules
     {
         public static IPropertyRule<TSource, Guid> Required<TSource>(this IPropertyRule<TSource, Guid> propertyRule)
         {

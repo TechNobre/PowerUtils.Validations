@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace PowerUtils.Validations.Contracts
 {
-    public static class StringValidationsContract
+    public static class StringValidationRules
     {
         public static IPropertyRule<TSource, string> Required<TSource>(this IPropertyRule<TSource, string> propertyRule)
         {

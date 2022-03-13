@@ -2,7 +2,7 @@
 
 namespace PowerUtils.Validations.Contracts
 {
-    public static class GeneralValidationsContract
+    public static class GeneralValidationRules
     {
         public static IPropertyRule<TSource, string> Gender<TSource>(this IPropertyRule<TSource, string> propertyRule)
         {

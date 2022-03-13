@@ -1,6 +1,6 @@
 ﻿namespace PowerUtils.Validations.Contracts
 {
-    public static class ObjectValidationsContract
+    public static class ObjectValidationRules
     {
         public static IPropertyRule<TSource, T> Required<TSource, T>(this IPropertyRule<TSource, T> propertyRule)
         {

@@ -1,6 +1,6 @@
 ﻿namespace PowerUtils.Validations.Contracts
 {
-    public static class PaginationValidationsContract
+    public static class PaginationValidationRules
     {
         public static IPropertyRule<TSource, string> OrderingDirectionIgnoreCase<TSource>(this IPropertyRule<TSource, string> propertyRule)
         {
