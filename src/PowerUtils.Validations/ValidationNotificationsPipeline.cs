@@ -256,7 +256,7 @@ namespace PowerUtils.Validations
         public void SetConflictStatus(string property)
         {
             StatusCode = HttpStatusCode.Conflict;
-            AddNotification(property, ErrorCodes.ALREADY_EXISTS);
+            AddNotification(property, ErrorCodes.DUPLICATED);
         }
         #endregion
 
