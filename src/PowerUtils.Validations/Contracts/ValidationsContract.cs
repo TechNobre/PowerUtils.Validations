@@ -16,21 +16,13 @@ namespace PowerUtils.Validations.Contracts
         private readonly Dictionary<string, ValidationFailure> _notifications;
         public IReadOnlyCollection<ValidationFailure> Notifications => _notifications.Values;
 
-        private readonly HashSet<string> _ignoreProperties;
-        public IReadOnlyCollection<string> IgnoreProperties => _ignoreProperties;
-
 
         public ValidationsContract(TSource source)
         {
-            _ignoreProperties = new HashSet<string>();
             _notifications = new Dictionary<string, ValidationFailure>();
 
             Source = source;
         }
-
-        public ValidationsContract(TSource source, params string[] ignoreProperties)
-            : this(source)
-            => AddPropertyToIgnore(ignoreProperties);
 
 
         #region METHODS - RULES
@@ -128,11 +120,6 @@ namespace PowerUtils.Validations.Contracts
         #region NOTIFICATIONS METHODS
         public void AddNotification(string property, string errorCode)
         {
-            if(_ignoreProperties.Contains(property))
-            {
-                return;
-            }
-
             if(_notifications.ContainsKey(property))
             {
                 return;
@@ -158,11 +145,6 @@ namespace PowerUtils.Validations.Contracts
 
             foreach(var notification in validations.Notifications)
             {
-                if(_ignoreProperties.Contains(notification.Property))
-                {
-                    continue;
-                }
-
                 if(_notifications.ContainsKey(notification.Property))
                 {
                     continue;
@@ -189,11 +171,6 @@ namespace PowerUtils.Validations.Contracts
 
             foreach(var notification in validations)
             {
-                if(_ignoreProperties.Contains(notification.Property))
-                {
-                    continue;
-                }
-
                 if(_notifications.ContainsKey(notification.Property))
                 {
                     continue;
@@ -203,22 +180,6 @@ namespace PowerUtils.Validations.Contracts
                     notification.Property,
                     notification
                 );
-            }
-        }
-        #endregion
-
-
-        #region GENERIC METHODS
-        public void AddPropertyToIgnore(params string[] ignoreProperties)
-        {
-            if(ignoreProperties == null)
-            {
-                return;
-            }
-
-            foreach(var property in ignoreProperties)
-            {
-                _ignoreProperties.Add(property);
             }
         }
         #endregion

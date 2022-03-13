@@ -15,7 +15,6 @@ namespace PowerUtils.Validations.Contracts
     public interface IValidationsContract<TSource> : IValidationsContract
     {
         TSource Source { get; init; }
-        IReadOnlyCollection<string> IgnoreProperties { get; }
 
 
         #region METHODS - RULES

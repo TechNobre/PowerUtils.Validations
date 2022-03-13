@@ -7,26 +7,6 @@ namespace PowerUtils.Validations.Tests.Validations.Contracts.Objects;
 public class IgnorePropertiesValidationsContractTests
 {
     [Fact]
-    public void IgnoreProperty_WithRules()
-    {
-        // Arrange
-        var fake = new FakeCollection();
-        fake.ValueList = null;
-
-
-        // Act
-        var act = new FakeRequiredObjectValidation(fake, "ValueList");
-
-
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should().BeEmpty();
-    }
-
-
-    [Fact]
     public void IgnoreProperty_NullRules()
     {
         // Arrange

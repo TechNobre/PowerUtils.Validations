@@ -8,8 +8,4 @@ public class FakeRequiredObjectValidation : ValidationsContract<FakeCollection>
     public FakeRequiredObjectValidation(FakeCollection source) : base(source)
         => RuleFor(r => r.ValueList)
             .Required();
-
-    public FakeRequiredObjectValidation(FakeCollection source, params string[] ignoreProperties)
-        : base(source, ignoreProperties)
-    { }
 }

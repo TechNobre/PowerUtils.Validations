@@ -18,6 +18,7 @@
 - Object `ValidationNotificationsPipeline` named to `ValidationNotifications`;
 - Helper `ValidationsContractNotificationsErrors` named to `ValidationsContractExtensions`;
 - Helper `*ValidationsContract` named to `*ValidationRules`;
+- Remove unused property `IgnoreProperties` from `IValidationsContract`;
 
 
 
