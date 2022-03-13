@@ -6,7 +6,7 @@ using PowerUtils.Validations.Contracts;
 namespace PowerUtils.Validations
 {
     public class ValidationNotificationsPipeline : IValidationNotificationsPipeline
-    { // MISSING: unit tests
+    {
         #region PUBLIC PROPERTIES
         public HttpStatusCode StatusCode { get; private set; }
 
