@@ -3,6 +3,16 @@
 
 
 
+## [3.0.0] - 2022-03-13
+[Full Changelog](https://github.com/TechNobre/PowerUtils.Validations/compare/v2.1.0...v3.0.0)
+
+
+### New Features
+- Exceptions module has been moved to [PowerUtils.GuardClauses.Validations](https://github.com/TechNobre/PowerUtils.GuardClauses.Validations) project so it can be used individually;
+
+
+
+
 ## [2.1.0] - 2021-11-29
 [Full Changelog](https://github.com/TechNobre/PowerUtils.Validations/compare/v2.0.0...v2.1.0)
 

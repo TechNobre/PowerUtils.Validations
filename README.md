@@ -18,7 +18,6 @@ Utils to help validation of the objects
 
 
 ## Features
-- [Validation exceptions](#validation-exceptions)
 - [Error Codes](#Error-Codes)
 - [Validations](#Validations)
 
@@ -48,14 +47,6 @@ dotnet add package PowerUtils.Validations
 ```
 
 
-
-### Validation exceptions <a name="validation-exceptions"></a>
-- `BadRequestException`;
-- `ConflictException`;
-- `ForbiddenException`;
-- `InvalidPropertyException`;
-- `NotFoundException`;
-- `UnauthorizedException`;
 
 ### ErrorCodes <a name="Error-Codes"></a>
 - `ErrorCodes.REQUIRED`;
