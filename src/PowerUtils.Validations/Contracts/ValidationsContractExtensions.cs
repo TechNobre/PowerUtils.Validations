@@ -1,6 +1,6 @@
 ﻿namespace PowerUtils.Validations.Contracts
 {
-    public static class ValidationsContractNotificationsErrors
+    public static class ValidationsContractExtensions
     {
         public static void AddErrorMIN<TSource>(this IValidationsContract<TSource> context, string property, int min)
             => context.AddNotification(property, ErrorCodes.GetMinFormatted(min));

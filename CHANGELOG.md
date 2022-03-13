@@ -16,6 +16,7 @@
 - Object `ValidationNotification` named to `ValidationFailure`;
 - Interface `IValidationNotificationsPipeline` named to `IValidationNotifications`;
 - Object `ValidationNotificationsPipeline` named to `ValidationNotifications`;
+- Helper `ValidationsContractNotificationsErrors` named to `ValidationsContractExtensions`;
 
 
 

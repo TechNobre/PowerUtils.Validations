@@ -8,7 +8,6 @@ namespace PowerUtils.Validations.Contracts
 {
     public class ValidationsContract<TSource> : IValidationsContract<TSource>
     {
-        #region PROPERTIES
         public TSource Source { get; init; }
 
         public bool Valid => Notifications.Count == 0;
@@ -19,10 +18,8 @@ namespace PowerUtils.Validations.Contracts
 
         private readonly HashSet<string> _ignoreProperties;
         public IReadOnlyCollection<string> IgnoreProperties => _ignoreProperties;
-        #endregion
 
 
-        #region CONSTRUCTORS
         public ValidationsContract(TSource source)
         {
             _ignoreProperties = new HashSet<string>();
@@ -34,7 +31,6 @@ namespace PowerUtils.Validations.Contracts
         public ValidationsContract(TSource source, params string[] ignoreProperties)
             : this(source)
             => AddPropertyToIgnore(ignoreProperties);
-        #endregion
 
 
         #region METHODS - RULES
