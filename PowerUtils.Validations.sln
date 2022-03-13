@@ -3,19 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1.PowerUtils.Validations", "src\1.PowerUtils.Validations.csproj", "{93B5E53F-ECBF-4B8F-9D19-04FC6EAABAA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerUtils.Validations", "src\PowerUtils.Validations\PowerUtils.Validations.csproj", "{93B5E53F-ECBF-4B8F-9D19-04FC6EAABAA1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.PowerUtils.Validations.Tests", "tests\2.PowerUtils.Validations.Tests.csproj", "{94BAE43D-6BAB-43C4-9FC8-53BAFF4296E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerUtils.Validations.Tests", "tests\PowerUtils.Validations.Tests\PowerUtils.Validations.Tests.csproj", "{94BAE43D-6BAB-43C4-9FC8-53BAFF4296E0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{3F454821-BC7D-4A17-9381-9CEED1186A0C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.project", "1.project", "{3F454821-BC7D-4A17-9381-9CEED1186A0C}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
 		global.json = global.json
 		LICENSE = LICENSE
-		.github\workflows\main.yml = .github\workflows\main.yml
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.cicd", "2.cicd", "{0610778A-FD2F-43E5-AF26-62593D4C860A}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+		.github\workflows\publish-nuget.yml = .github\workflows\publish-nuget.yml
+		.github\workflows\sonarcloud.yml = .github\workflows\sonarcloud.yml
+		.github\workflows\test-project.yml = .github\workflows\test-project.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.src", "3.src", "{8339E601-1746-48C3-A45F-6A111D5F66C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.tests", "4.tests", "{0965340C-1083-41DA-B805-A4FAADC6E0D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +46,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{93B5E53F-ECBF-4B8F-9D19-04FC6EAABAA1} = {8339E601-1746-48C3-A45F-6A111D5F66C9}
+		{94BAE43D-6BAB-43C4-9FC8-53BAFF4296E0} = {0965340C-1083-41DA-B805-A4FAADC6E0D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {484C8F23-8E21-4E88-9E08-2E814357D1C6}

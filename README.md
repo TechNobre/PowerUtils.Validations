@@ -1,7 +1,10 @@
 # PowerUtils.Validations
 Utils to help validation of the objects
 
-![CI](https://github.com/TechNobre/PowerUtils.Validations/actions/workflows/main.yml/badge.svg)
+![Tests](https://github.com/TechNobre/PowerUtils.Validations/actions/workflows/test-project.yml/badge.svg)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TechNobre_PowerUtils.Validations&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=TechNobre_PowerUtils.Validations)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=TechNobre_PowerUtils.Validations&metric=coverage)](https://sonarcloud.io/summary/new_code?id=TechNobre_PowerUtils.Validations)
+
 [![NuGet](https://img.shields.io/nuget/v/PowerUtils.Validations.svg)](https://www.nuget.org/packages/PowerUtils.Validations)
 [![Nuget](https://img.shields.io/nuget/dt/PowerUtils.Validations.svg)](https://www.nuget.org/packages/PowerUtils.Validations)
 [![License: MIT](https://img.shields.io/github/license/TechNobre/PowerUtils.Validations.svg)](https://github.com/TechNobre/PowerUtils.Validations/blob/main/LICENSE)
@@ -9,12 +12,12 @@ Utils to help validation of the objects
 
 
 ## Support to
-- .NET 5.0 and .NET 6.0
+- .NET 5.0
+- .NET 6.0
 
 
 
 ## Features
-- [Installation](#Installation)
 - [Validation exceptions](#validation-exceptions)
 - [Error Codes](#Error-Codes)
 - [Validations](#Validations)
@@ -85,33 +88,6 @@ dotnet add package PowerUtils.Validations
 
 
 
+## Changelog
 
-## Release Notes
-
-
-### v2.1.0 - 2021/11/29
- 
-#### New Features
-- Added new exception `UnauthorizedException`;
-- Added new error code `UNAUTHORIZED`;
-
-#### Bug fixed
-- Bug fixed the StatusCode of the `ForbiddenException`;
-
-#### Enhancements
-- Improved the level of protection of static properties for ValidationExceptions;
-- Updated documentation;
-
-
-### v2.0.0 - 2021/11/23
-
-#### Breaking Changes
-- Now validation rule "Options" is case sensitive;
- 
-#### New Features
-- Added new validation rule "OptionsIgnoreCase";
-- Added new validation rule "OrderingDirectionIgnoreCase";
-
-
-### v1.0.0 - 2021/11/21
-- Kick start project;
+[Here](./CHANGELOG.md)
