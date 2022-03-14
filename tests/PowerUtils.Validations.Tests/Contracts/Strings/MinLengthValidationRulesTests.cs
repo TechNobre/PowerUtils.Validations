@@ -1,20 +1,24 @@
 ﻿using System.Linq;
+using PowerUtils.Validations.Tests.Fakes.Entities;
 using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
-using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
 namespace PowerUtils.Validations.Tests.Contracts.Strings;
 
-public class EmailAddressStringValidationsContractTests
+public class MinLengthValidationRulesTests
 {
     [Fact]
     public void Value_NULL()
     {
         // Arrange
-        var fake = new FakeEmailAddress(null);
+        var fake = new FakeEntity(null);
+        var minLength = 10;
 
 
         // Act
-        var act = new FakeEmailAddressValidations(fake);
+        var act = new FakeMinLengthValidation(
+            fake,
+            minLength
+        );
 
 
         // Assert
@@ -28,11 +32,15 @@ public class EmailAddressStringValidationsContractTests
     public void Value_Empty()
     {
         // Arrange
-        var fake = new FakeEmailAddress(string.Empty);
+        var fake = new FakeEntity(string.Empty);
+        var minLength = 10;
 
 
         // Act
-        var act = new FakeEmailAddressValidations(fake);
+        var act = new FakeMinLengthValidation(
+            fake,
+            minLength
+        );
 
 
         // Assert
@@ -46,11 +54,15 @@ public class EmailAddressStringValidationsContractTests
     public void Value_Valid()
     {
         // Arrange
-        var fake = new FakeEmailAddress("value@value.pt");
+        var fake = new FakeEntity("value");
+        var minLength = 3;
 
 
         // Act
-        var act = new FakeEmailAddressValidations(fake);
+        var act = new FakeMinLengthValidation(
+            fake,
+            minLength
+        );
 
 
         // Assert
@@ -64,21 +76,23 @@ public class EmailAddressStringValidationsContractTests
     public void Value_Invalid()
     {
         // Arrange
-        var fake = new FakeEmailAddress("value@value.");
+        var fake = new FakeEntity("value");
+        var minLength = 10;
 
-        var expectedProperty = nameof(fake.EmailAddress);
-        var expectedErrorCode = ErrorCodes.INVALID;
+        var expectedProperty = nameof(fake.FirstName);
+        var expectedErrorCode = ErrorCodes.MIN + ":" + minLength;
 
 
         // Act
-        var act = new FakeEmailAddressValidations(fake);
+        var act = new FakeMinLengthValidation(
+            fake,
+            minLength
+        );
 
 
         // Assert
         act.Invalid.Should()
             .BeTrue();
-
-        act.Notifications.Should().NotBeEmpty();
 
         act.Notifications.First().Property
             .Should()

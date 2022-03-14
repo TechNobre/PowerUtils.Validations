@@ -4,20 +4,22 @@ using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
 
 namespace PowerUtils.Validations.Tests.Contracts.Strings;
 
-public class MinLengthStringValidationsContractTests
+public class LengthValidationRulesTests
 {
     [Fact]
     public void Value_NULL()
     {
         // Arrange
         var fake = new FakeEntity(null);
-        var minLength = 10;
+        var minLength = 3;
+        var maxLength = 10;
 
 
         // Act
-        var act = new FakeMinLengthValidation(
+        var act = new FakeLengthValidation(
             fake,
-            minLength
+            minLength,
+            maxLength
         );
 
 
@@ -33,13 +35,15 @@ public class MinLengthStringValidationsContractTests
     {
         // Arrange
         var fake = new FakeEntity(string.Empty);
-        var minLength = 10;
+        var minLength = 3;
+        var maxLength = 10;
 
 
         // Act
-        var act = new FakeMinLengthValidation(
+        var act = new FakeLengthValidation(
             fake,
-            minLength
+            minLength,
+            maxLength
         );
 
 
@@ -56,12 +60,14 @@ public class MinLengthStringValidationsContractTests
         // Arrange
         var fake = new FakeEntity("value");
         var minLength = 3;
+        var maxLength = 10;
 
 
         // Act
-        var act = new FakeMinLengthValidation(
+        var act = new FakeLengthValidation(
             fake,
-            minLength
+            minLength,
+            maxLength
         );
 
 
@@ -73,20 +79,22 @@ public class MinLengthStringValidationsContractTests
     }
 
     [Fact]
-    public void Value_Invalid()
+    public void Value_Invalid_Max()
     {
         // Arrange
-        var fake = new FakeEntity("value");
-        var minLength = 10;
+        var fake = new FakeEntity("value 1234");
+        var minLength = 3;
+        var maxLength = 6;
 
         var expectedProperty = nameof(fake.FirstName);
-        var expectedErrorCode = ErrorCodes.MIN + ":" + minLength;
+        var expectedErrorCode = ErrorCodes.MAX + ":" + maxLength;
 
 
         // Act
-        var act = new FakeMinLengthValidation(
+        var act = new FakeLengthValidation(
             fake,
-            minLength
+            minLength,
+            maxLength
         );
 
 
@@ -94,7 +102,38 @@ public class MinLengthStringValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications.Should().NotBeEmpty();
+        act.Notifications.First().Property
+            .Should()
+                .Be(expectedProperty);
+
+        act.Notifications.First().ErrorCode
+            .Should()
+                .Be(expectedErrorCode);
+    }
+
+    [Fact]
+    public void Value_Invalid_Min()
+    {
+        // Arrange
+        var fake = new FakeEntity("val");
+        var minLength = 4;
+        var maxLength = 10;
+
+        var expectedProperty = nameof(fake.FirstName);
+        var expectedErrorCode = ErrorCodes.MIN + ":" + minLength;
+
+
+        // Act
+        var act = new FakeLengthValidation(
+            fake,
+            minLength,
+            maxLength
+        );
+
+
+        // Assert
+        act.Invalid.Should()
+            .BeTrue();
 
         act.Notifications.First().Property
             .Should()

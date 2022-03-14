@@ -23,13 +23,13 @@ namespace PowerUtils.Validations.Contracts
 
                 if(value.Date < minDate.Date)
                 {
-                    propertyRule.AddNotification(ErrorCodes.GetMinFormatted(minDate.ToString("yyyy-MM-dd")));
+                    propertyRule.AddNotification(ErrorCodes.GetMinFormatted(minDate));
                     return propertyRule; // Prevent next comparation
                 }
 
                 if(value.Date > maxDate.Date)
                 {
-                    propertyRule.AddNotification(ErrorCodes.GetMaxFormatted(maxDate.ToString("yyyy-MM-dd")));
+                    propertyRule.AddNotification(ErrorCodes.GetMaxFormatted(maxDate));
                 }
 
             }
@@ -50,14 +50,14 @@ namespace PowerUtils.Validations.Contracts
 
             if(propertyRule.PropertyValue.Date < minDate.Date)
             {
-                propertyRule.AddNotification(ErrorCodes.GetMinFormatted(minDate.ToString("yyyy-MM-dd")));
+                propertyRule.AddNotification(ErrorCodes.GetMinFormatted(minDate));
                 return propertyRule; // Prevent next comparation
             }
 
 
             if(propertyRule.PropertyValue.Date > maxDate.Date)
             {
-                propertyRule.AddNotification(ErrorCodes.GetMaxFormatted(maxDate.ToString("yyyy-MM-dd")));
+                propertyRule.AddNotification(ErrorCodes.GetMaxFormatted(maxDate));
             }
 
             return propertyRule;
@@ -74,14 +74,14 @@ namespace PowerUtils.Validations.Contracts
             {
                 if(propertyRule.PropertyValue.Value.Date < minDate.Date)
                 {
-                    propertyRule.AddNotification(ErrorCodes.GetMinFormatted(minDate.ToString("yyyy-MM-dd")));
+                    propertyRule.AddNotification(ErrorCodes.GetMinFormatted(minDate));
                     return propertyRule; // Prevent next comparation
                 }
 
 
                 if(propertyRule.PropertyValue.Value.Date > maxDate.Date)
                 {
-                    propertyRule.AddNotification(ErrorCodes.GetMaxFormatted(maxDate.ToString("yyyy-MM-dd")));
+                    propertyRule.AddNotification(ErrorCodes.GetMaxFormatted(maxDate));
                 }
             }
 

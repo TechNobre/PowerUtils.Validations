@@ -4,19 +4,16 @@ using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
 namespace PowerUtils.Validations.Tests.Contracts.Globalization;
 
-public class FakeLocationValidationsContractTests
+public class LocationValidationRulesTests
 {
     [Fact]
-    public void Invalid_Latitude_Min()
+    public void Latitude_BelowMin_Invalid_()
     {
         // Arrange
         var fake = new FakeLocation();
         fake.Latitude = -91.145;
         fake.Longitude = 14.145;
 
-        var expectedProperty = nameof(fake.Latitude);
-        var expectedErrorCode = ErrorCodes.MIN + ":" + -90;
-
 
         // Act
         var act = new FakeLocationValidation(fake);
@@ -26,28 +23,23 @@ public class FakeLocationValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications.Should().NotBeEmpty();
-
         act.Notifications.First().Property
             .Should()
-                .Be(expectedProperty);
+                .Be(nameof(fake.Latitude));
 
         act.Notifications.First().ErrorCode
             .Should()
-                .Be(expectedErrorCode);
+                .Be(ErrorCodes.GetMinFormatted(-90));
     }
 
     [Fact]
-    public void Invalid_Latitude_Max()
+    public void Latitude_AboveMax_Invalid()
     {
         // Arrange
         var fake = new FakeLocation();
         fake.Latitude = 91.145;
         fake.Longitude = 14.145;
 
-        var expectedProperty = nameof(fake.Latitude);
-        var expectedErrorCode = ErrorCodes.MAX + ":" + 90;
-
 
         // Act
         var act = new FakeLocationValidation(fake);
@@ -57,27 +49,23 @@ public class FakeLocationValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications.Should().NotBeEmpty();
-
         act.Notifications.First().Property
             .Should()
-                .Be(expectedProperty);
+                .Be(nameof(fake.Latitude));
 
         act.Notifications.First().ErrorCode
             .Should()
-                .Be(expectedErrorCode);
+                .Be(ErrorCodes.GetMaxFormatted(90));
     }
 
     [Fact]
-    public void Invalid_Longitude_Min()
+    public void Longitude_BelowMin_Invalid()
     {
         // Arrange
         var fake = new FakeLocation();
         fake.Latitude = -14.145;
         fake.Longitude = -184.145;
 
-        var expectedProperty = nameof(fake.Longitude);
-        var expectedErrorCode = ErrorCodes.MIN + ":" + -180;
 
 
         // Act
@@ -88,28 +76,23 @@ public class FakeLocationValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications.Should().NotBeEmpty();
-
         act.Notifications.First().Property
             .Should()
-                .Be(expectedProperty);
+                .Be(nameof(fake.Longitude));
 
         act.Notifications.First().ErrorCode
             .Should()
-                .Be(expectedErrorCode);
+                .Be(ErrorCodes.GetMinFormatted(-180));
     }
 
     [Fact]
-    public void Invalid_Longitude_Max()
+    public void Longitude_AboveMax_Invalid()
     {
         // Arrange
         var fake = new FakeLocation();
         fake.Latitude = -14.145;
         fake.Longitude = 184.145;
 
-        var expectedProperty = nameof(fake.Longitude);
-        var expectedErrorCode = ErrorCodes.MAX + ":" + 180;
-
 
         // Act
         var act = new FakeLocationValidation(fake);
@@ -119,19 +102,17 @@ public class FakeLocationValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications.Should().NotBeEmpty();
-
         act.Notifications.First().Property
             .Should()
-                .Be(expectedProperty);
+                .Be(nameof(fake.Longitude));
 
         act.Notifications.First().ErrorCode
             .Should()
-                .Be(expectedErrorCode);
+                .Be(ErrorCodes.GetMaxFormatted(180));
     }
 
     [Fact]
-    public void Valid_Location()
+    public void Location_Validcoordenates_Valid()
     {
         // Arrange
         var fake = new FakeLocation();
@@ -147,6 +128,7 @@ public class FakeLocationValidationsContractTests
         act.Valid.Should()
             .BeTrue();
 
-        act.Notifications.Should().BeEmpty();
+        act.Notifications.Should()
+            .BeEmpty();
     }
 }

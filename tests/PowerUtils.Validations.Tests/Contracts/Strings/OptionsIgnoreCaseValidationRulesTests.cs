@@ -4,10 +4,10 @@ using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
 namespace PowerUtils.Validations.Tests.Contracts.Strings;
 
-public class OptionsIgnoreCaseStringValidationsContractTests
+public class OptionsIgnoreCaseValidationRulesTests
 {
     [Fact]
-    public void Value_NULL()
+    public void Options_NULL_Valid()
     {
         // Arrange
         var fake = new FakeOptions(null);
@@ -29,7 +29,7 @@ public class OptionsIgnoreCaseStringValidationsContractTests
     }
 
     [Fact]
-    public void Value_Empty()
+    public void Options_Empty_Valid()
     {
         // Arrange
         var fake = new FakeOptions(string.Empty);
@@ -51,7 +51,7 @@ public class OptionsIgnoreCaseStringValidationsContractTests
     }
 
     [Fact]
-    public void Value_Valid()
+    public void Options_InOptions_Valid()
     {
         // Arrange
         var fake = new FakeOptions("OP2");
@@ -69,18 +69,16 @@ public class OptionsIgnoreCaseStringValidationsContractTests
         act.Valid.Should()
             .BeTrue();
 
-        act.Notifications.Should().BeEmpty();
+        act.Notifications.Should()
+            .BeEmpty();
     }
 
     [Fact]
-    public void Value_Invalid()
+    public void Options_OutList_Invalid()
     {
         // Arrange
         var fake = new FakeOptions("op3");
         var options = new string[] { "op1", "Op2" };
-
-        var expectedProperty = nameof(fake.Value);
-        var expectedErrorCode = ErrorCodes.INVALID;
 
 
         // Act
@@ -94,30 +92,25 @@ public class OptionsIgnoreCaseStringValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications.Should().NotBeEmpty();
-
         act.Notifications.First().Property
             .Should()
-                .Be(expectedProperty);
+                .Be(nameof(fake.Value));
 
         act.Notifications.First().ErrorCode
             .Should()
-                .Be(expectedErrorCode);
+                .Be(ErrorCodes.INVALID);
     }
 
     [Fact]
-    public void Value_Invalid_CustomPropertyName()
+    public void Options_NullOptions_Invalid()
     {
         // Arrange
         var fake = new FakeOptions("op3");
-        var options = new string[] { "op1", "Op2" };
-
-        var expectedProperty = nameof(FakeOptionsPropertyNameValidation);
-        var expectedErrorCode = ErrorCodes.INVALID;
+        string[] options = null;
 
 
         // Act
-        var act = new FakeOptionsPropertyNameValidation(
+        var act = new FakeOptionsIgnoreCaseValidation(
             fake,
             options
         );
@@ -127,14 +120,12 @@ public class OptionsIgnoreCaseStringValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications.Should().NotBeEmpty();
-
         act.Notifications.First().Property
             .Should()
-                .Be(expectedProperty);
+                .Be(nameof(FakeOptions.Value));
 
         act.Notifications.First().ErrorCode
             .Should()
-                .Be(expectedErrorCode);
+                .Be(ErrorCodes.INVALID);
     }
 }

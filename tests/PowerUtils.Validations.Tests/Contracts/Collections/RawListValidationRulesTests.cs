@@ -4,10 +4,10 @@ using PowerUtils.Validations.Tests.Fakes.Validations.Objects;
 
 namespace PowerUtils.Validations.Tests.Contracts.Collections;
 
-public class RawListValidationsContractTests
+public class RawListValidationRulesTests
 {
     [Fact]
-    public void Value_Null()
+    public void Contract_Null_Invalid()
     {
         // Arrange
         List<string> fake = null;
@@ -26,9 +26,6 @@ public class RawListValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications.Should()
-            .NotBeEmpty();
-
         act.Notifications.First().Property
             .Should()
                 .Be(expectedProperty);
@@ -40,7 +37,7 @@ public class RawListValidationsContractTests
 
 
     [Fact]
-    public void Value_NotNull()
+    public void Contract_NotNull_Valid()
     {
         // Arrange
         var fake = new List<string> { "fake1", "fake2" };
@@ -56,6 +53,7 @@ public class RawListValidationsContractTests
         act.Valid.Should()
             .BeTrue();
 
-        act.Notifications.Should().BeEmpty();
+        act.Notifications.Should()
+            .BeEmpty();
     }
 }

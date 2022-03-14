@@ -5,7 +5,7 @@ using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
 
 namespace PowerUtils.Validations.Tests.Contracts.Strings;
 
-public class RequiredStringValidationsContractTests
+public class RequiredValidationRulesTests
 {
     [Fact]
     public void Value_NULL()
@@ -49,8 +49,6 @@ public class RequiredStringValidationsContractTests
         // Assert
         act.Invalid.Should()
             .BeTrue();
-
-        act.Notifications.Should().NotBeEmpty();
 
         act.Notifications.First().Property
             .Should()
@@ -100,8 +98,6 @@ public class RequiredStringValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications.Should().NotBeEmpty();
-
         act.Notifications.First().Property
             .Should()
                 .Be(expectedProperty);
@@ -132,8 +128,6 @@ public class RequiredStringValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications.Should().NotBeEmpty();
-
         act.Notifications.First().Property
             .Should()
                 .Be(expectedProperty);
@@ -163,8 +157,6 @@ public class RequiredStringValidationsContractTests
         // Assert
         act.Invalid.Should()
             .BeTrue();
-
-        act.Notifications.Should().NotBeEmpty();
 
         act.Notifications.First().Property
             .Should()

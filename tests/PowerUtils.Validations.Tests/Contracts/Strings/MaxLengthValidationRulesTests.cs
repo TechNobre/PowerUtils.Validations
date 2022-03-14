@@ -4,7 +4,7 @@ using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
 
 namespace PowerUtils.Validations.Tests.Contracts.Strings;
 
-public class MaxLengthStringValidationsContractTests
+public class MaxLengthValidationRulesTests
 {
     [Fact]
     public void Value_NULL()
@@ -94,8 +94,6 @@ public class MaxLengthStringValidationsContractTests
         // Assert
         act.Invalid.Should()
             .BeTrue();
-
-        act.Notifications.Should().NotBeEmpty();
 
         act.Notifications.First().Property
             .Should()

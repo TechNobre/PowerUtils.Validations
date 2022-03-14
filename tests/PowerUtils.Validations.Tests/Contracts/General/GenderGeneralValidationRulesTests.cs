@@ -5,10 +5,10 @@ using PowerUtils.Validations.Tests.Fakes.Validations.General;
 
 namespace PowerUtils.Validations.Tests.Contracts.General;
 
-public class GenderGeneralValidationsContractTests
+public class GenderGeneralValidationRulesTests
 {
     [Fact]
-    public void Value_NULL()
+    public void Gender_NULL_Valid()
     {
         // Arrange
         var fake = new FakeGender(null);
@@ -22,14 +22,15 @@ public class GenderGeneralValidationsContractTests
         act.Valid.Should()
             .BeTrue();
 
-        act.Notifications.Should().BeEmpty();
+        act.Notifications.Should()
+            .BeEmpty();
     }
 
     [Fact]
-    public void Value_Empty()
+    public void Gender_Empty_Valid()
     {
         // Arrange
-        var fake = new FakeGender(string.Empty);
+        var fake = new FakeGender("");
 
 
         // Act
@@ -40,11 +41,12 @@ public class GenderGeneralValidationsContractTests
         act.Valid.Should()
             .BeTrue();
 
-        act.Notifications.Should().BeEmpty();
+        act.Notifications.Should()
+            .BeEmpty();
     }
 
     [Fact]
-    public void Value_Valid_Male()
+    public void Gender_Male_Valid()
     {
         // Arrange
         var fake = new FakeGender("male");
@@ -58,11 +60,12 @@ public class GenderGeneralValidationsContractTests
         act.Valid.Should()
             .BeTrue();
 
-        act.Notifications.Should().BeEmpty();
+        act.Notifications.Should()
+            .BeEmpty();
     }
 
     [Fact]
-    public void Value_Valid_Female()
+    public void Gender_Female_Valid()
     {
         // Arrange
         var fake = new FakeGender("FemalE");
@@ -80,13 +83,10 @@ public class GenderGeneralValidationsContractTests
     }
 
     [Fact]
-    public void Value_Invalid()
+    public void Gender_InvalidValue_Invalid()
     {
         // Arrange
         var fake = new FakeGender("op3");
-
-        var expectedProperty = nameof(fake.Gender);
-        var expectedErrorCode = ErrorCodes.INVALID;
 
 
         // Act
@@ -97,19 +97,17 @@ public class GenderGeneralValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications.Should().NotBeEmpty();
-
         act.Notifications.First().Property
             .Should()
-                .Be(expectedProperty);
+                .Be(nameof(fake.Gender));
 
         act.Notifications.First().ErrorCode
             .Should()
-                .Be(expectedErrorCode);
+                .Be(ErrorCodes.INVALID);
     }
 
-    [Fact(DisplayName = "Test gender with support to other with value 'Other' - Should return TRUE")]
-    public void GenderWithOther_Other_ReturnTrue()
+    [Fact]
+    public void GenderWithOther_Other_Valid()
     {
         // Arrange
         var gender = "Other";
@@ -126,8 +124,8 @@ public class GenderGeneralValidationsContractTests
             .BeTrue();
     }
 
-    [Fact(DisplayName = "Test gender with support to other with value not 'Other'  - Should return FALSE")]
-    public void Gender_NotOther_ReturnFalse()
+    [Fact]
+    public void Gender_NotOther_Invalid()
     {
         // Arrange
         var gender = "Fake";
@@ -142,10 +140,18 @@ public class GenderGeneralValidationsContractTests
         // Assert
         act.Invalid.Should()
             .BeTrue();
+
+        act.Notifications.First().Property
+            .Should()
+                .Be("Gender");
+
+        act.Notifications.First().ErrorCode
+            .Should()
+                .Be(ErrorCodes.INVALID);
     }
 
-    [Fact(DisplayName = "Test gender with support to other with value 'Male' - Should return TRUE")]
-    public void GenderWithOther_Male_ReturnTrue()
+    [Fact]
+    public void GenderWithOther_Male_Valid()
     {
         // Arrange
         var gender = "male";
@@ -160,5 +166,50 @@ public class GenderGeneralValidationsContractTests
         // Assert
         act.Valid.Should()
             .BeTrue();
+
+        act.Notifications.Should()
+            .BeEmpty();
+    }
+
+    [Fact]
+    public void GenderWithOther_Null_Valid()
+    {
+        // Arrange
+        string gender = null;
+
+
+        // Act
+        var act = new ValidationsContract<string>(gender)
+            .RuleFor("Gender")
+            .GenderWithOther();
+
+
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should()
+            .BeEmpty();
+    }
+
+    [Fact]
+    public void GenderWithOther_Empty_Valid()
+    {
+        // Arrange
+        var gender = "";
+
+
+        // Act
+        var act = new ValidationsContract<string>(gender)
+            .RuleFor("Gender")
+            .GenderWithOther();
+
+
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should()
+            .BeEmpty();
     }
 }

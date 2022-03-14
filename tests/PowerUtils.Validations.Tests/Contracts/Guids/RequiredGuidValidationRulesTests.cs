@@ -5,10 +5,10 @@ using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
 namespace PowerUtils.Validations.Tests.Contracts.Guids;
 
-public class RequiredGuidValidationsContractTests
+public class RequiredGuidValidationRulesTests
 {
     [Fact]
-    public void Value_Valid()
+    public void Guid_Random_Valid()
     {
         // Arrange
         var fake = new FakeId(Guid.NewGuid());
@@ -22,16 +22,15 @@ public class RequiredGuidValidationsContractTests
         act.Valid.Should()
             .BeTrue();
 
-        act.Notifications.Should().BeEmpty();
+        act.Notifications.Should()
+            .BeEmpty();
     }
 
     [Fact]
-    public void Value_Empty()
+    public void Guid_Empty_Invalid()
     {
         // Arrange
         var fake = new FakeId(Guid.Empty);
-        var expectedProperty = nameof(fake.Id);
-        var expectedErrorCode = ErrorCodes.REQUIRED;
 
 
         // Act
@@ -44,10 +43,10 @@ public class RequiredGuidValidationsContractTests
 
         act.Notifications.First().Property
             .Should()
-                .Be(expectedProperty);
+                .Be(nameof(fake.Id));
 
         act.Notifications.First().ErrorCode
             .Should()
-                .Be(expectedErrorCode);
+                .Be(ErrorCodes.REQUIRED);
     }
 }

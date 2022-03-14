@@ -3,11 +3,10 @@ using PowerUtils.Validations.Contracts;
 
 namespace PowerUtils.Validations.Tests.Contracts.Numerics;
 
-public class MinZeroValidationsContractTests
+public class MinZeroValidationRulesTests
 {
-    [Fact(DisplayName = "Greater than min allowed - Success")]
-    [Trait("Category", "Min Validation")]
-    public void Int_Greater()
+    [Fact]
+    public void Int_Greater_Valid()
     {
         // Arrange
         var value = 4;
@@ -20,18 +19,15 @@ public class MinZeroValidationsContractTests
 
 
         // Assert
-        act.Valid
-            .Should()
-                .BeTrue();
+        act.Valid.Should()
+            .BeTrue();
 
-        act.Notifications
-            .Should()
-                .BeEmpty();
+        act.Notifications.Should()
+            .BeEmpty();
     }
 
-    [Fact(DisplayName = "Equals than min allowed - Success")]
-    [Trait("Category", "Min Validation")]
-    public void Int_Equals()
+    [Fact]
+    public void Int_Equals_Valid()
     {
         // Arrange
         var value = 0;
@@ -43,18 +39,15 @@ public class MinZeroValidationsContractTests
 
 
         // Assert
-        act.Valid
-            .Should()
-                .BeTrue();
+        act.Valid.Should()
+            .BeTrue();
 
-        act.Notifications
-            .Should()
-                .BeEmpty();
+        act.Notifications.Should()
+            .BeEmpty();
     }
 
-    [Fact(DisplayName = "Less than min allowed - Error")]
-    [Trait("Category", "Min Validation")]
-    public void Int_Less()
+    [Fact]
+    public void Int_Less_Invalid()
     {
         // Arrange
         var value = -8;
@@ -70,41 +63,13 @@ public class MinZeroValidationsContractTests
         act.Invalid.Should()
             .BeTrue();
 
-        act.Notifications
-            .Should()
-                .NotBeEmpty();
-
         act.Notifications.First().ErrorCode
            .Should()
                .Be(ErrorCodes.GetMinFormatted(0));
     }
 
-    [Fact(DisplayName = "Greater than min allowed (Nullable) - Error")]
-    [Trait("Category", "Min Validation")]
-    public void IntNull_Greater_Invalid()
-    {
-        // Arrange
-        int? value = 4;
-
-        // Act
-        var act = new ValidationsContract<int?>(value)
-            .RuleFor("Fake")
-            .MinZero();
-
-
-        // Assert
-        act.Valid
-            .Should()
-                .BeTrue();
-
-        act.Notifications
-            .Should()
-                .BeEmpty();
-    }
-
-    [Fact(DisplayName = "Nulvalue (Nullable) - Success")]
-    [Trait("Category", "Min Validation")]
-    public void IntNull_Null_Valid()
+    [Fact]
+    public void IntNullable_Null_Valid()
     {
         // Arrange
         int? value = null;
@@ -123,9 +88,28 @@ public class MinZeroValidationsContractTests
             .BeEmpty();
     }
 
-    [Fact(DisplayName = "Equals than min allowed (Nullable) - Error")]
-    [Trait("Category", "Min Validation")]
-    public void IntNull_Equals_Valid()
+    [Fact]
+    public void IntNullable_Greater_Invalid()
+    {
+        // Arrange
+        int? value = 4;
+
+        // Act
+        var act = new ValidationsContract<int?>(value)
+            .RuleFor("Fake")
+            .MinZero();
+
+
+        // Assert
+        act.Valid.Should()
+            .BeTrue();
+
+        act.Notifications.Should()
+            .BeEmpty();
+    }
+
+    [Fact]
+    public void IntNullable_Equals_Valid()
     {
         // Arrange
         int? value = 6;
@@ -144,9 +128,8 @@ public class MinZeroValidationsContractTests
             .BeEmpty();
     }
 
-    [Fact(DisplayName = "Less than min allowed (Nullable) - Error")]
-    [Trait("Category", "Min Validation")]
-    public void IntNull_Less_Valid()
+    [Fact]
+    public void IntNullable_Less_Invalid()
     {
         // Arrange
         int? value = -8;
@@ -160,10 +143,6 @@ public class MinZeroValidationsContractTests
         // Assert
         act.Invalid.Should()
             .BeTrue();
-
-        act.Notifications
-            .Should()
-                .NotBeEmpty();
 
         act.Notifications.First().ErrorCode
            .Should()

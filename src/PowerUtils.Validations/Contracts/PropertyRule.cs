@@ -65,15 +65,7 @@ namespace PowerUtils.Validations.Contracts
         }
 
 
-        #region METHODS - NOTIFICATIONS
         public void AddNotification(string errorCode) =>
             _context.AddNotification(PropertyName, errorCode);
-        #endregion
-
-
-        #region GENERIC METHODS
-        public override string ToString()
-            => $"{PropertyName} = '{PropertyValue}'";
-        #endregion
     }
 }

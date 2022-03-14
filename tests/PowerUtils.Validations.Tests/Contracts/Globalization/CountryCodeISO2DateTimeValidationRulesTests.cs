@@ -1,24 +1,20 @@
 ﻿using System.Linq;
-using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
+using PowerUtils.Validations.Tests.Fakes.Validations.Globalization;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.Validations.Tests.Contracts.Strings;
+namespace PowerUtils.Validations.Tests.Contracts.Globalization;
 
-public class OptionsStringValidationsContractTests
+public class CountryCodeISO2DateTimeValidationRulesTests
 {
     [Fact]
     public void Value_NULL()
     {
         // Arrange
-        var fake = new FakeOptions(null);
-        var options = new string[] { "op1", "Op2" };
+        var fake = new FakeCountry(null);
 
 
         // Act
-        var act = new FakeOptionsValidation(
-            fake,
-            options
-        );
+        var act = new FakeCountryValidation(fake);
 
 
         // Assert
@@ -32,15 +28,11 @@ public class OptionsStringValidationsContractTests
     public void Value_Empty()
     {
         // Arrange
-        var fake = new FakeOptions(string.Empty);
-        var options = new string[] { "op1", "Op2" };
+        var fake = new FakeCountry(string.Empty);
 
 
         // Act
-        var act = new FakeOptionsValidation(
-            fake,
-            options
-        );
+        var act = new FakeCountryValidation(fake);
 
 
         // Assert
@@ -54,15 +46,11 @@ public class OptionsStringValidationsContractTests
     public void Value_Valid()
     {
         // Arrange
-        var fake = new FakeOptions("OP2");
-        var options = new string[] { "OP2", "Op2" };
+        var fake = new FakeCountry("pt");
 
 
         // Act
-        var act = new FakeOptionsValidation(
-            fake,
-            options
-        );
+        var act = new FakeCountryValidation(fake);
 
 
         // Assert
@@ -73,28 +61,22 @@ public class OptionsStringValidationsContractTests
     }
 
     [Fact]
-    public void Value_Invalid()
+    public void Value_Invalid_ISO3()
     {
         // Arrange
-        var fake = new FakeOptions("op3");
-        var options = new string[] { "op1", "Op2" };
+        var fake = new FakeCountry("PTR");
 
-        var expectedProperty = nameof(fake.Value);
+        var expectedProperty = nameof(fake.CountryCode);
         var expectedErrorCode = ErrorCodes.INVALID;
 
 
         // Act
-        var act = new FakeOptionsValidation(
-            fake,
-            options
-        );
+        var act = new FakeCountryValidation(fake);
 
 
         // Assert
         act.Invalid.Should()
             .BeTrue();
-
-        act.Notifications.Should().NotBeEmpty();
 
         act.Notifications.First().Property
             .Should()
@@ -106,28 +88,22 @@ public class OptionsStringValidationsContractTests
     }
 
     [Fact]
-    public void Value_Invalid_CustomPropertyName()
+    public void Value_Invalid_ISO2()
     {
         // Arrange
-        var fake = new FakeOptions("op3");
-        var options = new string[] { "op1", "Op2" };
+        var fake = new FakeCountry("RR");
 
-        var expectedProperty = nameof(FakeOptionsPropertyNameValidation);
+        var expectedProperty = nameof(fake.CountryCode);
         var expectedErrorCode = ErrorCodes.INVALID;
 
 
         // Act
-        var act = new FakeOptionsPropertyNameValidation(
-            fake,
-            options
-        );
+        var act = new FakeCountryValidation(fake);
 
 
         // Assert
         act.Invalid.Should()
             .BeTrue();
-
-        act.Notifications.Should().NotBeEmpty();
 
         act.Notifications.First().Property
             .Should()

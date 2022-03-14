@@ -4,7 +4,7 @@ using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
 namespace PowerUtils.Validations.Tests.Contracts.Objects;
 
-public class RequiredObjectValidationsContractTests
+public class RequiredObjectValidationRulesTests
 {
     [Fact]
     public void Value_NULL()

@@ -4,7 +4,7 @@ using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
 namespace PowerUtils.Validations.Tests.Contracts.Objects;
 
-public class IgnorePropertiesValidationsContractTests
+public class IgnorePropertiesValidationRulesTests
 {
     [Fact]
     public void IgnoreProperty_NullRules()

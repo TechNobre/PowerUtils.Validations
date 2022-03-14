@@ -3,7 +3,7 @@ using PowerUtils.Validations.Contracts;
 
 namespace PowerUtils.Validations.Tests.Contracts.PaginationValidations;
 
-public class OrderingDirectionIgnoreCaseValidationsContractTests
+public class OrderingDirectionIgnoreCaseValidationRulesTests
 {
     [Fact]
     public void OrderingDirection_Null_NotValidate()
@@ -63,9 +63,6 @@ public class OrderingDirectionIgnoreCaseValidationsContractTests
         // Assert
         act.Invalid.Should()
             .BeTrue();
-
-        act.Notifications.Should()
-            .NotBeEmpty();
 
         act.Notifications.First().ErrorCode
            .Should()

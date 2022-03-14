@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Text.RegularExpressions;
+using PowerUtils.Text;
 
 namespace PowerUtils.Validations.Contracts
 {
@@ -146,19 +146,7 @@ namespace PowerUtils.Validations.Contracts
                 return propertyRule;
             }
 
-            // https://jqueryvalidation.org/email-method/
-            // the same validation as jquery validation
-            var matchRegex = Regex.Match(propertyRule.PropertyValue, @"^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
-            if(!matchRegex.Success)
-            {
-                propertyRule.AddNotification(ErrorCodes.INVALID);
-                return propertyRule; // Prevent next comparation
-            }
-
-            // Secund validation
-            var validator = new System.ComponentModel.DataAnnotations.EmailAddressAttribute();
-            var isValid = validator.IsValid(propertyRule.PropertyValue);
-            if(!isValid)
+            if(!propertyRule.PropertyValue.IsEmail())
             {
                 propertyRule.AddNotification(ErrorCodes.INVALID);
             }
