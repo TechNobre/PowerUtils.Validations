@@ -115,7 +115,6 @@ namespace PowerUtils.Validations.Contracts
             return propertyRule;
         }
 
-
         public static IPropertyRule<TSource, string> MaxDateTimeUtcNow<TSource>(this IPropertyRule<TSource, string> propertyRule)
         {
             if(propertyRule.PropertyNull)

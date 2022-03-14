@@ -3,7 +3,7 @@
 
 
 
-## [3.0.0] - 2022-03-13
+## [3.0.0] - 2022-03-14
 [Full Changelog](https://github.com/TechNobre/PowerUtils.Validations/compare/v2.1.0...v3.0.0)
 
 
