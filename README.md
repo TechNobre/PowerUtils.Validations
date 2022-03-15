@@ -1,23 +1,26 @@
 # PowerUtils.Validations
 Utils to help validation of the objects
 
-![CI](https://github.com/TechNobre/PowerUtils.Validations/actions/workflows/main.yml/badge.svg)
+![Tests](https://github.com/TechNobre/PowerUtils.Validations/actions/workflows/test-project.yml/badge.svg)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TechNobre_PowerUtils.Validations&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=TechNobre_PowerUtils.Validations)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=TechNobre_PowerUtils.Validations&metric=coverage)](https://sonarcloud.io/summary/new_code?id=TechNobre_PowerUtils.Validations)
+
 [![NuGet](https://img.shields.io/nuget/v/PowerUtils.Validations.svg)](https://www.nuget.org/packages/PowerUtils.Validations)
 [![Nuget](https://img.shields.io/nuget/dt/PowerUtils.Validations.svg)](https://www.nuget.org/packages/PowerUtils.Validations)
-[![License: MIT](https://img.shields.io/github/license/ofpinewood/http-exceptions.svg)](https://github.com/TechNobre/PowerUtils.Validations/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/github/license/TechNobre/PowerUtils.Validations.svg)](https://github.com/TechNobre/PowerUtils.Validations/blob/main/LICENSE)
 
 
 
 ## Support to
-- .NET 5.0 and .NET 6.0
+- .NET 5.0
+- .NET 6.0
 
 
 
 ## Features
-- [Installation](#Installation)
-- [Validation exceptions](#validation-exceptions)
-- [Error Codes](#Error-Codes)
-- [Validations](#Validations)
+- [ValidationsContract](#ValidationsContract)
+- [ValidationNotifications](#ValidationNotifications)
+- [Rules](#Rules)
 
 
 
@@ -25,8 +28,9 @@ Utils to help validation of the objects
 
 ### Dependencies
 
+- PowerUtils.Validations.Primitives [NuGet](https://www.nuget.org/packages/PowerUtils.Validations.Primitives/)
 - PowerUtils.Globalization [NuGet](https://www.nuget.org/packages/PowerUtils.Globalization/)
-- PowerUtils.Net.Primitives [NuGet](https://www.nuget.org/packages/PowerUtils.Net.Primitives/)
+- PowerUtils.Text [NuGet](https://www.nuget.org/packages/PowerUtils.Text/)
 
 
 ### How to use
@@ -46,29 +50,87 @@ dotnet add package PowerUtils.Validations
 
 
 
-### Validation exceptions <a name="validation-exceptions"></a>
-- `BadRequestException`;
-- `ConflictException`;
-- `ForbiddenException`;
-- `InvalidPropertyException`;
-- `NotFoundException`;
-- `UnauthorizedException`;
+### ValidationsContract <a name="ValidationsContract"></a>
+```csharp
+var act = new ValidationsContract<int>(5)
+    .RuleFor("Fake")
+    .Min(10);
 
-### ErrorCodes <a name="Error-Codes"></a>
-- `ErrorCodes.REQUIRED`;
-- `ErrorCodes.INVALID`;
-- `ErrorCodes.UNAUTHORIZED`;
-- `ErrorCodes.FORBIDDEN`;
-- `ErrorCodes.MIN`;
-- `ErrorCodes.MAX`;
-- `ErrorCodes.MIN_DATETIME_UTCNOW`;
-- `ErrorCodes.MAX_DATETIME_UTCNOW`;
-- `ErrorCodes.ALREADY_EXISTS`;
-- `ErrorCodes.NOT_FOUND`;
+// True
+var result = act.Invalid;
+```
 
-### Validations <a name="Validations"></a>
+```csharp
+public class CountryValidation : ValidationsContract<Country>
+{
+    public CountryValidation(Country source) : base(source)
+    {
+        RuleFor(r => r.CountryCode)
+            .CountryCodeISO2();
+    }
+}
+```
 
-// TODO: to document
+
+### ValidationNotifications <a name="ValidationNotifications"></a>
+- __Properties:__
+  - `HttpStatusCode StatusCode`;
+  - `bool Valid`;
+  - `bool Invalid`;
+  - `IReadOnlyCollection<ValidationFailure> Notifications`;
+- __Methods:__
+  - `IValidationNotifications AddNotification(string property, string errorCode)`;
+  - `IValidationNotifications AddBadNotification(string property, string errorCode)`;
+  - `IValidationNotifications AddBadNotification(ValidationFailure notification)`;
+  - `IValidationNotifications AddBadNotifications(IReadOnlyCollection<ValidationFailure> notifications)`;
+  - `IValidationNotifications AddBadNotifications(IList<ValidationFailure> notifications)`;
+  - `IValidationNotifications AddBadNotifications(ICollection<ValidationFailure> notifications)`;
+  - `IValidationNotifications AddBadNotifications(IEnumerable<ValidationFailure> notifications)`;
+  - `IValidationNotifications AddBadNotifications(IValidationsContract validations)`;
+  - `void SetForbiddenStatus(string property)`;
+  - `void SetNotFoundStatus(string property)`;
+  - `void SetConflictStatus(string property)`;
+  - `void SetNotificationStatus(HttpStatusCode statusCode, string property, string errorCode)`;
+  - `void Clear()`;
+
+
+### Rules <a name="Rules"></a>
+- __General:__
+  - `.Gender();`
+  - `.GenderWithOther();`
+  - `.ForbiddenValue(options);`
+- __Objects:__
+  - `.Required();`
+- __Collections:__
+  - `.Min(min);`
+  - `.Max(max);`
+  - `.Range(min, max);`
+- __DateTimes:__
+  - `.Date(minDate, maxDate);`
+  - `.MinDateTimeUtcNow();`
+  - `.MaxDateTimeUtcNow();`
+- __Globalization:__
+  - `.CountryCodeISO2();`
+  - `.Latitude();`
+  - `.Longitude();`
+- __Guids:__
+  - `.Required();`
+- __Numerics:__
+  - `.MinZero();`
+  - `.Min(min);`
+  - `.Max(max);`
+  - `.Range(min, max);`
+- __Pagination:__
+  - `.OrderingDirectionIgnoreCase();`
+- __Strings:__
+  - `.Required();`
+  - `.Options(options);`
+  - `.OptionsIgnoreCase(options);`
+  - `.MaxLength(maxLength);`
+  - `.MinLength(minLength);`
+  - `.Length(minLength, maxLength);`
+  - `.EmailAddress();`
+  - `.ForbiddenValue(options);`
 
 
 
@@ -85,33 +147,6 @@ dotnet add package PowerUtils.Validations
 
 
 
+## Changelog
 
-## Release Notes
-
-
-### v2.1.0 - 2021/11/29
- 
-#### New Features
-- Added new exception `UnauthorizedException`;
-- Added new error code `UNAUTHORIZED`;
-
-#### Bug fixed
-- Bug fixed the StatusCode of the `ForbiddenException`;
-
-#### Enhancements
-- Improved the level of protection of static properties for ValidationExceptions;
-- Updated documentation;
-
-
-### v2.0.0 - 2021/11/23
-
-#### Breaking Changes
-- Now validation rule "Options" is case sensitive;
- 
-#### New Features
-- Added new validation rule "OptionsIgnoreCase";
-- Added new validation rule "OrderingDirectionIgnoreCase";
-
-
-### v1.0.0 - 2021/11/21
-- Kick start project;
+[Here](./CHANGELOG.md)
