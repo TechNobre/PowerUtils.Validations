@@ -19,7 +19,7 @@ namespace PowerUtils.Validations.Contracts
 
         #region METHODS - RULES
         IPropertyRule<TSource, TSource> RuleFor(string propertyName);
-        IPropertyRule<TSource, TProperty> RuleFor<TProperty>(Expression<Func<TSource, TProperty>> expression, string propertyName = null);
+        IPropertyRule<TSource, TProperty> RuleFor<TProperty>(Expression<Func<TSource, TProperty>> property, string propertyName = null);
         #endregion
 
 
