@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerUtils.Validations", "src\PowerUtils.Validations\PowerUtils.Validations.csproj", "{93B5E53F-ECBF-4B8F-9D19-04FC6EAABAA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerUtils.Validations", "src\PowerUtils.Validations.csproj", "{93B5E53F-ECBF-4B8F-9D19-04FC6EAABAA1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerUtils.Validations.Tests", "tests\PowerUtils.Validations.Tests\PowerUtils.Validations.Tests.csproj", "{94BAE43D-6BAB-43C4-9FC8-53BAFF4296E0}"
 EndProject
@@ -29,8 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.src", "3.src", "{8339E601
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.tests", "4.tests", "{0965340C-1083-41DA-B805-A4FAADC6E0D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerUtils.Validations.Primitives", "..\PowerUtils.Validations.Primitives\src\PowerUtils.Validations.Primitives\PowerUtils.Validations.Primitives.csproj", "{942A19AC-8E99-4888-8265-79036D02AE4D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,10 +43,6 @@ Global
 		{94BAE43D-6BAB-43C4-9FC8-53BAFF4296E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94BAE43D-6BAB-43C4-9FC8-53BAFF4296E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94BAE43D-6BAB-43C4-9FC8-53BAFF4296E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{942A19AC-8E99-4888-8265-79036D02AE4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{942A19AC-8E99-4888-8265-79036D02AE4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{942A19AC-8E99-4888-8265-79036D02AE4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{942A19AC-8E99-4888-8265-79036D02AE4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

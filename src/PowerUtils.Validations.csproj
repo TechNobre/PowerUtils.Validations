@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <ProjectGuid>f4bd9d12-d421-4327-a217-fcaf14ce02ed</ProjectGuid>
+
     <!-- Assembly and projecto details -->
     <!-- https://docs.microsoft.com/en-us/dotnet/standard/frameworks -->
     <TargetFrameworks>net6.0;net5.0</TargetFrameworks>
@@ -13,7 +15,7 @@
     <PackageId>PowerUtils.Validations</PackageId>
     <title>PowerUtils.Validations</title>
     <Product>PowerUtils.Validations</Product>
-    <Version>2.1.0</Version>
+    <Version>3.0.0</Version>
 
     <Authors>Nelson Nobre</Authors>
     <Company>TechNobre</Company>
@@ -24,14 +26,20 @@
 
     <Description>Utils to help validation of the objects</Description>
     <PackageReleaseNotes>
-      - Added new exception `UnauthorizedException`;
-      - Added new error code `UNAUTHORIZED`;
-      - Bug fixed the StatusCode of the `ForbiddenException`;
-      - Improved the level of protection of static properties for ValidationExceptions;
-      - Updated documentation;
+      - Exceptions module has been moved to PowerUtils.GuardClauses.Validations;
+      - ErrorCodes module has been moved to PowerUtils.Validations.Primitives;
+      - Error codes for status code 409-Conflict changed from `ALREADY_EXISTS` to `DUPLICATED`;
+      - Removed unused property `Message` from object `ValidationNotification`;
+      - Removed the constructor `ValidationNotification(string property, string errorCode, string message)`;
+      - Object `ValidationNotification` named to `ValidationFailure`;
+      - Interface `IValidationNotificationsPipeline` named to `IValidationNotifications`;
+      - Object `ValidationNotificationsPipeline` named to `ValidationNotifications`;
+      - Helper `ValidationsContractNotificationsErrors` named to `ValidationsContractExtensions`;
+      - Helper `*ValidationsContract` named to `*ValidationRules`;
+      - Remove unused property `IgnoreProperties` from `IValidationsContract`;
     </PackageReleaseNotes>
     <Description>Utils to help validation of the objects</Description>
-    <PackageTags>PowerUtils;Utils;Validation;Rules;Exception</PackageTags>
+    <PackageTags>PowerUtils;Utils;Validations;Validation;Rules</PackageTags>
     <RepositoryUrl>https://github.com/TechNobre/PowerUtils.Validations</RepositoryUrl>
     <PackageProjectUrl>https://github.com/TechNobre/PowerUtils.Validations</PackageProjectUrl>
     <NeutralLanguage>en-GB</NeutralLanguage>
@@ -75,18 +83,14 @@
 
 
   <ItemGroup>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+    <None Include="..\LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>
 
 
   <ItemGroup>
     <PackageReference Include="PowerUtils.Globalization" Version="1.0.0" />
     <PackageReference Include="PowerUtils.Text" Version="2.1.0" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\PowerUtils.Validations.Primitives\src\PowerUtils.Validations.Primitives\PowerUtils.Validations.Primitives.csproj" />
+    <PackageReference Include="PowerUtils.Validations.Primitives" Version="1.0.0" />
   </ItemGroup>
 
 
