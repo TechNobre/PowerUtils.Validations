@@ -90,7 +90,7 @@
   <ItemGroup>
     <PackageReference Include="PowerUtils.Globalization" Version="1.0.0" />
     <PackageReference Include="PowerUtils.Text" Version="2.1.0" />
-    <PackageReference Include="PowerUtils.Validations.Primitives" Version="1.1.0" />
+    <PackageReference Include="PowerUtils.Validations.Primitives" Version="1.2.0" />
   </ItemGroup>
 
 
