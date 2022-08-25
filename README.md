@@ -1,5 +1,8 @@
 # PowerUtils.Validations
-Utils to help validation of the objects
+
+![Logo](https://raw.githubusercontent.com/TechNobre/PowerUtils.Validations/main/assets/logo/logo_128x128.png)
+
+***Utils to help validation of the objects***
 
 ![Tests](https://github.com/TechNobre/PowerUtils.Validations/actions/workflows/test-project.yml/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TechNobre_PowerUtils.Validations&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=TechNobre_PowerUtils.Validations)
@@ -10,30 +13,34 @@ Utils to help validation of the objects
 [![License: MIT](https://img.shields.io/github/license/TechNobre/PowerUtils.Validations.svg)](https://github.com/TechNobre/PowerUtils.Validations/blob/main/LICENSE)
 
 
+- [Support](#support-to)
+- [Dependencies](#dependencies)
+- [How to use](#how-to-use)
+  - [Install NuGet package](#Installation)
+  - [ValidationsContract](#ValidationsContract)
+  - [ValidationNotifications](#ValidationNotifications)
+  - [Rules](#Rules)
+- [Contribution](#contribution)
+- [License](./LICENSE)
+- [Changelog](./CHANGELOG.md)
 
-## Support to
+
+
+## Support to <a name="support-to"></a>
 - .NET 5.0
 - .NET 6.0
 
 
 
-## Features
-- [ValidationsContract](#ValidationsContract)
-- [ValidationNotifications](#ValidationNotifications)
-- [Rules](#Rules)
-
-
-
-## Documentation
-
-### Dependencies
+## Dependencies <a name="dependencies"></a>
 
 - PowerUtils.Validations.Primitives [NuGet](https://www.nuget.org/packages/PowerUtils.Validations.Primitives/)
 - PowerUtils.Globalization [NuGet](https://www.nuget.org/packages/PowerUtils.Globalization/)
 - PowerUtils.Text [NuGet](https://www.nuget.org/packages/PowerUtils.Text/)
 
 
-### How to use
+
+## How to use <a name="how-to-use"></a>
 
 #### Install NuGet package <a name="Installation"></a>
 This package is available through Nuget Packages: https://www.nuget.org/packages/PowerUtils.Validations
@@ -134,19 +141,6 @@ public class CountryValidation : ValidationsContract<Country>
 
 
 
-## Contribution
+## Contribution <a name="contribution"></a>
 
-*Help me to help others*
-
-
-
-
-## LICENSE
-
-[MIT](https://github.com/TechNobre/PowerUtils.Validations/blob/main/LICENSE)
-
-
-
-## Changelog
-
-[Here](./CHANGELOG.md)
+If you have any questions, comments, or suggestions, please open an [issue](https://github.com/TechNobre/PowerUtils.Validations/issues/new/choose) or create a [pull request](https://github.com/TechNobre/PowerUtils.Validations/compare)
