@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <!-- Assembly details -->
   <PropertyGroup>
     <ProjectGuid>f4bd9d12-d421-4327-a217-fcaf14ce02ed</ProjectGuid>
 
@@ -7,44 +8,40 @@
     <!-- https://docs.microsoft.com/en-us/dotnet/standard/frameworks -->
     <TargetFrameworks>net6.0;net5.0</TargetFrameworks>
 
+    
     <RootNamespace>PowerUtils.Validations</RootNamespace>
     <AssemblyName>PowerUtils.Validations</AssemblyName>
 
+    <Version>3.0.0</Version>
 
-    <!-- Package details -->
+    <PackageOutputPath>bin\</PackageOutputPath>
+  </PropertyGroup>
+
+
+  <!-- Package details -->
+  <PropertyGroup>
+    <CurrentYear>$([System.DateTime]::UtcNow.ToString(yyyy))</CurrentYear>
+    
     <PackageId>PowerUtils.Validations</PackageId>
     <title>PowerUtils.Validations</title>
     <Product>PowerUtils.Validations</Product>
-    <Version>3.0.0</Version>
 
     <Authors>Nelson Nobre</Authors>
     <Company>TechNobre</Company>
 
     <License>MIT</License>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Copyright>Copyright © 2022 by TechNobre</Copyright>
+    <Copyright>Copyright © $(CurrentYear) by TechNobre</Copyright>
 
     <Description>Utils to help validation of the objects</Description>
-    <PackageReleaseNotes>
-      - Exceptions module has been moved to PowerUtils.GuardClauses.Validations;
-      - ErrorCodes module has been moved to PowerUtils.Validations.Primitives;
-      - Error codes for status code 409-Conflict changed from `ALREADY_EXISTS` to `DUPLICATED`;
-      - Removed unused property `Message` from object `ValidationNotification`;
-      - Removed the constructor `ValidationNotification(string property, string errorCode, string message)`;
-      - Object `ValidationNotification` named to `ValidationFailure`;
-      - Interface `IValidationNotificationsPipeline` named to `IValidationNotifications`;
-      - Object `ValidationNotificationsPipeline` named to `ValidationNotifications`;
-      - Helper `ValidationsContractNotificationsErrors` named to `ValidationsContractExtensions`;
-      - Helper `*ValidationsContract` named to `*ValidationRules`;
-      - Remove unused property `IgnoreProperties` from `IValidationsContract`;
-    </PackageReleaseNotes>
-    <Description>Utils to help validation of the objects</Description>
+    <Summary>Utils to help validation of the objects</Summary>
     <PackageTags>PowerUtils;Utils;Validations;Validation;Rules</PackageTags>
-    <RepositoryUrl>https://github.com/TechNobre/PowerUtils.Validations</RepositoryUrl>
     <PackageProjectUrl>https://github.com/TechNobre/PowerUtils.Validations</PackageProjectUrl>
     <NeutralLanguage>en-GB</NeutralLanguage>
 
-    <PackageOutputPath>bin\</PackageOutputPath>
+
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/TechNobre/PowerUtils.Validations</RepositoryUrl>
   </PropertyGroup>
 
 
@@ -56,6 +53,7 @@
   </PropertyGroup>
 
 
+  <!-- Tests -->
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>$(AssemblyName).Tests</_Parameter1>
@@ -63,31 +61,12 @@
   </ItemGroup>
 
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <DefineConstants>RELEASE;TRACE</DefineConstants>
-    <ErrorReport>none</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-
-
   <ItemGroup>
     <None Include="..\LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>
 
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Release'">
     <PackageReference Include="PowerUtils.Globalization" Version="1.2.1" />
     <PackageReference Include="PowerUtils.Text" Version="2.2.0" />
     <PackageReference Include="PowerUtils.Validations.Primitives" Version="1.2.2" />
