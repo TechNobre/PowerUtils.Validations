@@ -1,8 +1,9 @@
-﻿namespace PowerUtils.Validations.Tests.Fakes.ValueObjects;
-
-public class FakeLocation
+﻿namespace PowerUtils.Validations.Tests.Fakes.ValueObjects
 {
-    public double Latitude { get; set; }
+    public class FakeLocation
+    {
+        public double Latitude { get; set; }
 
-    public double Longitude { get; set; }
+        public double Longitude { get; set; }
+    }
 }

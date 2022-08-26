@@ -1,11 +1,12 @@
 ﻿using System;
 
-namespace PowerUtils.Validations.Tests.Fakes.ValueObjects;
-
-public record FakeId
+namespace PowerUtils.Validations.Tests.Fakes.ValueObjects
 {
-    public Guid Id { get; init; }
+    public record FakeId
+    {
+        public Guid Id { get; init; }
 
-    public FakeId(Guid id)
-        => Id = id;
+        public FakeId(Guid id)
+            => Id = id;
+    }
 }

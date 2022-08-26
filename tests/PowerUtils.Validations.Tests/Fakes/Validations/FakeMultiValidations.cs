@@ -1,17 +1,18 @@
 ﻿using PowerUtils.Validations.Contracts;
 using PowerUtils.Validations.Tests.Fakes.Entities;
 
-namespace PowerUtils.Validations.Tests.Fakes.Validations;
-
-public class FakeMultiValidations : ValidationsContract<FakeEntity>
+namespace PowerUtils.Validations.Tests.Fakes.Validations
 {
-    public FakeMultiValidations(FakeEntity source)
-        : base(source)
+    public class FakeMultiValidations : ValidationsContract<FakeEntity>
     {
-        RuleFor(r => r.FirstName)
-            .Required();
+        public FakeMultiValidations(FakeEntity source)
+            : base(source)
+        {
+            RuleFor(r => r.FirstName)
+                .Required();
 
-        RuleFor(r => r.FirstName)
-            .Required();
+            RuleFor(r => r.FirstName)
+                .Required();
+        }
     }
 }

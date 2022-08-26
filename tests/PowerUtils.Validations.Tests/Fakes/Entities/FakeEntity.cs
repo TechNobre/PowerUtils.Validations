@@ -1,15 +1,16 @@
-﻿namespace PowerUtils.Validations.Tests.Fakes.Entities;
-
-public class FakeEntity
+﻿namespace PowerUtils.Validations.Tests.Fakes.Entities
 {
-    public string FirstName { get; init; }
+    public class FakeEntity
+    {
+        public string FirstName { get; init; }
 
-    public string LastName { get; init; }
+        public string LastName { get; init; }
 
-    public FakeEntity(string firstName)
-        => FirstName = firstName;
+        public FakeEntity(string firstName)
+            => FirstName = firstName;
 
-    public FakeEntity(string firstName, string lastName)
-        : this(firstName)
-        => LastName = lastName;
+        public FakeEntity(string firstName, string lastName)
+            : this(firstName)
+            => LastName = lastName;
+    }
 }

@@ -1,11 +1,12 @@
 ﻿using PowerUtils.Validations.Contracts;
 using PowerUtils.Validations.Tests.Fakes.Entities;
 
-namespace PowerUtils.Validations.Tests.Fakes.Validations.General;
-
-public class FakeGenderValidation : ValidationsContract<FakeGender>
+namespace PowerUtils.Validations.Tests.Fakes.Validations.General
 {
-    public FakeGenderValidation(FakeGender source) : base(source)
-        => RuleFor(r => r.Gender)
-            .Gender();
+    public class FakeGenderValidation : ValidationsContract<FakeGender>
+    {
+        public FakeGenderValidation(FakeGender source) : base(source)
+            => RuleFor(r => r.Gender)
+                .Gender();
+    }
 }

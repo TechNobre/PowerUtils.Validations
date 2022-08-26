@@ -1,105 +1,108 @@
 ﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations.Tests.Fakes.Entities;
 using PowerUtils.Validations.Tests.Fakes.Validations.Strings;
+using Xunit;
 
-namespace PowerUtils.Validations.Tests.Contracts.Strings;
-
-public class MinLengthValidationRulesTests
+namespace PowerUtils.Validations.Tests.Contracts.Strings
 {
-    [Fact]
-    public void Value_NULL()
+    public class MinLengthValidationRulesTests
     {
-        // Arrange
-        var fake = new FakeEntity(null);
-        var minLength = 10;
+        [Fact]
+        public void NULLValue_Validate_Valid()
+        {
+            // Arrange
+            var fake = new FakeEntity(null);
+            var minLength = 10;
 
 
-        // Act
-        var act = new FakeMinLengthValidation(
-            fake,
-            minLength
-        );
+            // Act
+            var act = new FakeMinLengthValidation(
+                fake,
+                minLength
+            );
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
 
-        act.Notifications.Should().BeEmpty();
-    }
+            act.Notifications.Should().BeEmpty();
+        }
 
-    [Fact]
-    public void Value_Empty()
-    {
-        // Arrange
-        var fake = new FakeEntity(string.Empty);
-        var minLength = 10;
-
-
-        // Act
-        var act = new FakeMinLengthValidation(
-            fake,
-            minLength
-        );
+        [Fact]
+        public void EmptyValue_Validate_Valid()
+        {
+            // Arrange
+            var fake = new FakeEntity(string.Empty);
+            var minLength = 10;
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should().BeEmpty();
-    }
-
-    [Fact]
-    public void Value_Valid()
-    {
-        // Arrange
-        var fake = new FakeEntity("value");
-        var minLength = 3;
+            // Act
+            var act = new FakeMinLengthValidation(
+                fake,
+                minLength
+            );
 
 
-        // Act
-        var act = new FakeMinLengthValidation(
-            fake,
-            minLength
-        );
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void Value_Validate_Valid()
+        {
+            // Arrange
+            var fake = new FakeEntity("value");
+            var minLength = 3;
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should().BeEmpty();
-    }
-
-    [Fact]
-    public void Value_Invalid()
-    {
-        // Arrange
-        var fake = new FakeEntity("value");
-        var minLength = 10;
-
-        var expectedProperty = nameof(fake.FirstName);
-        var expectedErrorCode = ErrorCodes.MIN + ":" + minLength;
+            // Act
+            var act = new FakeMinLengthValidation(
+                fake,
+                minLength
+            );
 
 
-        // Act
-        var act = new FakeMinLengthValidation(
-            fake,
-            minLength
-        );
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void ShortValue_Validate_Invalid()
+        {
+            // Arrange
+            var fake = new FakeEntity("value");
+            var minLength = 10;
+
+            var expectedProperty = nameof(fake.FirstName);
+            var expectedErrorCode = ErrorCodes.MIN + ":" + minLength;
 
 
-        // Assert
-        act.Invalid.Should()
-            .BeTrue();
+            // Act
+            var act = new FakeMinLengthValidation(
+                fake,
+                minLength
+            );
 
-        act.Notifications.First().Property
-            .Should()
-                .Be(expectedProperty);
 
-        act.Notifications.First().ErrorCode
-            .Should()
-                .Be(expectedErrorCode);
+            // Assert
+            act.Invalid.Should()
+                .BeTrue();
+
+            act.Notifications.First().Property
+                .Should()
+                    .Be(expectedProperty);
+
+            act.Notifications.First().ErrorCode
+                .Should()
+                    .Be(expectedErrorCode);
+        }
     }
 }

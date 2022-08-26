@@ -1,9 +1,10 @@
-﻿namespace PowerUtils.Validations.Tests.Fakes.Entities;
-
-public class FakeStringDate
+﻿namespace PowerUtils.Validations.Tests.Fakes.Entities
 {
-    public string Date { get; init; }
+    public class FakeStringDate
+    {
+        public string Date { get; init; }
 
-    public FakeStringDate(string date)
-        => Date = date;
+        public FakeStringDate(string date)
+            => Date = date;
+    }
 }

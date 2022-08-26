@@ -1,115 +1,118 @@
 ﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations.Contracts;
+using Xunit;
 
-namespace PowerUtils.Validations.Tests.Contracts;
-
-public class ValidationsContractExtensionsTests
+namespace PowerUtils.Validations.Tests.Contracts
 {
-    [Fact]
-    public void ValidationsContract_AddErrorMIN_OneError()
+    public class ValidationsContractExtensionsTests
     {
-        // Arrange
-        var contract = new ValidationsContract<int>(5);
+        [Fact]
+        public void ValidationsContract_AddErrorMIN_OneError()
+        {
+            // Arrange
+            var contract = new ValidationsContract<int>(5);
 
 
-        // Act
-        contract.AddErrorMIN("FakeProp", 10);
+            // Act
+            contract.AddErrorMIN("FakeProp", 10);
 
 
-        // Assert
-        contract.Invalid.Should()
-            .BeTrue();
+            // Assert
+            contract.Invalid.Should()
+                .BeTrue();
 
-        contract.Notifications.Count.Should()
-            .Be(1);
+            contract.Notifications.Count.Should()
+                .Be(1);
 
-        contract.Notifications.First().Property
-            .Should()
-                .Be("FakeProp");
+            contract.Notifications.First().Property
+                .Should()
+                    .Be("FakeProp");
 
-        contract.Notifications.First().ErrorCode
-            .Should()
-                .Be(ErrorCodes.GetMinFormatted(10));
-    }
+            contract.Notifications.First().ErrorCode
+                .Should()
+                    .Be(ErrorCodes.GetMinFormatted(10));
+        }
 
-    [Fact]
-    public void ValidationsContract_AddErrorMAX_OneError()
-    {
-        // Arrange
-        var contract = new ValidationsContract<int>(15);
-
-
-        // Act
-        contract.AddErrorMAX("FakeProp", 10);
+        [Fact]
+        public void ValidationsContract_AddErrorMAX_OneError()
+        {
+            // Arrange
+            var contract = new ValidationsContract<int>(15);
 
 
-        // Assert
-        contract.Invalid.Should()
-            .BeTrue();
-
-        contract.Notifications.Count.Should()
-            .Be(1);
-
-        contract.Notifications.First().Property
-            .Should()
-                .Be("FakeProp");
-
-        contract.Notifications.First().ErrorCode
-            .Should()
-                .Be(ErrorCodes.GetMaxFormatted(10));
-    }
-
-    [Fact]
-    public void ValidationsContract_AddErrorINVALID_OneError()
-    {
-        // Arrange
-        var contract = new ValidationsContract<string>("fksjfkl");
+            // Act
+            contract.AddErrorMAX("FakeProp", 10);
 
 
-        // Act
-        contract.AddErrorINVALID("FakeProp");
+            // Assert
+            contract.Invalid.Should()
+                .BeTrue();
+
+            contract.Notifications.Count.Should()
+                .Be(1);
+
+            contract.Notifications.First().Property
+                .Should()
+                    .Be("FakeProp");
+
+            contract.Notifications.First().ErrorCode
+                .Should()
+                    .Be(ErrorCodes.GetMaxFormatted(10));
+        }
+
+        [Fact]
+        public void ValidationsContract_AddErrorINVALID_OneError()
+        {
+            // Arrange
+            var contract = new ValidationsContract<string>("fksjfkl");
 
 
-        // Assert
-        contract.Invalid.Should()
-            .BeTrue();
-
-        contract.Notifications.Count.Should()
-            .Be(1);
-
-        contract.Notifications.First().Property
-            .Should()
-                .Be("FakeProp");
-
-        contract.Notifications.First().ErrorCode
-            .Should()
-                .Be(ErrorCodes.INVALID);
-    }
-
-    [Fact]
-    public void ValidationsContract_AddErrorREQUIRED_OneError()
-    {
-        // Arrange
-        var contract = new ValidationsContract<string>("");
+            // Act
+            contract.AddErrorINVALID("FakeProp");
 
 
-        // Act
-        contract.AddErrorREQUIRED("FakeProp");
+            // Assert
+            contract.Invalid.Should()
+                .BeTrue();
+
+            contract.Notifications.Count.Should()
+                .Be(1);
+
+            contract.Notifications.First().Property
+                .Should()
+                    .Be("FakeProp");
+
+            contract.Notifications.First().ErrorCode
+                .Should()
+                    .Be(ErrorCodes.INVALID);
+        }
+
+        [Fact]
+        public void ValidationsContract_AddErrorREQUIRED_OneError()
+        {
+            // Arrange
+            var contract = new ValidationsContract<string>("");
 
 
-        // Assert
-        contract.Invalid.Should()
-            .BeTrue();
+            // Act
+            contract.AddErrorREQUIRED("FakeProp");
 
-        contract.Notifications.Count.Should()
-            .Be(1);
 
-        contract.Notifications.First().Property
-            .Should()
-                .Be("FakeProp");
+            // Assert
+            contract.Invalid.Should()
+                .BeTrue();
 
-        contract.Notifications.First().ErrorCode
-            .Should()
-                .Be(ErrorCodes.REQUIRED);
+            contract.Notifications.Count.Should()
+                .Be(1);
+
+            contract.Notifications.First().Property
+                .Should()
+                    .Be("FakeProp");
+
+            contract.Notifications.First().ErrorCode
+                .Should()
+                    .Be(ErrorCodes.REQUIRED);
+        }
     }
 }
