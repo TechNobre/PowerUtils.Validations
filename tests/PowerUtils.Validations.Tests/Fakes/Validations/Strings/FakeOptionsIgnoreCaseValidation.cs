@@ -1,20 +1,21 @@
 ﻿using PowerUtils.Validations.Contracts;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
 
-namespace PowerUtils.Validations.Tests.Fakes.Validations.Strings;
-
-public class FakeOptionsIgnoreCaseValidation : ValidationsContract<FakeOptions>
+namespace PowerUtils.Validations.Tests.Fakes.Validations.Strings
 {
-    private readonly string[] _options;
-
-    public FakeOptionsIgnoreCaseValidation(
-        FakeOptions source,
-        string[] options
-    ) : base(source)
+    public class FakeOptionsIgnoreCaseValidation : ValidationsContract<FakeOptions>
     {
-        _options = options;
+        private readonly string[] _options;
 
-        RuleFor(r => r.Value)
-           .OptionsIgnoreCase(_options);
+        public FakeOptionsIgnoreCaseValidation(
+            FakeOptions source,
+            string[] options
+        ) : base(source)
+        {
+            _options = options;
+
+            RuleFor(r => r.Value)
+               .OptionsIgnoreCase(_options);
+        }
     }
 }

@@ -1,215 +1,218 @@
 ﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations.Contracts;
 using PowerUtils.Validations.Tests.Fakes.Entities;
 using PowerUtils.Validations.Tests.Fakes.Validations.General;
+using Xunit;
 
-namespace PowerUtils.Validations.Tests.Contracts.General;
-
-public class GenderGeneralValidationRulesTests
+namespace PowerUtils.Validations.Tests.Contracts.General
 {
-    [Fact]
-    public void Gender_NULL_Valid()
+    public class GenderGeneralValidationRulesTests
     {
-        // Arrange
-        var fake = new FakeGender(null);
+        [Fact]
+        public void NULLGender_Validate_Valid()
+        {
+            // Arrange
+            var fake = new FakeGender(null);
 
 
-        // Act
-        var act = new FakeGenderValidation(fake);
+            // Act
+            var act = new FakeGenderValidation(fake);
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
 
-        act.Notifications.Should()
-            .BeEmpty();
-    }
+            act.Notifications.Should()
+                .BeEmpty();
+        }
 
-    [Fact]
-    public void Gender_Empty_Valid()
-    {
-        // Arrange
-        var fake = new FakeGender("");
-
-
-        // Act
-        var act = new FakeGenderValidation(fake);
+        [Fact]
+        public void Empty_ValidateGender_Valid()
+        {
+            // Arrange
+            var fake = new FakeGender("");
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should()
-            .BeEmpty();
-    }
-
-    [Fact]
-    public void Gender_Male_Valid()
-    {
-        // Arrange
-        var fake = new FakeGender("male");
+            // Act
+            var act = new FakeGenderValidation(fake);
 
 
-        // Act
-        var act = new FakeGenderValidation(fake);
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should()
+                .BeEmpty();
+        }
+
+        [Fact]
+        public void MaleGender_Validate_Valid()
+        {
+            // Arrange
+            var fake = new FakeGender("male");
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should()
-            .BeEmpty();
-    }
-
-    [Fact]
-    public void Gender_Female_Valid()
-    {
-        // Arrange
-        var fake = new FakeGender("FemalE");
+            // Act
+            var act = new FakeGenderValidation(fake);
 
 
-        // Act
-        var act = new FakeGenderValidation(fake);
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should()
+                .BeEmpty();
+        }
+
+        [Fact]
+        public void Female_ValidateGender_Valid()
+        {
+            // Arrange
+            var fake = new FakeGender("FemalE");
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should().BeEmpty();
-    }
-
-    [Fact]
-    public void Gender_InvalidValue_Invalid()
-    {
-        // Arrange
-        var fake = new FakeGender("op3");
+            // Act
+            var act = new FakeGenderValidation(fake);
 
 
-        // Act
-        var act = new FakeGenderValidation(fake);
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void InvalidValue_ValidateGender_Invalid()
+        {
+            // Arrange
+            var fake = new FakeGender("op3");
 
 
-        // Assert
-        act.Invalid.Should()
-            .BeTrue();
-
-        act.Notifications.First().Property
-            .Should()
-                .Be(nameof(fake.Gender));
-
-        act.Notifications.First().ErrorCode
-            .Should()
-                .Be(ErrorCodes.INVALID);
-    }
-
-    [Fact]
-    public void GenderWithOther_Other_Valid()
-    {
-        // Arrange
-        var gender = "Other";
+            // Act
+            var act = new FakeGenderValidation(fake);
 
 
-        // Act
-        var act = new ValidationsContract<string>(gender)
-            .RuleFor("Gender")
-            .GenderWithOther();
+            // Assert
+            act.Invalid.Should()
+                .BeTrue();
+
+            act.Notifications.First().Property
+                .Should()
+                    .Be(nameof(fake.Gender));
+
+            act.Notifications.First().ErrorCode
+                .Should()
+                    .Be(ErrorCodes.INVALID);
+        }
+
+        [Fact]
+        public void Other_ValidateGenderWithOther_Valid()
+        {
+            // Arrange
+            var gender = "Other";
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-    }
-
-    [Fact]
-    public void Gender_NotOther_Invalid()
-    {
-        // Arrange
-        var gender = "Fake";
+            // Act
+            var act = new ValidationsContract<string>(gender)
+                .RuleFor("Gender")
+                .GenderWithOther();
 
 
-        // Act
-        var act = new ValidationsContract<string>(gender)
-            .RuleFor("Gender")
-            .GenderWithOther();
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+        }
+
+        [Fact]
+        public void NotOther_ValidateGender_Invalid()
+        {
+            // Arrange
+            var gender = "Fake";
 
 
-        // Assert
-        act.Invalid.Should()
-            .BeTrue();
-
-        act.Notifications.First().Property
-            .Should()
-                .Be("Gender");
-
-        act.Notifications.First().ErrorCode
-            .Should()
-                .Be(ErrorCodes.INVALID);
-    }
-
-    [Fact]
-    public void GenderWithOther_Male_Valid()
-    {
-        // Arrange
-        var gender = "male";
+            // Act
+            var act = new ValidationsContract<string>(gender)
+                .RuleFor("Gender")
+                .GenderWithOther();
 
 
-        // Act
-        var act = new ValidationsContract<string>(gender)
-            .RuleFor("Gender")
-            .GenderWithOther();
+            // Assert
+            act.Invalid.Should()
+                .BeTrue();
+
+            act.Notifications.First().Property
+                .Should()
+                    .Be("Gender");
+
+            act.Notifications.First().ErrorCode
+                .Should()
+                    .Be(ErrorCodes.INVALID);
+        }
+
+        [Fact]
+        public void Male_ValidateGenderWithOther_Valid()
+        {
+            // Arrange
+            var gender = "male";
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should()
-            .BeEmpty();
-    }
-
-    [Fact]
-    public void GenderWithOther_Null_Valid()
-    {
-        // Arrange
-        string gender = null;
+            // Act
+            var act = new ValidationsContract<string>(gender)
+                .RuleFor("Gender")
+                .GenderWithOther();
 
 
-        // Act
-        var act = new ValidationsContract<string>(gender)
-            .RuleFor("Gender")
-            .GenderWithOther();
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should()
+                .BeEmpty();
+        }
+
+        [Fact]
+        public void Null_ValidateGenderWithOther_Valid()
+        {
+            // Arrange
+            string gender = null;
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should()
-            .BeEmpty();
-    }
-
-    [Fact]
-    public void GenderWithOther_Empty_Valid()
-    {
-        // Arrange
-        var gender = "";
+            // Act
+            var act = new ValidationsContract<string>(gender)
+                .RuleFor("Gender")
+                .GenderWithOther();
 
 
-        // Act
-        var act = new ValidationsContract<string>(gender)
-            .RuleFor("Gender")
-            .GenderWithOther();
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should()
+                .BeEmpty();
+        }
+
+        [Fact]
+        public void Empty_ValidateGenderWithOther_Valid()
+        {
+            // Arrange
+            var gender = "";
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
+            // Act
+            var act = new ValidationsContract<string>(gender)
+                .RuleFor("Gender")
+                .GenderWithOther();
 
-        act.Notifications.Should()
-            .BeEmpty();
+
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should()
+                .BeEmpty();
+        }
     }
 }

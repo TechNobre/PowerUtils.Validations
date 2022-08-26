@@ -1,59 +1,58 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations.Tests.Fakes.Validations.Objects;
+using Xunit;
 
-namespace PowerUtils.Validations.Tests.Contracts.Collections;
-
-public class RawListValidationRulesTests
+namespace PowerUtils.Validations.Tests.Contracts.Collections
 {
-    [Fact]
-    public void Contract_Null_Invalid()
+    public class RawListValidationRulesTests
     {
-        // Arrange
-        List<string> fake = null;
+        [Fact]
+        public void Null_ValidateContract_Invalid()
+        {
+            // Arrange
+            List<string> fake = null;
 
-        var expectedProperty = "FakeProperty";
-        var expectedErrorCode = ErrorCodes.REQUIRED;
-
-
-        // Act
-        var act = new FakeRawListValidation(
-             fake
-        );
+            var expectedProperty = "FakeProperty";
+            var expectedErrorCode = ErrorCodes.REQUIRED;
 
 
-        // Assert
-        act.Invalid.Should()
-            .BeTrue();
-
-        act.Notifications.First().Property
-            .Should()
-                .Be(expectedProperty);
-
-        act.Notifications.First().ErrorCode
-            .Should()
-                .Be(expectedErrorCode);
-    }
+            // Act
+            var act = new FakeRawListValidation(fake);
 
 
-    [Fact]
-    public void Contract_NotNull_Valid()
-    {
-        // Arrange
-        var fake = new List<string> { "fake1", "fake2" };
+            // Assert
+            act.Invalid.Should()
+                .BeTrue();
+
+            act.Notifications.First().Property
+                .Should()
+                    .Be(expectedProperty);
+
+            act.Notifications.First().ErrorCode
+                .Should()
+                    .Be(expectedErrorCode);
+        }
 
 
-        // Act
-        var act = new FakeRawListValidation(
-             fake
-        );
+        [Fact]
+        public void NotNull_ValidateContract_Valid()
+        {
+            // Arrange
+            var fake = new List<string> { "fake1", "fake2" };
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
+            // Act
+            var act = new FakeRawListValidation(fake);
 
-        act.Notifications.Should()
-            .BeEmpty();
+
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should()
+                .BeEmpty();
+        }
     }
 }

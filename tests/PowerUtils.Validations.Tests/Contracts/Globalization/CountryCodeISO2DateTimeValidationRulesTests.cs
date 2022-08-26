@@ -1,116 +1,119 @@
 ﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations.Tests.Fakes.Validations.Globalization;
 using PowerUtils.Validations.Tests.Fakes.ValueObjects;
+using Xunit;
 
-namespace PowerUtils.Validations.Tests.Contracts.Globalization;
-
-public class CountryCodeISO2DateTimeValidationRulesTests
+namespace PowerUtils.Validations.Tests.Contracts.Globalization
 {
-    [Fact]
-    public void Value_NULL()
+    public class CountryCodeISO2DateTimeValidationRulesTests
     {
-        // Arrange
-        var fake = new FakeCountry(null);
+        [Fact]
+        public void NULL_Validate_Valid()
+        {
+            // Arrange
+            var fake = new FakeCountry(null);
 
 
-        // Act
-        var act = new FakeCountryValidation(fake);
+            // Act
+            var act = new FakeCountryValidation(fake);
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
 
-        act.Notifications.Should().BeEmpty();
-    }
+            act.Notifications.Should().BeEmpty();
+        }
 
-    [Fact]
-    public void Value_Empty()
-    {
-        // Arrange
-        var fake = new FakeCountry(string.Empty);
-
-
-        // Act
-        var act = new FakeCountryValidation(fake);
+        [Fact]
+        public void Empty_Validate_Valid()
+        {
+            // Arrange
+            var fake = new FakeCountry(string.Empty);
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should().BeEmpty();
-    }
-
-    [Fact]
-    public void Value_Valid()
-    {
-        // Arrange
-        var fake = new FakeCountry("pt");
+            // Act
+            var act = new FakeCountryValidation(fake);
 
 
-        // Act
-        var act = new FakeCountryValidation(fake);
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void Value_Validate_Valid()
+        {
+            // Arrange
+            var fake = new FakeCountry("pt");
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should().BeEmpty();
-    }
-
-    [Fact]
-    public void Value_Invalid_ISO3()
-    {
-        // Arrange
-        var fake = new FakeCountry("PTR");
-
-        var expectedProperty = nameof(fake.CountryCode);
-        var expectedErrorCode = ErrorCodes.INVALID;
+            // Act
+            var act = new FakeCountryValidation(fake);
 
 
-        // Act
-        var act = new FakeCountryValidation(fake);
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void ISO3_Validate_Invalid()
+        {
+            // Arrange
+            var fake = new FakeCountry("PTR");
+
+            var expectedProperty = nameof(fake.CountryCode);
+            var expectedErrorCode = ErrorCodes.INVALID;
 
 
-        // Assert
-        act.Invalid.Should()
-            .BeTrue();
-
-        act.Notifications.First().Property
-            .Should()
-                .Be(expectedProperty);
-
-        act.Notifications.First().ErrorCode
-            .Should()
-                .Be(expectedErrorCode);
-    }
-
-    [Fact]
-    public void Value_Invalid_ISO2()
-    {
-        // Arrange
-        var fake = new FakeCountry("RR");
-
-        var expectedProperty = nameof(fake.CountryCode);
-        var expectedErrorCode = ErrorCodes.INVALID;
+            // Act
+            var act = new FakeCountryValidation(fake);
 
 
-        // Act
-        var act = new FakeCountryValidation(fake);
+            // Assert
+            act.Invalid.Should()
+                .BeTrue();
+
+            act.Notifications.First().Property
+                .Should()
+                    .Be(expectedProperty);
+
+            act.Notifications.First().ErrorCode
+                .Should()
+                    .Be(expectedErrorCode);
+        }
+
+        [Fact]
+        public void InvalidISO2_Validate_Valid()
+        {
+            // Arrange
+            var fake = new FakeCountry("RR");
+
+            var expectedProperty = nameof(fake.CountryCode);
+            var expectedErrorCode = ErrorCodes.INVALID;
 
 
-        // Assert
-        act.Invalid.Should()
-            .BeTrue();
+            // Act
+            var act = new FakeCountryValidation(fake);
 
-        act.Notifications.First().Property
-            .Should()
-                .Be(expectedProperty);
 
-        act.Notifications.First().ErrorCode
-            .Should()
-                .Be(expectedErrorCode);
+            // Assert
+            act.Invalid.Should()
+                .BeTrue();
+
+            act.Notifications.First().Property
+                .Should()
+                    .Be(expectedProperty);
+
+            act.Notifications.First().ErrorCode
+                .Should()
+                    .Be(expectedErrorCode);
+        }
     }
 }

@@ -1,113 +1,116 @@
 ﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Validations.Contracts;
+using Xunit;
 
-namespace PowerUtils.Validations.Tests.Contracts.PaginationValidations;
-
-public class OrderingDirectionIgnoreCaseValidationRulesTests
+namespace PowerUtils.Validations.Tests.Contracts.PaginationValidations
 {
-    [Fact]
-    public void OrderingDirection_Null_NotValidate()
+    public class OrderingDirectionIgnoreCaseValidationRulesTests
     {
-        // Arrange
-        string value = null;
+        [Fact]
+        public void Null_ValidateOrderingDirection_NotValidate()
+        {
+            // Arrange
+            string value = null;
 
 
-        // Act
-        var act = new ValidationsContract<string>(value)
-            .RuleFor("Fake")
-            .OrderingDirectionIgnoreCase();
+            // Act
+            var act = new ValidationsContract<string>(value)
+                .RuleFor("Fake")
+                .OrderingDirectionIgnoreCase();
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
 
-        act.Notifications.Should()
-            .BeEmpty();
-    }
+            act.Notifications.Should()
+                .BeEmpty();
+        }
 
-    [Fact]
-    public void OrderingDirection_Empty_NotValidate()
-    {
-        // Arrange
-        var value = string.Empty;
-
-
-        // Act
-        var act = new ValidationsContract<string>(value)
-            .RuleFor("Fake")
-            .OrderingDirectionIgnoreCase();
+        [Fact]
+        public void Empty_ValidateOrderingDirection_NotValidate()
+        {
+            // Arrange
+            var value = string.Empty;
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should()
-            .BeEmpty();
-    }
-
-    [Fact]
-    public void OrderingDirection_InvalidValue_NotValidate()
-    {
-        // Arrange
-        var value = "fff";
+            // Act
+            var act = new ValidationsContract<string>(value)
+                .RuleFor("Fake")
+                .OrderingDirectionIgnoreCase();
 
 
-        // Act
-        var act = new ValidationsContract<string>(value)
-            .RuleFor("Fake")
-            .OrderingDirectionIgnoreCase();
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should()
+                .BeEmpty();
+        }
+
+        [Fact]
+        public void InvalidValue_ValidateOrderingDirection_NotValidate()
+        {
+            // Arrange
+            var value = "fff";
 
 
-        // Assert
-        act.Invalid.Should()
-            .BeTrue();
-
-        act.Notifications.First().ErrorCode
-           .Should()
-               .Be(ErrorCodes.INVALID);
-    }
-
-    [Fact]
-    public void OrderingDirection_asc_Validate()
-    {
-        // Arrange
-        var value = "asc";
+            // Act
+            var act = new ValidationsContract<string>(value)
+                .RuleFor("Fake")
+                .OrderingDirectionIgnoreCase();
 
 
-        // Act
-        var act = new ValidationsContract<string>(value)
-            .RuleFor("Fake")
-            .OrderingDirectionIgnoreCase();
+            // Assert
+            act.Invalid.Should()
+                .BeTrue();
+
+            act.Notifications.First().ErrorCode
+               .Should()
+                   .Be(ErrorCodes.INVALID);
+        }
+
+        [Fact]
+        public void Asc_ValidateOrderingDirection_Valid()
+        {
+            // Arrange
+            var value = "asc";
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
-
-        act.Notifications.Should().
-            BeEmpty();
-    }
-
-    [Fact]
-    public void OrderingDirection_DeSc_Validate()
-    {
-        // Arrange
-        var value = "DeSc";
+            // Act
+            var act = new ValidationsContract<string>(value)
+                .RuleFor("Fake")
+                .OrderingDirectionIgnoreCase();
 
 
-        // Act
-        var act = new ValidationsContract<string>(value)
-            .RuleFor("Fake")
-            .OrderingDirectionIgnoreCase();
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should().
+                BeEmpty();
+        }
+
+        [Fact]
+        public void DeSc_ValidateOrderingDirection_Valid()
+        {
+            // Arrange
+            var value = "DeSc";
 
 
-        // Assert
-        act.Valid.Should()
-            .BeTrue();
+            // Act
+            var act = new ValidationsContract<string>(value)
+                .RuleFor("Fake")
+                .OrderingDirectionIgnoreCase();
 
-        act.Notifications.Should().
-            BeEmpty();
+
+            // Assert
+            act.Valid.Should()
+                .BeTrue();
+
+            act.Notifications.Should().
+                BeEmpty();
+        }
     }
 }
