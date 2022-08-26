@@ -1,3 +1,11 @@
+# [3.1.0](https://github.com/TechNobre/PowerUtils.Validations/compare/v3.0.0...v3.1.0) (2022-08-26)
+
+
+### Features
+
+* Add rule to validate latitude and longitude nullable ([73e6374](https://github.com/TechNobre/PowerUtils.Validations/commit/73e63749f1ed29a2d1c327743fe966b956a95af4))
+* Add support to debug in runtime `Microsoft.SourceLink.GitHub` ([d6bc421](https://github.com/TechNobre/PowerUtils.Validations/commit/d6bc421e9199e0771d0b5d4c8840af18aad78ce0))
+
 # [3.0.0](https://github.com/TechNobre/PowerUtils.Validations/compare/v2.1.0...v3.0.0) (2022-03-15)
 
 
