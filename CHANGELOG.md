@@ -1,10 +1,4 @@
-# Changelog
-
-
-
-
-## [3.0.0] - 2022-03-15
-[Full Changelog](https://github.com/TechNobre/PowerUtils.Validations/compare/v2.1.0...v3.0.0)
+# [3.0.0](https://github.com/TechNobre/PowerUtils.Validations/compare/v2.1.0...v3.0.0) (2022-03-15)
 
 
 ### Breaking Changes
@@ -23,8 +17,7 @@
 
 
 
-## [2.1.0] - 2021-11-29
-[Full Changelog](https://github.com/TechNobre/PowerUtils.Validations/compare/v2.0.0...v2.1.0)
+# [2.1.0](https://github.com/TechNobre/PowerUtils.Validations/compare/v2.0.0...v2.1.0) (2021-11-29)
 
 
 ### New Features
@@ -43,8 +36,7 @@
 
 
 
-## [2.0.0] - 2021-11-23
-[Full Changelog](https://github.com/TechNobre/PowerUtils.Validations/compare/v1.0.0...v2.0.0)
+# [2.0.0](https://github.com/TechNobre/PowerUtils.Validations/compare/v1.0.0...v2.0.0) (2021-11-23)
 
 
 ### New Features
@@ -58,6 +50,6 @@
 
 
 
-## [1.0.0] - 2021-11-21
+# 1.0.0 (2021-11-21)
 
 - Start project
