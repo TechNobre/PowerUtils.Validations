@@ -52,8 +52,48 @@ namespace PowerUtils.Validations.Contracts
             return propertyRule;
         }
 
+        public static IPropertyRule<TSource, double?> Latitude<TSource>(this IPropertyRule<TSource, double?> propertyRule)
+        {
+            if(propertyRule.PropertyNull)
+            {
+                return propertyRule;
+            }
+
+            if(propertyRule.PropertyValue > MAX_LATITUDE)
+            {
+                propertyRule.AddNotification(ErrorCodes.GetMaxFormatted(MAX_LATITUDE));
+                return propertyRule; // Prevent next comparation
+            }
+            if(propertyRule.PropertyValue < MIN_LATITUDE)
+            {
+                propertyRule.AddNotification(ErrorCodes.GetMinFormatted(MIN_LATITUDE));
+            }
+
+            return propertyRule;
+        }
+
         public static IPropertyRule<TSource, double> Longitude<TSource>(this IPropertyRule<TSource, double> propertyRule)
         {
+            if(propertyRule.PropertyValue > MAX_LONGITUDE)
+            {
+                propertyRule.AddNotification(ErrorCodes.GetMaxFormatted(MAX_LONGITUDE));
+                return propertyRule; // Prevent next comparation
+            }
+            if(propertyRule.PropertyValue < MIN_LONGITUDE)
+            {
+                propertyRule.AddNotification(ErrorCodes.GetMinFormatted(MIN_LONGITUDE));
+            }
+
+            return propertyRule;
+        }
+
+        public static IPropertyRule<TSource, double?> Longitude<TSource>(this IPropertyRule<TSource, double?> propertyRule)
+        {
+            if(propertyRule.PropertyNull)
+            {
+                return propertyRule;
+            }
+
             if(propertyRule.PropertyValue > MAX_LONGITUDE)
             {
                 propertyRule.AddNotification(ErrorCodes.GetMaxFormatted(MAX_LONGITUDE));
