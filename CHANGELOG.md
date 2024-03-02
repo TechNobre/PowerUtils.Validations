@@ -1,3 +1,17 @@
+# [4.0.0](https://github.com/TechNobre/PowerUtils.Validations/compare/v3.1.0...v4.0.0) (2024-03-02)
+
+
+### Bug Fixes
+
+* Deprecated package ([c59f9a9](https://github.com/TechNobre/PowerUtils.Validations/commit/c59f9a98058f53789f6341e853f387a99fd1877b))
+* Deprecated package ([926a7ea](https://github.com/TechNobre/PowerUtils.Validations/commit/926a7ea31352330b948a9d2953fe3ea6a8fda0c5))
+
+
+### BREAKING CHANGES
+
+* Deprecated package
+* Deprecated package
+
 # [3.1.0](https://github.com/TechNobre/PowerUtils.Validations/compare/v3.0.0...v3.1.0) (2022-08-26)
 
 
