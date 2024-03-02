@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PowerUtils.Validations.Contracts
 {
+    [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
     public static class CollectionValidationRules
     {
         public static IPropertyRule<TSource, TValue> Min<TSource, TValue, TProperty>(this IPropertyRule<TSource, TValue> propertyRule, int min)
