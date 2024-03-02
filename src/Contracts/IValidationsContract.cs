@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 
 namespace PowerUtils.Validations.Contracts
 {
+    [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
     public interface IValidationsContract
     {
         bool Valid { get; }
@@ -12,6 +13,7 @@ namespace PowerUtils.Validations.Contracts
         IReadOnlyCollection<ValidationFailure> Notifications { get; }
     }
 
+    [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
     public interface IValidationsContract<TSource> : IValidationsContract
     {
         TSource Source { get; init; }
