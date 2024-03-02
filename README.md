@@ -1,5 +1,9 @@
 # PowerUtils.Validations
 
+# :warning: DEPRECATED
+
+This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary or if you prefer, you can use a good projects like [FluentValidation](https://www.nuget.org/packages/FluentValidation) and [Flunt](https://www.nuget.org/packages/Flunt).
+
 ![Logo](https://raw.githubusercontent.com/TechNobre/PowerUtils.Validations/main/assets/logo/logo_128x128.png)
 
 ***Utils to help validation of the objects***
@@ -13,16 +17,13 @@
 [![License: MIT](https://img.shields.io/github/license/TechNobre/PowerUtils.Validations.svg)](https://github.com/TechNobre/PowerUtils.Validations/blob/main/LICENSE)
 
 
-- [Support](#support-to)
-- [Dependencies](#dependencies)
-- [How to use](#how-to-use)
-  - [Install NuGet package](#Installation)
-  - [ValidationsContract](#ValidationsContract)
-  - [ValidationNotifications](#ValidationNotifications)
-  - [Rules](#Rules)
-- [Contribution](#contribution)
-- [License](./LICENSE)
-- [Changelog](./CHANGELOG.md)
+- [Support to ](#support-to-)
+- [Dependencies ](#dependencies-)
+- [How to use ](#how-to-use-)
+    - [Install NuGet package ](#install-nuget-package-)
+  - [ValidationsContract ](#validationscontract-)
+  - [ValidationNotifications ](#validationnotifications-)
+  - [Rules ](#rules-)
 
 
 
@@ -138,9 +139,3 @@ public class CountryValidation : ValidationsContract<Country>
   - `.Length(minLength, maxLength);`
   - `.EmailAddress();`
   - `.ForbiddenValue(options);`
-
-
-
-## Contribution <a name="contribution"></a>
-
-If you have any questions, comments, or suggestions, please open an [issue](https://github.com/TechNobre/PowerUtils.Validations/issues/new/choose) or create a [pull request](https://github.com/TechNobre/PowerUtils.Validations/compare)
